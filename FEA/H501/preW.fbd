@@ -1,0 +1,13 @@
+read meshW.inp
+
+comp WCONT1 do
+comp WCONT1 do
+send WCONT1 abq sur
+
+comp WCONT2 do
+comp WCONT2 do
+send WCONT2 abq sur
+
+comp WCONT3 do
+comp WCONT3 do
+send WCONT3 abq sur

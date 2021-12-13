@@ -27,18 +27,24 @@ import CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS, INVOLUTE_GEOMETRY,\
 ## GEAR SELECTION #############################################################
 
 
-GEAR_NAME = 'C14'
+GEAR_NAME = '501'
 alpha = 20.0
-beta = 0.0
-m = 4.5
-z = [16, 24]
-x = [0.1817, 0.1715]
-b = [14.0, 14.]
+# beta = 0.0
+# m = 4.5
+# z = [16, 24]
+# x = [0.1817, 0.1715]
+# b = [14.0, 14.]
 dshaft = [30, 30]
 haP = 1.
 hfP = 1.25
 rfP = 0.38
 al = None
+
+beta = 15.0
+m = 3.5
+z = [20., 30.]
+x = [0.1809, 0.0891]
+b = [23.0, 23.0]
 
 ## OPERATING CONDITIONS #######################################################
 torque = 200

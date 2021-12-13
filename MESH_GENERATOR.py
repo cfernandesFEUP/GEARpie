@@ -39,7 +39,9 @@ class MESHING:
             rs = GEO.dshaft1/2
             xc = 0
             yc = 0
-            alfaZ = np.pi/z
+            self.alfaZ = np.pi/z
+            self.helix = b*np.tan(GEO.beta)
+            self.twist = self.helix/r
         elif GEAR_ELEMENT == 'W':
             z = GEO.z2
             b = GEO.b2
@@ -48,8 +50,10 @@ class MESHING:
             rs = GEO.dshaft2/2
             xc = 0
             yc = GEO.al
-            alfaZ = np.pi/z
-            rot = np.pi + 2*(NZ-1)*alfaZ - alfaZ
+            self.alfaZ = np.pi/z
+            self.helix = -b*np.tan(GEO.beta)
+            self.twist = self.helix/r
+            rot = np.pi + 2*(NZ-1)*self.alfaZ - self.alfaZ
         
         PF = 1.2
         
@@ -96,15 +100,15 @@ class MESHING:
         
         # shaft hole
         PS = geog.addPoint(0, rs, b/2)
-        PSl = geog.addPoint(-rs*np.sin(alfaZ), rs*np.cos(alfaZ), b/2)
-        PSr = geog.addPoint(rs*np.sin(alfaZ), rs*np.cos(alfaZ), b/2)
+        PSl = geog.addPoint(-rs*np.sin(self.alfaZ), rs*np.cos(self.alfaZ), b/2)
+        PSr = geog.addPoint(rs*np.sin(self.alfaZ), rs*np.cos(self.alfaZ), b/2)
         CSl = geog.addCircleArc(PSl, PC, PS)
         CSr = geog.addCircleArc(PSr, PC, PS)
         
         # sides
         RCENTRAL = ra-1.05*PF*GEO.m*2.25
-        MCx = -RCENTRAL*np.sin(alfaZ)
-        MCy = RCENTRAL*np.cos(alfaZ)
+        MCx = -RCENTRAL*np.sin(self.alfaZ)
+        MCy = RCENTRAL*np.cos(self.alfaZ)
         
         PLM = geog.addPoint(MCx, MCy, b/2)
         PRM = geog.addPoint(-MCx, MCy, b/2)
@@ -185,10 +189,7 @@ class MESHING:
         geog.mesh.setTransfiniteSurface(SCr)
         
         geog.synchronize()
-        
-        self.helix = 2*np.sin(GEO.beta)/r
-        self.twist = b*self.helix
-        
+            
         if GEAR_ELEMENT == 'W':
             geog.rotate(model.getEntities(dim = 2), 0, 0, 0, 0, 0, 1, rot)
             geog.translate(model.getEntities(dim = 2), xc, yc, 0)
@@ -200,18 +201,15 @@ class MESHING:
         # extrusion  
         if NZ > 1:
             for j in range(1, NZ):
-                cp = geog.copy(surfaces)            
-                if GEAR_ELEMENT =='P':
-                    geog.rotate(cp, 0, 0, 0, 0, 0, 1, -2*j*alfaZ)
-                elif GEAR_ELEMENT == 'W':
-                    geog.rotate(cp, xc, yc, 0, 0, 0, 1, -2*j*alfaZ)
+                cp = geog.copy(surfaces)
+                geog.rotate(cp, xc, yc, 0, 0, 0, 1, -2*j*self.alfaZ)
                          
             geog.synchronize()
             surfROT = model.getEntities(dim = 2)
             
             # twist
             for surf in surfROT:
-                geog.twist([surf], 0, 0, 0, 0, 0, -b, 0, 0, 1,\
+                geog.twist([surf], xc, yc, 0, 0, 0, -b, 0, 0, 1,\
                           self.twist,numElements=[nAXIAL],recombine=True)
         else:
               geog.twist(([2,SAl],[2,SAr],[2,SBl],[2,SBr],[2,SCl],[2,SCr]),\
@@ -257,6 +255,7 @@ class MESHING:
         model.setPhysicalName(2, 6, GEAR_ELEMENT+'NO-MESH')
         model.addPhysicalGroup(2, self.BsidesF+self.BsidesB, 7)
         model.setPhysicalName(2, 7, GEAR_ELEMENT+'SIDES')
+        
         if NZ>=3:
             if GEAR_ELEMENT == 'P':
                 for j in range(3):
@@ -278,19 +277,22 @@ class MESHING:
         
         # left/right
         if NZ < z:      
-            model.addPhysicalGroup(2, [12+self.ADD], 14)
+            model.addPhysicalGroup(2, [12+self.ADD,56+self.ADD], 14)
             model.setPhysicalName(2, 14, GEAR_ELEMENT+'LEFT')
-            model.addPhysicalGroup(2, [26+self.ADD+(NZ-1)*132], 15)
+            model.addPhysicalGroup(2, [26+self.ADD+(NZ-1)*132,\
+                                       70+self.ADD+(NZ-1)*132], 15)
             model.setPhysicalName(2, 15, GEAR_ELEMENT+'RIGHT')
-            model.addPhysicalGroup(2, [12+self.ADD,26+self.ADD+(NZ-1)*132]\
+            model.addPhysicalGroup(2, [12+self.ADD,56+self.ADD,\
+                                       26+self.ADD+(NZ-1)*132,\
+                                           70+self.ADD+(NZ-1)*132]\
                                    +self.Bshaft, 16)
             model.setPhysicalName(2, 16, GEAR_ELEMENT+'SLR')
 
         # generate mesh
         geog.synchronize()
         if GEAR_ELEMENT == 'W':
-            gmsh.option.setNumber("Mesh.FirstElementTag", 10000000)
-            gmsh.option.setNumber("Mesh.FirstNodeTag", 1000000)
+            gmsh.option.setNumber("Mesh.FirstElementTag", 3000000)
+            gmsh.option.setNumber("Mesh.FirstNodeTag", 300000)
         gmsh.option.setNumber("Mesh.RecombineAll", 1)
         gmsh.option.setNumber("Mesh.ElementOrder", 1)
         gmsh.option.setNumber("Mesh.SecondOrderIncomplete", 1)
@@ -300,7 +302,7 @@ class MESHING:
         
         # save mesh
         file = GEAR_ELEMENT + str(GEAR_NAME)
-        gmsh.write('Mesh/' + file + ".inp")
+        gmsh.write('MESH/' + file + ".inp")
         print('SAVING MESH')
         gmsh.fltk.run()
         gmsh.finalize()
