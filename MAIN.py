@@ -26,7 +26,6 @@ import GEAR_LIBRARY, CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS,\
     INVOLUTE_GEOMETRY, MESH_GENERATOR, PLOTTING
 
 ## INPUT ######################################################################
-
 # name of gear on library ()
 GEAR_NAME = 'C14'
 
@@ -56,20 +55,21 @@ if torque is str:
 Ggeo = CALC_GEOMETRY.MAAG(Gtype)
 
 ## LINES OF CONTACT ASSUMING A RIGID LOAD SHARING (SPUR AND HELICAL) ##########
-
 Glines = RIGID_LOAD_SHARING.LINES(size, Ggeo)
 
 ## FORCES AND SPEEDS ##########################################################
 Goper = FORCES_SPEEDS.OPERATION(element, torque, speed, Ggeo, Glines)
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
-
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', Ggeo, DISCRETIZATION)
+
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', Ggeo, DISCRETIZATION)
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
 Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 4)
+
 Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 5)
 
 ## GRAPHICS ###################################################################
+
 # Ploted = PLOTTING.GRAPHICS(Glines, Goper)
