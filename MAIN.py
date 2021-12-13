@@ -22,43 +22,41 @@ SOFTWARE. '''
 
 import sys
 sys.dont_write_bytecode = True
-import CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS, INVOLUTE_GEOMETRY,\
-    MESH_GENERATOR, PLOTTING
-## GEAR SELECTION #############################################################
+import GEAR_LIBRARY, CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS,\
+    INVOLUTE_GEOMETRY, MESH_GENERATOR, PLOTTING
 
+## INPUT ######################################################################
 
-GEAR_NAME = '501'
-alpha = 20.0
-# beta = 0.0
-# m = 4.5
-# z = [16, 24]
-# x = [0.1817, 0.1715]
-# b = [14.0, 14.]
-dshaft = [30, 30]
-haP = 1.
-hfP = 1.25
-rfP = 0.38
-al = None
+# name of gear on library ()
+GEAR_NAME = 'C14'
 
-beta = 15.0
-m = 3.5
-z = [20., 30.]
-x = [0.1809, 0.0891]
-b = [23.0, 23.0]
-
-## OPERATING CONDITIONS #######################################################
-torque = 200
-speed = 1000 # rpm
+# select element when is applied speed and torque (P - pinion, W - wheel)
 element = 'P'
 
+# torque Nm
+torque = 200
+
+# speed rpm
+speed = 1000
+
+# discretization of path of contact
+size = 1000
+
+# discretization of involute geometry
+DISCRETIZATION = 100
+
+## GEAR SELECTION #############################################################
+Gtype = GEAR_LIBRARY.GEAR(GEAR_NAME)
+
+## OPERATING CONDITIONS #######################################################
 if torque is str:
     torque = torque
 
 ## GEAR GEOMETRY ACCORDING TO MAAG BOOK #######################################
-Ggeo = CALC_GEOMETRY.MAAG(alpha, beta, m, z, x, b, dshaft, haP, hfP, rfP, al)
+Ggeo = CALC_GEOMETRY.MAAG(Gtype)
 
 ## LINES OF CONTACT ASSUMING A RIGID LOAD SHARING (SPUR AND HELICAL) ##########
-size = 1000
+
 Glines = RIGID_LOAD_SHARING.LINES(size, Ggeo)
 
 ## FORCES AND SPEEDS ##########################################################
@@ -66,12 +64,10 @@ Goper = FORCES_SPEEDS.OPERATION(element, torque, speed, Ggeo, Glines)
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
 
-DISCRETIZATION = 100
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', Ggeo, DISCRETIZATION)
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', Ggeo, DISCRETIZATION)
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
-
 Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 4)
 Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 5)
 

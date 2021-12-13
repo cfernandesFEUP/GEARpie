@@ -294,7 +294,7 @@ class MESHING:
             gmsh.option.setNumber("Mesh.FirstElementTag", 3000000)
             gmsh.option.setNumber("Mesh.FirstNodeTag", 300000)
         gmsh.option.setNumber("Mesh.RecombineAll", 1)
-        gmsh.option.setNumber("Mesh.ElementOrder", 1)
+        gmsh.option.setNumber("Mesh.ElementOrder", 2)
         gmsh.option.setNumber("Mesh.SecondOrderIncomplete", 1)
         gmsh.option.setNumber("Mesh.SaveGroupsOfNodes", 1)
         model.mesh.generate(3)

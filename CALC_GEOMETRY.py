@@ -23,34 +23,34 @@ class MAAG:
     """Calculation of cylindrical gear geometry according to MAAG book"""
     # from numba import jit
     # @jit(nopython=True)
-    def __init__(self, alpha, beta, m, z, x, b, dshaft, haP, hfP, rfP, al):
+    def __init__(self, GTYPE):
         
         import numpy as np
         from scipy import optimize
         
-        self.alpha = np.radians(alpha)
+        self.alpha = np.radians(GTYPE.alpha)
     
-        self.beta = np.radians(beta)    
+        self.beta = np.radians(GTYPE.beta)    
 
-        self.m = m
+        self.m = GTYPE.m
         
-        self.z1, self.z2  = z[0], z[1]      
+        self.z1, self.z2  = GTYPE.z[0], GTYPE.z[1]      
 
-        self.x1, self.x2  = x[0], x[1]   
+        self.x1, self.x2  = GTYPE.x[0], GTYPE.x[1]   
 
-        self.b1, self.b2 = b[0], b[1]
+        self.b1, self.b2 = GTYPE.b[0], GTYPE.b[1]
         
         self.b = min(self.b1, self.b2)
         
-        self.dshaft1, self.dshaft2 = dshaft[0], dshaft[1]
+        self.dshaft1, self.dshaft2 = GTYPE.dshaft[0], GTYPE.dshaft[1]
         
-        self.haP = 1
+        self.haP = GTYPE.haP
         
-        self.hfP = 1.25
+        self.hfP = GTYPE.hfP
         
-        self.rhoF = rfP*self.m
+        self.rhoF = GTYPE.rfP*self.m
         
-        self.al = al
+        self.al = GTYPE.al
 
         # transmission ratio
         self.u = self.z2/self.z1
