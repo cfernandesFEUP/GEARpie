@@ -25,10 +25,8 @@ class GRAPHICS:
     # @jit(nopython=True)
     def __init__(self, GPATH, GFORCESPEED):
         import matplotlib.pyplot as plt
-        import matplotlib
-        matplotlib.use('GTKAgg')
         plt.figure()
-        plt.plot(GPATH.xf, GPATH.lxi, 'k-')
+        plt.plot(GPATH.xf, GPATH.lxi, 'k')
         plt.xlabel('\u03B6')
         plt.ylabel(r'$L_t\left(x\right)/b$')
         plt.grid(True)
@@ -41,7 +39,7 @@ class GRAPHICS:
         plt.grid(True)
         plt.legend()
         plt.figure()
-        plt.plot(GPATH.xf, GFORCESPEED.fnx/GFORCESPEED.fnx.max(), 'k-')
+        plt.plot(GPATH.xf, GFORCESPEED.fnx/GFORCESPEED.fnx.max(), 'k')
         plt.xlabel('\u03B6')
         plt.ylabel(r'$\overline{F_N}~\left(x\right)$')
         plt.title('Dimensionless normal load')
@@ -59,6 +57,3 @@ class GRAPHICS:
         plt.title('Sliding Speed')
         plt.xlabel('\u03B6')
         plt.grid(True)
-        
-
-        

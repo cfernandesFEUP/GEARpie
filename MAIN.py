@@ -27,7 +27,7 @@ import GEAR_LIBRARY, CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS,\
 
 ## INPUT ######################################################################
 # name of gear on library ()
-GEAR_NAME = 'C14'
+GEAR_NAME = 'H501'
 
 # select element when is applied speed and torque (P - pinion, W - wheel)
 element = 'P'
@@ -43,6 +43,9 @@ size = 1000
 
 # discretization of involute geometry
 DISCRETIZATION = 100
+
+# element order
+ORDER = 1
 
 ## GEAR SELECTION #############################################################
 Gtype = GEAR_LIBRARY.GEAR(GEAR_NAME)
@@ -66,10 +69,9 @@ Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', Ggeo, DISCRETIZATION)
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', Ggeo, DISCRETIZATION)
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
-Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 4)
+Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 3, ORDER)
 
-Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 5)
+Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 4, ORDER)
 
 ## GRAPHICS ###################################################################
-
-# Ploted = PLOTTING.GRAPHICS(Glines, Goper)
+Ploted = PLOTTING.GRAPHICS(Glines, Goper)

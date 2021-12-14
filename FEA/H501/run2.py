@@ -1,4 +1,5 @@
 import os
+import multiprocessing
 
 ## REMOVE LINES
 flag = 1
@@ -34,6 +35,8 @@ os.system("cgx -b preP.fbd")
 os.system("cgx -b preW.fbd")
 
 ## RUN CalculiX CCX
+os.system("export CCX LOG ALLOC=1")
+os.environ['OMP_NUM_THREADS'] = str(multiprocessing.cpu_count())
 os.system("ccxR CONT")
 
 ## CONVERT FILE

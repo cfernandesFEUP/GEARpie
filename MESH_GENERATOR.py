@@ -27,7 +27,7 @@ class MESHING:
     """Calculation of cylindrical gear geometry according to MAAG book"""
     # from numba import jit
     # @jit(nopython=True)
-    def __init__(self, GEAR_ELEMENT, GEAR_NAME, GEO, PROFILE, NZ):
+    def __init__(self, GEAR_ELEMENT, GEAR_NAME, GEO, PROFILE, NZ, ORDER):
         ## convert to meter
         '''Generate the gear mesh with GMSH Python API'''
         
@@ -149,10 +149,10 @@ class MESHING:
         # Sinvol = rb*(np.tan(thF)**2-np.tan(thP)**2)/2
         # ce = 0.25 # 3
         # eS = (-0.2*ce + 1.2)*min(a[-1])*1e3
-        nM = 15#^int(Sinvol/eS)
+        nM = 21#^int(Sinvol/eS)
         nR = nM//2+1
         nB = nM//2+1
-        nAXIAL = 30
+        nAXIAL = 40
         coef = 1
         
         geog.mesh.setTransfiniteCurve(CAl,nB,'Progression',-coef)
@@ -294,7 +294,7 @@ class MESHING:
             gmsh.option.setNumber("Mesh.FirstElementTag", 3000000)
             gmsh.option.setNumber("Mesh.FirstNodeTag", 300000)
         gmsh.option.setNumber("Mesh.RecombineAll", 1)
-        gmsh.option.setNumber("Mesh.ElementOrder", 2)
+        gmsh.option.setNumber("Mesh.ElementOrder", ORDER)
         gmsh.option.setNumber("Mesh.SecondOrderIncomplete", 1)
         gmsh.option.setNumber("Mesh.SaveGroupsOfNodes", 1)
         model.mesh.generate(3)
