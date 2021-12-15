@@ -27,7 +27,7 @@ class MESHING:
     """Calculation of cylindrical gear geometry according to MAAG book"""
     # from numba import jit
     # @jit(nopython=True)
-    def __init__(self, GEAR_ELEMENT, GEAR_NAME, GEO, PROFILE, NZ, ORDER):
+    def __init__(self, GEAR_ELEMENT, GEAR_NAME, GEO, PROFILE, NZ, ORDER, NODEM):
         ## convert to meter
         '''Generate the gear mesh with GMSH Python API'''
         
@@ -143,15 +143,8 @@ class MESHING:
         SCl = geog.addPlaneSurface([CLCl])
         SCr = geog.addPlaneSurface([CLCr])
         
-        # transfinite lines
-        # thF = np.arccos(rb/ra)
-        # thP = np.arccos(rb/r)
-        # Sinvol = rb*(np.tan(thF)**2-np.tan(thP)**2)/2
-        # ce = 0.25 # 3
-        # eS = (-0.2*ce + 1.2)*min(a[-1])*1e3
-        nM = 21#^int(Sinvol/eS)
-        nR = nM//2+1
-        nB = nM//2+1
+        nR = NODEM//2+1
+        nB = NODEM//2+1
         nAXIAL = 40
         coef = 1
         
@@ -162,10 +155,10 @@ class MESHING:
         geog.mesh.setTransfiniteCurve(CLu,nB)
         geog.mesh.setTransfiniteCurve(CRu,nB)
         
-        geog.mesh.setTransfiniteCurve(CIl,nM)
-        geog.mesh.setTransfiniteCurve(CIr,nM)
+        geog.mesh.setTransfiniteCurve(CIl, NODEM)
+        geog.mesh.setTransfiniteCurve(CIr, NODEM)
         
-        geog.mesh.setTransfiniteCurve(CIVu,nM)
+        geog.mesh.setTransfiniteCurve(CIVu, NODEM)
         
         geog.mesh.setTransfiniteCurve(CFl,nR)
         geog.mesh.setTransfiniteCurve(CFr,nR)

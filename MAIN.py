@@ -47,6 +47,8 @@ DISCRETIZATION = 100
 # element order
 ORDER = 1
 
+NODEM = 21
+
 ## GEAR SELECTION #############################################################
 Gtype = GEAR_LIBRARY.GEAR(GEAR_NAME)
 
@@ -68,10 +70,17 @@ Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', Ggeo, DISCRETIZATION)
 
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', Ggeo, DISCRETIZATION)
 
-## INVOLUTE PROFILE GEOMETRY ##################################################
-Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 3, ORDER)
+# thF = np.arccos(rb/ra)
+# thP = np.arccos(rb/r)
+# Sinvol = rb*(np.tan(thF)**2-np.tan(thP)**2)/2
+# ce = 0.25 # 3
+# eS = (-0.2*ce + 1.2)*min(a[-1])*1e3
+# nM = int(Sinvol/eS)
 
-Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 4, ORDER)
+## INVOLUTE PROFILE GEOMETRY ##################################################
+Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 3, ORDER, NODEM)
+
+Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 4, ORDER, NODEM)
 
 ## GRAPHICS ###################################################################
 Ploted = PLOTTING.GRAPHICS(Glines, Goper)
