@@ -93,6 +93,9 @@ class LINES:
         
         self.rr2 = ((GEO.T2A - self.xx*GEO.AE)**2 + GEO.rb2**2)**(1/2)
         
+        # dimensional path of contact position
+        self.xd = self.xf*GEO.AE
+
         # curvature radius
-        self.R1 = GEO.T1A + self.xf*GEO.AE
-        self.R2 = GEO.T2A - self.xf*GEO.AE
+        self.R1 = GEO.T1A + self.xd
+        self.R2 = GEO.T2A - self.xd

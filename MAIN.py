@@ -22,12 +22,26 @@ SOFTWARE. '''
 
 import sys
 sys.dont_write_bytecode = True
-import GEAR_LIBRARY, CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS,\
-    INVOLUTE_GEOMETRY, MESH_GENERATOR, PLOTTING
+import GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY, RIGID_LOAD_SHARING,\
+    FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, MESH_GENERATOR, PLOTTING
 
-## INPUT ######################################################################
-# name of gear on library ()
-GEAR_NAME = 'H501'
+## GEAR GEOMETRY, MATERIAL AND FINISHING ######################################
+# name of gear on library (includes geometry and surface finishing)
+GEAR_NAME = 'C14'
+
+# pinion and wheel material
+MAT_PINION = 'STEEL'
+MAT_WHEEL = 'STEEL'
+Gmat = MATERIAL_LIBRARY.MATERIAL(MAT_PINION, MAT_WHEEL)
+
+## LUBRICANT ##################################################################
+# lubricant
+class lub:
+    def __init__(self):
+        self.miu = 30
+        self.xl = 0.85
+    
+Lubricant = lub()
 
 # select element when is applied speed and torque (P - pinion, W - wheel)
 element = 'P'
@@ -52,7 +66,7 @@ NODEM = 21
 ## GEAR SELECTION #############################################################
 Gtype = GEAR_LIBRARY.GEAR(GEAR_NAME)
 
-## OPERATING CONDITIONS #######################################################
+## FZG LOAD STAGE CONDITIONS ##################################################
 if torque is str:
     torque = torque
 
@@ -64,6 +78,9 @@ Glines = RIGID_LOAD_SHARING.LINES(size, Ggeo)
 
 ## FORCES AND SPEEDS ##########################################################
 Goper = FORCES_SPEEDS.OPERATION(element, torque, speed, Ggeo, Glines)
+
+## GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) #############
+Gcontact = CONTACT.HERTZ(Gmat, Lubricant, Ggeo, Glines, Goper)
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', Ggeo, DISCRETIZATION)
@@ -78,9 +95,9 @@ Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', Ggeo, DISCRETIZATION)
 # nM = int(Sinvol/eS)
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
-Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 3, ORDER, NODEM)
+# Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 3, ORDER, NODEM)
 
-Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 4, ORDER, NODEM)
+# Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 4, ORDER, NODEM)
 
 ## GRAPHICS ###################################################################
-Ploted = PLOTTING.GRAPHICS(Glines, Goper)
+# Ploted = PLOTTING.GRAPHICS(Glines, Goper)

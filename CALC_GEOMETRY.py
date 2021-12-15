@@ -152,7 +152,7 @@ class MAAG:
         self.galpha = self.galpha1 + self.galpha2
         
         # equivalent curvature radius on pitch point
-        self.Req = 1/(1/(self.rl1*np.sin(self.alphatw))\
+        self.ReqI = 1/(1/(self.rl1*np.sin(self.alphatw))\
             + 1/(self.rl2*np.sin(self.alphatw))) 
             
         self.T1T2 = self.al*np.sin(self.alphatw)
@@ -187,3 +187,8 @@ class MAAG:
         ## GEAR LOSS FACTOR ACCORDING TO OHLENDORF
         self.HV = (1-self.epslon_alpha + self.epslon_a1**2 + self.epslon_a2**2)*\
             np.pi*(self.u+1)/(self.z1*self.u*np.cos(self.betab))
+            
+        ## GEAR FINISHING
+        self.Ram = (GTYPE.Ra[0] + GTYPE.Ra[1])/2
+        
+        self.Rrms = (GTYPE.Rq[0]**2 + GTYPE.Ra[1]**2)**(1/2)

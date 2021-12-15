@@ -32,49 +32,48 @@ class HERTZ:
         self.Req = 1/((1/GPATH.R1) + (1/GPATH.R2))/np.cos(GEO.betab)
         
         # Hertz half-width (a)
-        self.aH = ((1/np.pi)*GFSPEED.fnx*self.Req/self.Eeq)**(1/2)
+        self.aH = (GFSPEED.fnx[:,0]*self.Eeq/(np.pi*self.Req))**(1/2)
         
         # maximum Hertz pressure
-        self.p0 = ((1/np.pi)*GFSPEED.fnx*(self.Eeq/self.Req))**(1/2)
+        self.p0 = (GFSPEED.fnx[:,0]*self.Eeq/(np.pi*self.Req))**(1/2)
         
         # pitch point maximum Hertz presure
-        self.p0I = ((1/np.pi)*GFSPEED.fbn*(self.Eeq/GEO.ReqI))**(1/2)
+        self.indP = np.argmin(np.abs(GPATH.xd - GEO.AC))
+        self.p0I = (GFSPEED.fbn*self.Eeq/(GPATH.lsum[self.indP,0]*\
+                                          np.pi*GEO.ReqI))**(1/2)
         
         # mean contact pressure
-        self.pm = GFSPEED.fnx/(2*self.aH)
+        self.pm = GFSPEED.fnx[:,0]/(2*self.aH)
         
         # pitch point mean contact pressure
         self.pmI = GFSPEED.fbn/(2*self.aH)
         
         ## POWER LOSS #########################################################
         ## coefficient of friction according to Schlenk
-        self.CoF = 0.048*((GFSPEED.fbn/GPATH.lmin)/(GFSPEED.vsumc*\
+        self.CoF = 0.048*((GFSPEED.fbn/GPATH.lxi.min())/(GFSPEED.vsumc*\
                         GEO.ReqI))**0.2*LUB.miu**(-0.05)*GEO.Ram**0.25*LUB.xl
-        
-        # # numeric gear loss factor according to Wimmer
-        # self.HVL = np.trapz(self.vg/(self.fbt*self.vtb), GPATH.xd)*GEO.b/GEO.pbt
         
         # mean power loss
         self.Pvzp = GFSPEED.Pin*GFSPEED.HVL*self.CoF
         
         # local power loss
-        self.PvzpL = GFSPEED.fnx*GFSPEED.vg*self.CoF
+        # self.PvzpL = GFSPEED.fnx*GFSPEED.vg*self.CoF
         
-        # 
-        self.thermal1 = MAT.k1*MAT.roh1*MAT.cp1*GFSPEED.vr1
+        # # 
+        # self.thermal1 = MAT.k1*MAT.rho1*MAT.cp1*GFSPEED.vr1
         
-        self.thermal2 = MAT.k2*MAT.roh2*MAT.cp2*GFSPEED.vr2
+        # self.thermal2 = MAT.k2*MAT.rho2*MAT.cp2*GFSPEED.vr2
         
-        # heat partition factors: 1 - pinion, 2- wheel
-        self.beta1 = self.thermal1/(self.thermal1 + self.thermal2)
-        self.beta2 = self.thermal2/(self.thermal1 + self.thermal2)
+        # # heat partition factors: 1 - pinion, 2- wheel
+        # self.beta1 = self.thermal1/(self.thermal1 + self.thermal2)
+        # self.beta2 = self.thermal2/(self.thermal1 + self.thermal2)
         
-        # instantaneous heat generation: 1 - pinion, 2- wheel
-        self.Qvzp1 = self.beta1*GFSPEED.fnx*GFSPEED.vg*self.CoF
-        self.Qvzp2 = self.beta2*GFSPEED.fnx*GFSPEED.vg*self.CoF
+        # # instantaneous heat generation: 1 - pinion, 2- wheel
+        # self.Qvzp1 = self.beta1*GFSPEED.fnx*GFSPEED.vg*self.CoF
+        # self.Qvzp2 = self.beta2*GFSPEED.fnx*GFSPEED.vg*self.CoF
         
-        # average heat generation: 1 - pinion, 2- wheel
-        self.Qvzp1m = self.Qvzp1*self.aH/(np.pi*GPATH.R1)
-        self.Qvzp2m = self.Qvzp2*self.aH/(np.pi*GPATH.R2)
+        # # average heat generation: 1 - pinion, 2- wheel
+        # self.Qvzp1m = self.Qvzp1*self.aH/(np.pi*GPATH.R1)
+        # self.Qvzp2m = self.Qvzp2*self.aH/(np.pi*GPATH.R2)
         
         ## FILM THICKNESS #####################################################

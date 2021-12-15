@@ -66,7 +66,7 @@ class OPERATION:
         self.frb = self.fresultant/2
         
         # normal force along path of contactr
-        self.fnx = 1e3*self.fbn/GPATH.lsum
+        self.fnx = self.fbn/GPATH.lsum
         
         # sum velocity on the pitch circle
         self.vsumc = 2*self.omega1*GEO.rl1/1000*np.sin(GEO.alphatw)
@@ -91,11 +91,5 @@ class OPERATION:
         # slide-to-roll ratio
         self.SRR = self.vg/self.vr
         
-    # Ram = (Ra[0] + Ra[1])/2
-    # lmin = min(lxi)*b
-    # if mu == 0:
-    #     COF = 0.048*(np.outer(fbn,1/vsumc)/(lmin*Req))**0.2*miu**(-0.05)*Ram**0.25*xl
-    # else:
-    #     COF = mu*np.ones((fbn.size, omega[0].size))
-    # return Pin, fbt, fbn, ft, fr, fn, fa, fbear, frb, COF, vsumc
-
+        # numeric gear loss factor according to Wimmer
+        self.HVL = np.trapz(self.vg/(self.fbt*self.vtb), GPATH.xd)*GEO.b/GEO.pbt
