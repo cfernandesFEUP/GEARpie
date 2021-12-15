@@ -90,6 +90,3 @@ class OPERATION:
         
         # slide-to-roll ratio
         self.SRR = self.vg/self.vr
-        
-        # numeric gear loss factor according to Wimmer
-        self.HVL = np.trapz(self.vg/(self.fbt*self.vtb), GPATH.xd)*GEO.b/GEO.pbt

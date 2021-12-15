@@ -27,7 +27,7 @@ import GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY, RIGID_LOAD_SHARING,\
 
 ## GEAR GEOMETRY, MATERIAL AND FINISHING ######################################
 # name of gear on library (includes geometry and surface finishing)
-GEAR_NAME = 'C14'
+GEAR_NAME = 'H501'
 
 # pinion and wheel material
 MAT_PINION = 'STEEL'
@@ -81,6 +81,18 @@ Goper = FORCES_SPEEDS.OPERATION(element, torque, speed, Ggeo, Glines)
 
 ## GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) #############
 Gcontact = CONTACT.HERTZ(Gmat, Lubricant, Ggeo, Glines, Goper)
+
+x = Glines.xd
+y = Glines.bpos
+import numpy as np
+X, Y = np.meshgrid(x, y)
+Sr = Glines.lsum.T
+import matplotlib.pyplot as plt
+fig = plt.figure(1)
+ax = plt.axes(projection='3d')
+ax.plot_surface(X, Y, Sr,cmap='jet', edgecolor='k')
+# ax.view_init(10, 15)
+plt.show()
 
 ## INVOLUTE PROFILE GEOMETRY ##################################################
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', Ggeo, DISCRETIZATION)
