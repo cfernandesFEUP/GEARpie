@@ -57,9 +57,9 @@ class LINES:
         
         ## POSITIONS ALONG PLANE OF ACTION        
         for i in range(len(self.kt)):
-            # for j in range(len(self.bpos)):
-            self.XC[i,j] = self.kt[i]*GEO.pbt + np.tile(self.xx, (len(self.bpos),1)) +
-                    np.tile(self.bpos[j]*np.tan(GEO.betab), (len(self.xx),1))
+            for j in range(len(self.bpos)):
+                self.XC[i,j] = self.xx + self.kt[i]*GEO.pbt +\
+                    self.bpos[j]*np.tan(GEO.betab)
         
         ## CONDITIONS FOR THE CALCULATION OF LINES IN CONTACT
         if GEO.epslon_beta < 1:
