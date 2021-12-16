@@ -22,20 +22,14 @@ SOFTWARE. '''
 
 
 class PRINTING:
-    """Calculation of cylindrical gear geometry according to MAAG book"""
-    # from numba import jit
-    # @jit(nopython=True)
+    """Print a table with output results"""
 
     def __init__(self, GEAR_NAME, GTYPE, GMAT, GEO, GFS, GCONTACT):
         dash = '-' * 65
         dots = '.' * 65
-
         print(dash)
-
         print('{:^65s}'.format(GEAR_NAME + ' GEAR'))
-
         print(dots)
-
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Presure angle \u03B1:', "%.1f" % GTYPE.alpha, '\u00b0'))
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -50,15 +44,10 @@ class PRINTING:
             'Profile shift x1:', "%.4f" % GTYPE.x[0], ''))
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Profile shift x2:', "%.4f" % GTYPE.x[1], ''))
-
         print(dash)
-
         print('{:^65s}'.format('GEAR MATERIALS:'))
-
         print(dots)
-
         print('Pinion:')
-
         print('{:<35s}{:^20s}{:<10s}'.format('  Young modulus E1:', "%.0f" %
                                              (GMAT.E1/1e3), 'GPa'))
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -69,9 +58,7 @@ class PRINTING:
             '  Thermal conductivity k1:', "%.2f" % GMAT.k1, 'W/m.K'))
         print('{:<35s}{:^20s}{:<10s}'.format(
             '  Density \u03C11:', "%.2f" % GMAT.rho1, 'kg/m3'))
-
         print('Wheel:')
-
         print('{:<35s}{:^20s}{:<10s}'.format('  Young modulus E2:', "%.0f" %
                                              (GMAT.E2/1e3), 'GPa'))
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -82,13 +69,9 @@ class PRINTING:
             '  Thermal conductivity k2:', "%.2f" % GMAT.k2, 'W/m.K'))
         print('{:<35s}{:^20s}{:<10s}'.format(
             '  Density \u03C12:', "%.2f" % GMAT.rho2, 'kg/m3'))
-
         print(dash)
-
         print('{:^65s}'.format('GEAR GEOMETRY:'))
-
         print(dots)
-
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Axis distance:', "%.1f" % GEO.al, 'mm'))
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -107,38 +90,26 @@ class PRINTING:
         print('{:<35s}{:^20s}{:<10s}'.format('Tip radius:', "%.3f" %
                                              GEO.ra1 + ' / ' +
                                              "%.3f" % GEO.ra2, 'mm'))
-
         print(dash)
-
         print('{:^65s}'.format('CONTACT RATIO:'))
-
         print(dots)
-
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Transverse \u03B5\u03B1:', "%.2f" % GEO.epslon_alpha, ''))
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Overlap \u03B5\u03B2:', "%.2f" % GEO.epslon_beta, ''))
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Total \u03B5\u03B3:', "%.2f" % GEO.epslon_gama, ''))
-
         print(dash)
-
         print('{:^65s}'.format('PATH OF CONTACT:'))
-
         print(dots)
-
         print('{:<35s}{:^20s}{:<10s}'.format('T1T2:', "%.2f" % GEO.T1T2, 'mm'))
         print('{:<35s}{:^20s}{:<10s}'.format('AB:', "%.2f" % GEO.AB, 'mm'))
         print('{:<35s}{:^20s}{:<10s}'.format('AC:', "%.2f" % GEO.AC, 'mm'))
         print('{:<35s}{:^20s}{:<10s}'.format('AD:', "%.2f" % GEO.AD, 'mm'))
         print('{:<35s}{:^20s}{:<10s}'.format('AE:', "%.2f" % GEO.AE, 'mm'))
-
         print(dash)
-
         print('{:^65s}'.format('OPERATING CONDITIONS:'))
-
         print(dots)
-
         print('{:<35s}{:^20s}{:<10s}'.format('Pin:', "%.1f" % GFS.Pin, 'W'))
         print('{:<35s}{:^20s}{:<10s}'.format('Torque T:', "%.1f" %
                                              GFS.torque1 + ' / ' +
@@ -161,13 +132,9 @@ class PRINTING:
             'Base circle load F_bt:', "%.1f" % GFS.fbt, 'N'))
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Base circle load F_bn:', "%.1f" % GFS.fbn, 'N'))
-
         print(dash)
-
         print('{:^65s}'.format('CONTACT RESULTS:'))
-
         print(dots)
-
         print('Maximum pressure p0:')
         print('{:<35s}{:^20s}{:<10s}'.format(
             '  At pitch point:', "%.2f" % GCONTACT.p0I, 'MPa'))
@@ -175,7 +142,6 @@ class PRINTING:
                                              GCONTACT.p0.max(), 'MPa'))
         print('{:<35s}{:^20s}{:<10s}'.format('  Minimum along AE:', "%.2f" %
                                              GCONTACT.p0.min(), 'MPa'))
-
         print('Mean pressure pm:')
         print('{:<35s}{:^20s}{:<10s}'.format('  At pitch point:', "%.2f" %
                                              GCONTACT.pmI, 'MPa'))
@@ -183,7 +149,6 @@ class PRINTING:
                                              GCONTACT.pm.max(), 'MPa'))
         print('{:<35s}{:^20s}{:<10s}'.format('  Minimum along AE:', "%.2f" %
                                              GCONTACT.pm.min(), 'MPa'))
-
         print('Contact half-width aH:')
         print('{:<35s}{:^20s}{:<10s}'.format('  At pitch point:', "%.3f" %
                                              (GCONTACT.aHI*1e3), '\u03BCm'))
@@ -194,24 +159,23 @@ class PRINTING:
                                              (GCONTACT.aH.min()*1e3),
                                              '\u03BCm'))
         print(dash)
-
         print('{:^65s}'.format('POWER LOSS:'))
-
         print(dots)
-
         print('{:<35s}{:^20s}{:<10s}'.format('Gear Loss Factor HVL:', "%.4f" %
                                              GCONTACT.HVL, 'Wimmer'))
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Gear Loss Factor HV:', "%.4f" % GEO.HV, 'Ohlendorf'))
         print('{:<35s}{:^20s}{:<10s}'.format(
-            'Coefficient of Friction \u03BCmZ:', "%.4f" % GCONTACT.CoF, 'Schlenk'))
-        print('{:<35s}{:^20s}{:<10s}'.format('Average Power Loss Pvzp:', "%.2f" %
-                                             GCONTACT.Pvzp, 'W'))
-        print('{:<35s}{:^20s}{:<10s}'.format('Maximum Local Power Loss:', "%.2f" %
-                                             GCONTACT.PvzpL.max(), 'W'))
-        print('{:<35s}{:^20s}{:<10s}'.format('Minimum Local Power Loss:', "%.2f" %
-                                             GCONTACT.PvzpL.min(), 'W'))
-
+            'Coefficient of Friction \u03BCmZ:', "%.4f" % GCONTACT.CoF,
+            'Schlenk'))
+        print('{:<35s}{:^20s}{:<10s}'.format('Average Power Loss Pvzp:',
+                                             "%.2f" % GCONTACT.Pvzp, 'W'))
+        print('{:<35s}{:^20s}{:<10s}'.format('Maximum Local Power Loss:',
+                                             "%.2f" % GCONTACT.PvzpL.max(),
+                                             'W'))
+        print('{:<35s}{:^20s}{:<10s}'.format('Minimum Local Power Loss:',
+                                             "%.2f" % GCONTACT.PvzpL.min(),
+                                             'W'))
         print(dash)
         # print('Hertzian Contact Pressure Pitch Point p_0 [GPa]:\n', p0p/1e6)
         # print('Maximum shear stress [MPa]:\n',

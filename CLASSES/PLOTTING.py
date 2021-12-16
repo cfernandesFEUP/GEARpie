@@ -23,10 +23,8 @@ SOFTWARE. '''
 
 class GRAPHICS:
     """Creation of graphic output"""
-    # from numba import jit
-    # @jit(nopython=True)
 
-    def __init__(self, GPATH, GFORCESPEED):
+    def __init__(self, GPATH, GFS, GCONTACT):
         import matplotlib.pyplot as plt
         plt.figure()
         plt.plot(GPATH.xf, GPATH.lxi, 'k')
@@ -35,8 +33,8 @@ class GRAPHICS:
         plt.grid(True)
 
         plt.figure()
-        plt.plot(GPATH.xf, GFORCESPEED.gs1, 'b', label='pinion')
-        plt.plot(GPATH.xf, GFORCESPEED.gs2, 'r', label='wheel')
+        plt.plot(GPATH.xf, GFS.gs1, 'b', label='pinion')
+        plt.plot(GPATH.xf, GFS.gs2, 'r', label='wheel')
         plt.ylabel(r'$v_g\left(x\right)$ / ms$^{-1}$')
         plt.title('Specific Sliding')
         plt.xlabel('\u03B6')
@@ -44,7 +42,7 @@ class GRAPHICS:
         plt.legend()
 
         plt.figure()
-        plt.plot(GPATH.xf, GFORCESPEED.fnx/GFORCESPEED.fnx.max(), 'k')
+        plt.plot(GPATH.xf, GFS.fnx[:, 0]/GFS.fnx.max(), 'k')
         plt.xlabel('\u03B6')
         plt.ylabel(r'$\overline{F_N}~\left(x\right)$')
         plt.title('Dimensionless normal load')
@@ -52,15 +50,110 @@ class GRAPHICS:
         plt.title('Total contact length over face width')
 
         plt.figure()
-        plt.plot(GPATH.xf, 1e-3*GFORCESPEED.fnx, 'k')
+        plt.plot(GPATH.xf, GFS.fnx[:, 0], 'k')
         plt.ylabel(r'$Fn\left(x\right)$ / Nmm$^{-1}$')
         plt.xlabel('\u03B6')
         plt.title('Load per face width')
         plt.grid(True)
 
         plt.figure()
-        plt.plot(GPATH.xf, GFORCESPEED.vg, 'k')
+        plt.plot(GPATH.xf, GFS.vg, 'k')
         plt.ylabel(r'$v_g\left(x\right)$ / ms$^{-1}$')
         plt.title('Sliding Speed')
         plt.xlabel('\u03B6')
         plt.grid(True)
+
+        cmap = plt.get_cmap('jet', 21)
+        nc = 21
+        import numpy as np
+        import matplotlib.ticker as tick
+        plt.figure()
+        plt.title(r'$\sigma_{xx}$ / $p_0$')
+        cmin = GCONTACT.SX.min()/GCONTACT.p0[GCONTACT.indS, 0]
+        cmax = GCONTACT.SX.max()/GCONTACT.p0[GCONTACT.indS, 0]
+        plt.contourf(GCONTACT.xH[:, 0]/GCONTACT.aHS,
+                     GCONTACT.zH[0, :]/GCONTACT.aHS,
+                     GCONTACT.SX.T/GCONTACT.p0[GCONTACT.indS, 0],
+                     levels=np.linspace(cmin, cmax, nc), cmap=cmap)
+        plt.xlabel('x / b')
+        plt.ylabel('z / b')
+        plt.grid()
+        plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+
+        plt.figure()
+        plt.title(r'$\sigma_{yy}$ / $p_0$')
+        cmin = GCONTACT.SY.min()/GCONTACT.p0[GCONTACT.indS, 0]
+        cmax = GCONTACT.SY.max()/GCONTACT.p0[GCONTACT.indS, 0]
+        plt.contourf(GCONTACT.xH[:, 0]/GCONTACT.aHS,
+                     GCONTACT.zH[0, :]/GCONTACT.aHS,
+                     GCONTACT.SY.T/GCONTACT.p0[GCONTACT.indS, 0],
+                     levels=np.linspace(cmin, cmax, nc), cmap=cmap)
+        plt.xlabel('x / b')
+        plt.ylabel('z / b')
+        plt.grid()
+        plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+
+        plt.figure()
+        plt.title(r'$\sigma_{zz}$ / $p_0$')
+        cmin = GCONTACT.SZ.min()/GCONTACT.p0[GCONTACT.indS, 0]
+        cmax = GCONTACT.SZ.max()/GCONTACT.p0[GCONTACT.indS, 0]
+        plt.contourf(GCONTACT.xH[:, 0]/GCONTACT.aHS,
+                     GCONTACT.zH[0, :]/GCONTACT.aHS,
+                     GCONTACT.SZ.T/GCONTACT.p0[GCONTACT.indS, 0],
+                     levels=np.linspace(cmin, cmax, nc), cmap=cmap)
+        plt.xlabel('x / b')
+        plt.ylabel('z / b')
+        plt.grid()
+        plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+
+        plt.figure()
+        plt.title(r'$\tau_{xz}$ / $p_0$')
+        cmin = GCONTACT.TXZ.min()/GCONTACT.p0[GCONTACT.indS, 0]
+        cmax = GCONTACT.TXZ.max()/GCONTACT.p0[GCONTACT.indS, 0]
+        plt.contourf(GCONTACT.xH[:, 0]/GCONTACT.aHS,
+                     GCONTACT.zH[0, :]/GCONTACT.aHS,
+                     GCONTACT.TXZ.T/GCONTACT.p0[GCONTACT.indS, 0],
+                     levels=np.linspace(cmin, cmax, nc), cmap=cmap)
+        plt.xlabel('x / b')
+        plt.ylabel('z / b')
+        plt.grid()
+        plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+
+        plt.figure()
+        plt.title(r'$\tau_{max}$ / $p_0$')
+        cmin = GCONTACT.Tmax.min()/GCONTACT.p0[GCONTACT.indS, 0]
+        cmax = GCONTACT.Tmax.max()/GCONTACT.p0[GCONTACT.indS, 0]
+        plt.contourf(GCONTACT.xH[:, 0]/GCONTACT.aHS,
+                     GCONTACT.zH[0, :]/GCONTACT.aHS,
+                     GCONTACT.Tmax.T/GCONTACT.p0[GCONTACT.indS, 0],
+                     levels=np.linspace(cmin, cmax, nc), cmap=cmap)
+        plt.xlabel('x / b')
+        plt.ylabel('z / b')
+        plt.grid()
+        plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+
+        plt.figure()
+        plt.title(r'$\tau_{oct}$ / $p_0$')
+        cmin = GCONTACT.Toct.min()/GCONTACT.p0[GCONTACT.indS, 0]
+        cmax = GCONTACT.Toct.max()/GCONTACT.p0[GCONTACT.indS, 0]
+        plt.contourf(GCONTACT.xH[:, 0]/GCONTACT.aHS,
+                     GCONTACT.zH[0, :]/GCONTACT.aHS,
+                     GCONTACT.Toct.T/GCONTACT.p0[GCONTACT.indS, 0],
+                     levels=np.linspace(cmin, cmax, nc), cmap=cmap)
+        plt.xlabel('x / b')
+        plt.ylabel('z / b')
+        plt.grid()
+        plt.colorbar()
+
+        plt.figure()
+        plt.title(r'$\sigma_{von~Mises}$ / $p_0$')
+        cmin = GCONTACT.SMises.min()/GCONTACT.p0[GCONTACT.indS, 0]
+        cmax = GCONTACT.SMises.max()/GCONTACT.p0[GCONTACT.indS, 0]
+        plt.contourf(GCONTACT.xH[:, 0]/GCONTACT.aHS,
+                     GCONTACT.zH[0, :]/GCONTACT.aHS,
+                     GCONTACT.SMises.T/GCONTACT.p0[GCONTACT.indS, 0],
+                     levels=np.linspace(cmin, cmax, nc), cmap=cmap)
+        plt.xlabel('x / b')
+        plt.ylabel('z / b')
+        plt.grid()
+        plt.colorbar(format=tick.FormatStrFormatter('%.2f'))

@@ -42,7 +42,9 @@ class LINES:
         self.xx = np.linspace(0., self.COND_D, self.size)
 
         # FACE WIDTH DISCRETIZATION
-        self.bpos = np.linspace(0, GEO.b, len(self.xx))
+        self.DISC_SIZE_AE = self.COND_B/len(self.xx)
+        self.DISC_b = int(GEO.b/self.DISC_SIZE_AE)
+        self.bpos = np.linspace(0, GEO.b, self.DISC_b)
 
         # NUMBER OF TOOTH FOR THE ANALYSIS
         self.N = int(np.ceil(GEO.epslon_alpha + GEO.epslon_beta))
@@ -58,9 +60,10 @@ class LINES:
 
         # POSITIONS ALONG PLANE OF ACTION
         for i in range(len(self.kt)):
-            for j in range(len(self.bpos)):
-                self.XC[i, j] = self.xx + self.kt[i]*GEO.pbt +\
-                    self.bpos[j]*np.tan(GEO.betab)
+            self.XC[i] = (np.tile(self.xx, (len(self.bpos), 1)).T +
+                          self.kt[i]*GEO.pbt +
+                          np.tile(self.bpos*np.tan(GEO.betab),
+                                  (len(self.xx), 1)))
 
         # CONDITIONS FOR THE CALCULATION OF LINES IN CONTACT
         if GEO.epslon_beta < 1:
@@ -91,7 +94,7 @@ class LINES:
 
         self.xf = self.xx[self.C1]/self.COND_B
 
-        self.lsum = self.L[:, self.C1].T
+        self.lsum = self.L[self.C1, :]
 
         self.lxi = self.lsum[:, 0]/GEO.b
 
@@ -99,10 +102,10 @@ class LINES:
 
         self.rr2 = ((GEO.T2A - self.xx*GEO.AE)**2 + GEO.rb2**2)**(1/2)
 
-        # dimensional path of contact position
+        # DIMENSIONAL PATH CONTACT COORDINATE
         self.xd = self.xf*GEO.AE
 
-        # curvature radius
+        # CURVATURE RADIUS (1 - pinion, 2 - wheel)
         self.R1 = GEO.T1A + self.xd
         self.R2 = GEO.T2A - self.xd
         self.Req = 1/((1/self.R1) + (1/self.R2))/np.cos(GEO.betab)

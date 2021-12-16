@@ -20,25 +20,23 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. '''
 
-# AVOID CREATION OF PYCACHE FOLDER ============================================
+# IMPORT LIBRARIES ============================================================
 from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY,
                      RIGID_LOAD_SHARING, FORCES_SPEEDS, CONTACT,
                      INVOLUTE_GEOMETRY, MESH_GENERATOR, OUTPUT_PRINT,
                      PLOTTING)
 
 # import matplotlib.pyplot as plt
-
 # import numpy as np
 
 import sys
-
+# AVOID CREATION OF PYCACHE FOLDER ============================================
 sys.dont_write_bytecode = True
 
-# IMPORT CLASSES ==============================================================
 
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
-GEAR_NAME = 'H501'
+GEAR_NAME = 'C14'
 
 # pinion and wheel material
 MAT_PINION = 'STEEL'
@@ -72,14 +70,14 @@ size = 1000
 DISCRETIZATION = 100
 
 # element order
-MESH = False
+MESH = True
 
 ORDER = 1
 
 NODEM = 21
 
 # graphics
-GRAPHICS = False
+GRAPHICS = True
 
 # GEAR SELECTION ==============================================================
 GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
@@ -105,21 +103,18 @@ GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS)
 
 # INVOLUTE PROFILE GEOMETRY ===================================================
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
-
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
 
-# thF = np.arccos(rb/ra)
-# thP = np.arccos(rb/r)
-# Sinvol = rb*(np.tan(thF)**2-np.tan(thP)**2)/2
-# ce = 0.25 # 3
-# eS = (-0.2*ce + 1.2)*min(a[-1])*1e3
-# nM = int(Sinvol/eS)
+# thF = np.arccos(GEO.rb1/GEO.ra1)
+# thP = np.arccos(GEO.rb1/GEO.r1)
+# Sinvol = GEO.rb1*(np.tan(thF)**2-np.tan(thP)**2)/2
+# ce = 0.25
+# eS = (-0.2*ce + 1.2)*GCONTACT.aH.min()
+# NODEM = int(Sinvol/eS)
 
 # INVOLUTE PROFILE GEOMETRY ===================================================
-
 if MESH:
     MESH_GENERATOR.MESHING('P', GEAR_NAME, GEO, Pprofile, 3, ORDER, NODEM)
-
     MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, 4, ORDER, NODEM)
 
 # OUTPUT PRINT ================================================================
@@ -127,8 +122,7 @@ OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GEO, GFS, GCONTACT)
 
 # OUTPUT GRAPHICS =============================================================
 if GRAPHICS:
-    PLOTTING.GRAPHICS(GPATH, GFS)
-
+    PLOTTING.GRAPHICS(GPATH, GFS, GCONTACT)
 
 # x = GPATH.xd
 # y = GPATH.bpos

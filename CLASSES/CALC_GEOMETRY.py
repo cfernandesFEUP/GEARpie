@@ -113,8 +113,11 @@ class MAAG:
 
         # addendum reduction factor
         self.k = (self.z1+self.z2)/2*(((involute(self.alphatw)
-                                        - involute(self.alphat))/np.tan(self.alpha)) -
-                                      1/np.cos(self.beta)*(np.cos(self.alphat)/np.cos(self.alphatw) - 1))
+                                        - involute(self.alphat))
+                                       / np.tan(self.alpha)) -
+                                      1/np.cos(self.beta) *
+                                      (np.cos(self.alphat) /
+                                       np.cos(self.alphatw) - 1))
 
         # tip diameter
         self.da1 = self.d1 + 2*self.m*(self.haP + self.x1 - self.k)
@@ -186,8 +189,9 @@ class MAAG:
         self.rD2 = ((self.T2A - self.AB)**2 + self.rb2**2)**(1/2)
 
         # GEAR LOSS FACTOR ACCORDING TO OHLENDORF
-        self.HV = (1-self.epslon_alpha + self.epslon_a1**2 + self.epslon_a2**2) *\
-            np.pi*(self.u+1)/(self.z1*self.u*np.cos(self.betab))
+        self.HV = (np.pi*(self.u+1)/(self.z1*self.u*np.cos(self.betab)) *
+                   (1-self.epslon_alpha + self.epslon_a1**2 +
+                    self.epslon_a2**2))
 
         # GEAR FINISHING
         self.Ram = (GTYPE.Ra[0] + GTYPE.Ra[1])/2

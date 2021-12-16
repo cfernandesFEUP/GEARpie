@@ -22,7 +22,7 @@ SOFTWARE. '''
 
 
 class HERTZ:
-    """Calculation of contact stresses, power loss and 
+    """Calculation of contact stresses, power loss and \
     film thickness along path of contact"""
 
     def __init__(self, GMAT, GLUB, GEO, GPATH, GFS):
@@ -33,8 +33,6 @@ class HERTZ:
         self.Eeq = 1/((1 - GMAT.v1**2)/GMAT.E1 + (1 - GMAT.v2**2)/GMAT.E2)
 
         # equivalent radius
-        # self.R13D = np.matlib.repmat(GPATH.R1,len(GPATH.bpos),1)
-        # self.R23D = np.matlib.repmat(GPATH.R2,len(GPATH.bpos),1)
         self.R13D = np.tile(GPATH.R1, (len(GPATH.bpos), 1)).T
         self.R23D = np.tile(GPATH.R2, (len(GPATH.bpos), 1)).T
         self.Req = 1/((1/self.R13D) + (1/self.R23D))/np.cos(GEO.betab)
@@ -61,6 +59,8 @@ class HERTZ:
         # pitch point mean contact pressure
         self.pmI = self.p0I*np.pi/4
 
+        # FILM THICKNESS ======================================================
+
         # POWER LOSS ==========================================================
         # coefficient of friction according to Schlenk
         self.CoF = (0.048 * ((GFS.fbn / GPATH.lxi.min()) /
@@ -85,7 +85,6 @@ class HERTZ:
 
         #
         self.thermal1 = GMAT.k1*GMAT.rho1*GMAT.cp1*self.vr13D
-
         self.thermal2 = GMAT.k2*GMAT.rho2*GMAT.cp2*self.vr23D
 
         # heat partition factors: 1 - pinion, 2- wheel
@@ -100,4 +99,72 @@ class HERTZ:
         self.Qvzp1m = self.Qvzp1*self.aH/(np.pi*self.R13D)
         self.Qvzp2m = self.Qvzp2*self.aH/(np.pi*self.R23D)
 
-        # FILM THICKNESS ======================================================
+        # CONTACT STRESSES ====================================================
+        # stress field position along path of contact index
+        self.indS = np.argmax(self.p0[:, 0])
+
+        self.aHS = self.aH[self.indS, 0]
+        # create stress field vectors
+        self.DISC_X = 150
+        self.DISC_Z = 200
+        self.xa = np.tile(np.linspace(-1.5, 1.5, self.DISC_X),
+                          (self.DISC_Z, 1)).T
+        self.za = np.tile(np.linspace(
+            0.00001, 2., self.DISC_Z), (self.DISC_X, 1))
+
+        self.xH = self.xa*self.aHS
+        self.zH = self.za*self.aHS
+
+        self.B = 1/self.Req[self.indS, 0]
+
+        # SigmaX, SigmaY, SigmaZ, TauXZ = [
+        #     np.zeros((len(self.xH), len(self.zH))) for _ in range(4)]
+
+        self.M = ((self.aHS + self.xH)**2 + self.zH**2)**(1/2)
+        self.N = ((self.aHS - self.xH)**2 + self.zH**2)**(1/2)
+
+        self.phi1 = np.pi*(self.M + self.N)/(self.M*self.N *
+                                             (2*self.M*self.N + 2 *
+                                              self.xH**2 +
+                                              2*self.zH**2 -
+                                              2*self.aHS**2)**(1/2))
+        self.phi2 = np.pi*(self.M - self.N)/(self.M*self.N *
+                                             (2*self.M*self.N + 2 *
+                                              self.xH**2 +
+                                              2*self.zH**2 -
+                                              2*self.aHS**2)**(1/2))
+
+        self.SX = (-self.aHS*self.B*self.Eeq*(self.zH *
+                                              ((self.aHS**2 + 2*self.zH**2 +
+                                                2*self.xH**2) * self.phi1 /
+                                               self.aHS - 2*np.pi/self.aHS -
+                                               3*self.xH*self.phi2)
+                                              + self.CoF * ((2*self.xH**2 -
+                                                             2*self.aHS**2 - 2*self.zH**2) *
+                                                            self.phi2 + 2*np.pi*self.xH /
+                                                            self.aHS + 2*self.xH * (self.aHS**2 -
+                                                                                    self.xH**2 - self.zH**2) *
+                                                            self.phi1/self.aHS))/np.pi)
+        self.SY = (-2*self.aHS*self.B*self.Eeq*GMAT.v1 *
+                   (self.zH*((self.aHS**2 + self.zH**2 + self.xH**2) *
+                             self.phi1/self.aHS - np.pi/self.aHS -
+                             2*self.xH*self.phi2) + self.CoF*((self.xH**2 -
+                                                               self.aHS**2 - self.zH**2)*self.phi2 +
+                                                              np.pi*self.xH / self.aHS + self.xH*(self.aHS**2 -
+                                                                                                  self.xH**2 - self.zH**2) * self.phi1/self.aHS)) /
+                   np.pi)
+        self.SZ = (-self.aHS*self.B*self.Eeq *
+                   (self.zH*(self.aHS*self.phi1 - self.xH*self.phi2) +
+                    self.CoF*self.zH**2*self.phi2)/np.pi)
+
+        self.TXZ = (-self.aHS*self.B*self.Eeq*(self.zH**2 *
+                                               self.phi2 + self.CoF*((2*self.xH**2 +
+                                                                      self.aHS**2 + 2*self.zH**2)*self.phi1*self.zH /
+                                                                     self.aHS - 2*np.pi*self.zH/self.aHS -
+                                                                     3*self.xH*self.zH*self.phi2))/np.pi)
+
+        self.Tmax = 0.5*(self.SX-self.SZ)
+        self.Toct = ((self.SX-self.SY)**2 + (self.SY-self.SZ) ** 2 +
+                     (self.SZ-self.SX)**2)**(1/2)/3
+        self.SMises = ((self.SX-self.SY)**2 + (self.SY-self.SZ) ** 2 +
+                       (self.SZ-self.SX)**2 + 6*self.TXZ**2)**(1/2)/np.sqrt(2)
