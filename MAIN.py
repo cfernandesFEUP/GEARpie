@@ -25,20 +25,19 @@ from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY,
                      RIGID_LOAD_SHARING, FORCES_SPEEDS, CONTACT,
                      INVOLUTE_GEOMETRY, MESH_GENERATOR, OUTPUT_PRINT,
                      PLOTTING)
-
-# import matplotlib.pyplot as plt
-# import numpy as np
-
 import sys
-# AVOID CREATION OF PYCACHE FOLDER ============================================
 sys.dont_write_bytecode = True
 
+# AVOID CREATION OF PYCACHE FOLDER ============================================
 
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
-print('-'*50)
-print('{:^50s}'.format('GeaR-Software\tC. Fernandes, 2022'))
-print('-'*50)
+print('='*65)
+print('{:^65s}'.format('GeaR-Software'))
+print('.'*65)
+print('{:^65s}'.format('MIT License,Carlos M.C.G. Fernandes, 2022'))
+print('='*65)
+print('\n')
 print('Gear geometries available:')
 print('C14, H501, H701, H951')
 print('To use a new geometry, type New')
@@ -61,9 +60,8 @@ class lub:
 GLUB = lub()
 
 # pinion and wheel material
-print('Materials available:')
+print('\nMaterials available:\n')
 print('STEEL, ADI, POM, PA66, PEEK')
-print('To use a new geometry, type New')
 MAT_PINION = str(input('Pinion material (default: STEEL): ') or 'STEEL')
 MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL')
 
