@@ -20,28 +20,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. '''
 
-import sys
-sys.dont_write_bytecode = True
-import GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY, RIGID_LOAD_SHARING,\
-    FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, MESH_GENERATOR, PLOTTING
+# AVOID CREATION OF PYCACHE FOLDER ============================================
+from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY,
+                     RIGID_LOAD_SHARING, FORCES_SPEEDS, CONTACT,
+                     INVOLUTE_GEOMETRY, MESH_GENERATOR, OUTPUT_PRINT,
+                     PLOTTING)
 
-## GEAR GEOMETRY, MATERIAL AND FINISHING ######################################
+# import matplotlib.pyplot as plt
+
+# import numpy as np
+
+import sys
+
+sys.dont_write_bytecode = True
+
+# IMPORT CLASSES ==============================================================
+
+# GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
 GEAR_NAME = 'H501'
 
 # pinion and wheel material
 MAT_PINION = 'STEEL'
 MAT_WHEEL = 'STEEL'
-Gmat = MATERIAL_LIBRARY.MATERIAL(MAT_PINION, MAT_WHEEL)
 
-## LUBRICANT ##################################################################
+# LUBRICANT ===================================================================
 # lubricant
+
+
 class lub:
     def __init__(self):
         self.miu = 30
         self.xl = 0.85
-    
-Lubricant = lub()
+
+
+GLUB = lub()
 
 # select element when is applied speed and torque (P - pinion, W - wheel)
 element = 'P'
@@ -59,45 +72,41 @@ size = 1000
 DISCRETIZATION = 100
 
 # element order
+MESH = False
+
 ORDER = 1
 
 NODEM = 21
 
-## GEAR SELECTION #############################################################
-Gtype = GEAR_LIBRARY.GEAR(GEAR_NAME)
+# graphics
+GRAPHICS = False
 
-## FZG LOAD STAGE CONDITIONS ##################################################
+# GEAR SELECTION ==============================================================
+GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
+
+# ASSIGN GEAR MATERIALS =======================================================
+GMAT = MATERIAL_LIBRARY.MATERIAL(MAT_PINION, MAT_WHEEL)
+
+# FZG LOAD STAGE CONDITIONS ===================================================
 if torque is str:
     torque = torque
 
-## GEAR GEOMETRY ACCORDING TO MAAG BOOK #######################################
-Ggeo = CALC_GEOMETRY.MAAG(Gtype)
+# GEAR GEOMETRY ACCORDING TO MAAG BOOK ========================================
+GEO = CALC_GEOMETRY.MAAG(GTYPE)
 
-## LINES OF CONTACT ASSUMING A RIGID LOAD SHARING (SPUR AND HELICAL) ##########
-Glines = RIGID_LOAD_SHARING.LINES(size, Ggeo)
+# LINES OF CONTACT ASSUMING A RIGID LOAD SHARING (SPUR AND HELICAL) ===========
+GPATH = RIGID_LOAD_SHARING.LINES(size, GEO)
 
-## FORCES AND SPEEDS ##########################################################
-Goper = FORCES_SPEEDS.OPERATION(element, torque, speed, Ggeo, Glines)
+# FORCES AND SPEEDS ===========================================================
+GFS = FORCES_SPEEDS.OPERATION(element, torque, speed, GEO, GPATH)
 
-## GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) #############
-Gcontact = CONTACT.HERTZ(Gmat, Lubricant, Ggeo, Glines, Goper)
+# GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) ==============
+GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS)
 
-x = Glines.xd
-y = Glines.bpos
-import numpy as np
-X, Y = np.meshgrid(x, y)
-Sr = Glines.lsum.T
-import matplotlib.pyplot as plt
-fig = plt.figure(1)
-ax = plt.axes(projection='3d')
-ax.plot_surface(X, Y, Sr,cmap='jet', edgecolor='k')
-# ax.view_init(10, 15)
-plt.show()
+# INVOLUTE PROFILE GEOMETRY ===================================================
+Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
 
-## INVOLUTE PROFILE GEOMETRY ##################################################
-Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', Ggeo, DISCRETIZATION)
-
-Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', Ggeo, DISCRETIZATION)
+Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
 
 # thF = np.arccos(rb/ra)
 # thP = np.arccos(rb/r)
@@ -106,10 +115,27 @@ Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', Ggeo, DISCRETIZATION)
 # eS = (-0.2*ce + 1.2)*min(a[-1])*1e3
 # nM = int(Sinvol/eS)
 
-## INVOLUTE PROFILE GEOMETRY ##################################################
-# Pmesh = MESH_GENERATOR.MESHING('P', GEAR_NAME, Ggeo, Pprofile, 3, ORDER, NODEM)
+# INVOLUTE PROFILE GEOMETRY ===================================================
 
-# Wmesh = MESH_GENERATOR.MESHING('W', GEAR_NAME, Ggeo, Wprofile, 4, ORDER, NODEM)
+if MESH:
+    MESH_GENERATOR.MESHING('P', GEAR_NAME, GEO, Pprofile, 3, ORDER, NODEM)
 
-## GRAPHICS ###################################################################
-# Ploted = PLOTTING.GRAPHICS(Glines, Goper)
+    MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, 4, ORDER, NODEM)
+
+# OUTPUT PRINT ================================================================
+OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GEO, GFS, GCONTACT)
+
+# OUTPUT GRAPHICS =============================================================
+if GRAPHICS:
+    PLOTTING.GRAPHICS(GPATH, GFS)
+
+
+# x = GPATH.xd
+# y = GPATH.bpos
+# X, Y = np.meshgrid(x, y)
+# Sr = GPATH.lsum.T
+# fig = plt.figure()
+# ax = plt.axes(projection='3d')
+# ax.plot_surface(X, Y, Sr, cmap='jet', edgecolor='k')
+# # ax.view_init(10, 15)
+# plt.show()
