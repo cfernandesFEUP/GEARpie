@@ -27,8 +27,9 @@ class GEAR:
         default = 'No Gear Selected Input'
         getattr(self, GEAR_NAME, lambda: default)()
 
-    def Input(self):
-        self.alpha = float(input('Pressure angle / \u00b0: '))
+    def New(self):
+        self.alpha = float(
+            input('Pressure angle (default: 20) / \u00b0: ') or '20')
         self.beta = float(input('Helix angle / \u00b0: '))
         self.m = float(input('Gear module / mm: '))
         self.z = [float(input('z1: ')), float(input('z2: '))]
@@ -36,15 +37,17 @@ class GEAR:
         self.b = [float(input('b1: ')), float(input('b2: '))]
         self.dshaft = [float(input('ds1: ')), float(input('ds2: '))]
         self.al = None
-        self.haP = float(input('Addednum coefficient: '))
-        self.hfP = float(input('Deddednum coefficient: '))
-        self.rfP = float(input('Root radius coefficient: '))
-        self.Ra = [float(input('Ra1 / \u03BCm: ')),
-                   float(input('Ra2 / \u03BCm: '))]
-        self.Rq = [float(input('Rq1 / \u03BCm: ')),
-                   float(input('Rq2 / \u03BCm: '))]
-        self.Rz = [float(input('Rz1 / \u03BCm: ')),
-                   float(input('Rz2 / \u03BCm: '))]
+        self.haP = float(input('Addendum coefficient (default: 1): ') or '1')
+        self.hfP = float(
+            input('Deddendum coefficient (default: 1.25): ') or '1.25')
+        self.rfP = float(
+            input('Root radius coefficient (default: 0.38): ') or '0.38')
+        self.Ra = [float(input('Ra1 (default: 0.6) / \u03BCm: ') or '0.6'),
+                   float(input('Ra2 (default: 0.6) / \u03BCm: ') or '0.6')]
+        self.Rq = [float(input('Rq1 (default: 0.7) / \u03BCm: ') or '0.7'),
+                   float(input('Rq2 (default: 0.7) / \u03BCm: ') or '0.7')]
+        self.Rz = [float(input('Rz1 (default: 4.8) / \u03BCm: ') or '4.8'),
+                   float(input('Rz2 (default: 4.8) / \u03BCm: ') or '4.8')]
 
     def C14(self):
         self.alpha = 20.0

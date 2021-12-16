@@ -36,11 +36,17 @@ sys.dont_write_bytecode = True
 
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
-GEAR_NAME = 'C14'
+print('-'*50)
+print('{:^50s}'.format('GeaR-Software\tC. Fernandes, 2022'))
+print('-'*50)
+print('Gear geometries available:')
+print('C14, H501, H701, H951')
+print('To use a new geometry, type New')
+GEAR_NAME = str(input('Input gear geometry: '))
 
-# pinion and wheel material
-MAT_PINION = 'STEEL'
-MAT_WHEEL = 'STEEL'
+# GEAR SELECTION ==============================================================
+GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
+
 
 # LUBRICANT ===================================================================
 # lubricant
@@ -54,14 +60,22 @@ class lub:
 
 GLUB = lub()
 
-# select element when is applied speed and torque (P - pinion, W - wheel)
-element = 'P'
+# pinion and wheel material
+print('Materials available:')
+print('STEEL, ADI, POM, PA66, PEEK')
+print('To use a new geometry, type New')
+MAT_PINION = str(input('Pinion material (default: STEEL): ') or 'STEEL')
+MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL')
+
+# select element where is applied speed and torque (P - pinion, W - wheel)
+stringPW = 'Select (P - Pinion or W - Wheel) to apply torque and speeed: '
+element = str(input(stringPW))
 
 # torque Nm
-torque = 200
+torque = float(input('Torque / Nm: '))
 
 # speed rpm
-speed = 1000
+speed = float(input('Speed / rpm: '))
 
 # discretization of path of contact
 size = 1000
@@ -69,18 +83,23 @@ size = 1000
 # discretization of involute geometry
 DISCRETIZATION = 100
 
-# element order
-MESH = True
-
-ORDER = 1
-
-NODEM = 21
-
 # graphics
-GRAPHICS = True
+ANSWER_GRAPHICS = str(input('Graphical output (Y/N): '))
 
-# GEAR SELECTION ==============================================================
-GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
+if ANSWER_GRAPHICS == 'Y':
+    GRAPHICS = True
+else:
+    GRAPHICS = False
+
+# element order
+ANSWER_MESH = str(input('FEM mesh generation (Y/N): '))
+
+if ANSWER_MESH == 'Y':
+    MESH = True
+    NODEM = int(input('Number of nodes on meshing surface: '))
+    ORDER = int(input('Element order (1/2): '))
+else:
+    MESH = False
 
 # ASSIGN GEAR MATERIALS =======================================================
 GMAT = MATERIAL_LIBRARY.MATERIAL(MAT_PINION, MAT_WHEEL)
