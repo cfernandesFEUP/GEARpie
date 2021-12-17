@@ -11,6 +11,10 @@ GEARpie requires the following Python libraries:
 
 Run 'GEARpie.py'
 
+<p align="center"> 
+    <img src="LOGOS/OUT0.png"/>
+</p>
+
 ## Capabilities
 
 GEARpie is useful calculate cylindrical gears:
@@ -19,9 +23,6 @@ GEARpie is useful calculate cylindrical gears:
 
 <p align="center"> 
     <img src="LOGOS/OUT1.png"/>
-</p>
-<p align="center">
-    <img src="LOGOS/OUT2.png" />
 </p>
 
 - contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
@@ -34,7 +35,7 @@ GEARpie is useful calculate cylindrical gears:
 - gear power losses (local and average)
 
 <p align="center">
-    <img src="LOGOS/OUT3.png" />
+    <img src="LOGOS/OUT2.png" />
 </p>
 
 - structured FEM mesh (1st or 2nd order elements)
