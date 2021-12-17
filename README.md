@@ -12,7 +12,7 @@ GEARpie requires the following Python libraries:
 Run 'GEARpie.py'
 
 <p align="center"> 
-    <img src="LOGOS/OUT0.png" width="500" height="412"/>
+    <img src="LOGOS/OUT0.png"/>
 </p>
 
 ## Capabilities
@@ -27,19 +27,19 @@ GEARpie is useful calculate cylindrical gears:
 - load carrying capacity according to DIN 3990 for steel gears
 - load carrying capacity according to VDI 2736 for plastic gears
 
-<p align="center"> 
+<p align="left"> 
     <img src="LOGOS/OUT1.png"/>
 </p>
 
-<p align="center">
+<p align="right">
     <img src="LOGOS/logo1.png"/>
 </p>
 
-<p align="center">
+<p align="left">
     <img src="LOGOS/OUT2.png" />
 </p>
 
-<p align="center">
+<p align="right">
     <img src="LOGOS/logo2.png" width="500" height="412" />
 </p>
 
