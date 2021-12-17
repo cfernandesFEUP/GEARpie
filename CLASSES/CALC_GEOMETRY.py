@@ -161,18 +161,21 @@ class MAAG:
 
         self.T1T2 = self.al*np.sin(self.alphatw)
 
+        # positions along line of action length (pinion)
+        self.T1E = (self.ra1**2 - self.rb1**2)**(1/2) 
+        
         # positions along line of action length (wheel)
         self.T2A = (self.ra2**2 - self.rb2**2)**(1/2)
-        self.T2B = self.T1T2 - self.T2A - self.pbt
+        
+        # positions of pinion and wheel along AE
+        self.T1A = self.T1T2 - self.T2A
+        self.T1B = self.T1E - self.pbt
+        self.T1C = self.rl1*np.sin(self.alphatw)
+        self.T1D = self.T1A + self.pbt
+        self.T2E = self.T1T2 - self.T1E
+        self.T2B = self.T2E + self.pbt
         self.T2C = self.rl2*np.sin(self.alphatw)
         self.T2D = self.T2A - self.pbt
-
-        # positions along line of action length (pinion)
-        self.T1A = self.T1T2 - self.T2A
-        self.T1B = self.T1T2 - self.T2A - self.pbt
-        self.T1C = self.rl1*np.sin(self.alphatw)
-        self.T1D = self.T1T2 - self.T2D
-        self.T1E = (self.ra1**2 - self.rb1**2)**(1/2)
 
         # positions along path of contact
         self.AE = self.T1E - self.T1A
