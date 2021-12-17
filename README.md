@@ -17,20 +17,31 @@ GEARpie is useful calculate cylindrical gears:
 
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
 
-![ScreenShot]("/LOGOS/OUT1.png")![ScreenShot]("/LOGOS/OUT2.png")
+<p>
+    <img src="LOGOS/OUT1.png" width="220" height="240" />
+</p>
+<p>
+    <img src="LOGOS/OUT2.png" width="220" height="240" />
+</p>
 
 - contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
 
-![ScreenShot]("/logo1.png")
+<p>
+    <img src="LOGOS/logo1.png" width="220" height="240" />
+</p>
 
 - film thickness along the path of contact
 - gear power losses (local and average)
 
-![ScreenShot]("/LOGOS/OUT3.png")
+<p>
+    <img src="LOGOS/OUT3.png" width="220" height="240" />
+</p>
 
 - structured FEM mesh (1st or 2nd order elements)
 
-![ScreenShot]("/LOGOS/logo2.png")
+<p>
+    <img src="LOGOS/logo2.png" width="220" height="240" />
+</p>
 
 - load carrying capacity according to DIN 3990 for steel gears
 - load carrying capacity according to VDI 2736 for plastic gears
