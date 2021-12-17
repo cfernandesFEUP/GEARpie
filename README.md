@@ -1,14 +1,5 @@
 # GEARpie
 
-
-<p align="center"> 
-<img src="https://github.com/cfernandesFEUP/GEARpie/edit/main/LOGOS/logo2.png">
-</p>
-
-<p align="center"> 
-<img src="https://github.com/cfernandesFEUP/GEARpie/edit/main/LOGOS/logo1.png">
-</p>
-
 ## Requirements
 
 GEARpie requires the following Python libraries:
@@ -28,15 +19,25 @@ GEARpie is useful calculate cylindrical gears:
 
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
 - contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
+
+<p align="center"> 
+<img src="https://github.com/cfernandesFEUP/GEARpie/tree/main/LOGOS/LOGOS/logo1.png">
+</p>
+
 - film thickness along the path of contact
 - gear power losses (local and average)
 - structured FEM mesh (1st or 2nd order elements)
+
+<p align="center"> 
+<img src="https://github.com/cfernandesFEUP/GEARpie/tree/main/LOGOS/logo2.png">
+</p>
+
 - load carrying capacity according to DIN 3990 for steel gears
 - load carrying capacity according to VDI 2736 for plastic gears
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
-The power loss models are described on [2-5] Both the Ohlendorf and Wimmer gear loss factor are provided.
+The power loss models are described in [2-5]. The Ohlendorf and Wimmer gear loss factor are implemented.
 
 The mesh generation was used to create the FEM thermal model described in [8-9] The mesh is also useful for use in any Finite Element Analysis ( tested in Abaqus and CalculiX).
 
@@ -79,24 +80,4 @@ The mesh generation was used to create the FEM thermal model described in [8-9] 
  Hybrid Polymer Gear Concepts to Improve Thermal Behavior. 
  Journal of Tribology, 141(3), 032201. https://doi.org/10.1115/1.4041461
 
-# MIT License
-
 Copyright (c) 2022 Carlos M.C.G. Fernandes
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "README"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
