@@ -1,4 +1,4 @@
-# Gear Calculation
+# GEARpie
 
 
 <p align="center"> 
@@ -7,39 +7,16 @@
 
 The software was validated for its typical usage by the author. No warranty is given and the user should always verify the results.
 
-The software is capable to calculate cylindrical gears geometry according to MAAG book, predict Hertz contact pressure and corresponding stress field, gear and rolling bearings power losses [1-6]. Only NJ 406 MA and QJ 308 N2MA rolling bearing equations are implemented. Additional bearing data can be easily added on the 'bearings.py' file - just follow the same format. 
+The software is capable to calculate cylindrical gears geometry according to MAAG book, predict Hertz contact pressure and corresponding stress field and power losses [1-6].
 
-The DIN3990 safety factors for contact stress and bending stress are also calculated. 
+The DIN3990 and VDI 2376 safety factors for contact stress and bending stress are also calculated. 
 
 Other features not included on the repository: gear geometry and structured FEM mesh (Gmsh Python API), CalculiX themo-mechanical integration, heat transfer coefficients calculation [7,8]. Please contact me.
 
 How to use:
 
-- the main file is 'GearCP.py':
+- the main file is 'GEARpie.py':
 
-    'GearCP.py' where you should select:
-    
-        - Gear geometry (C14, C40, H501, H701, H951 [1,3]) which is stored into the file "gears.py" and additional geometries can be added - just use the same format.
-        
-        - Gear material:
-        
-            mat = [STEEL STEEL]; meaning pinion and gear material respectively;
-            
-        - Operating Conditions:
-        
-            nmotor - list of motor speeds (meaning wheel z2 speed)
-            load - list of FZG load stages, available with load arm of 0.35 m and 0.5 m
-            (check LoadStage.py);
-            
-            a required torque can also be defined.
-            
-        - Oil Selection:
-        
-           'dry' - no lubricant, a Cofficient of Friction should be given - useful for plastic gears;
-           'PAOR', 'MINR', etc - "oils.py"  according to papers [1-4]. Calculates the 
-           Coefficient of Friction using Schlenk equation and the corresponding lubricant parameter XL [1,3]; 
-           Additional lubricants can be added - just use the same format.
-                 
  References:
  
  [1] Fernandes, C. M. C. G., Martins, R. C., & Seabra, J. H. O. (2014). 
@@ -80,7 +57,7 @@ How to use:
  -------------------------------------------------------------------------------
 MIT License
 
-Copyright (c) 2021 Carlos M.C.G. Fernandes
+Copyright (c) 2022 Carlos M.C.G. Fernandes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "README"), to deal
