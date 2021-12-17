@@ -21,7 +21,7 @@ GEARpie is useful calculate cylindrical gears:
 - gear power losses (local and average)
 - structured FEM mesh (1st or 2nd order elements)
 - load carrying capacity according to DIN 3990 for steel gears
-- load carrying capacity according to VDI 2736 for plastic gears
+- load carrying capacity and bulk temperature according to VDI 2736 for plastic gears
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
