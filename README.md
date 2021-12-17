@@ -28,12 +28,12 @@ GEARpie is useful calculate cylindrical gears:
 - load carrying capacity according to VDI 2736 for plastic gears
 
 <p align="left"> 
-    <img src="LOGOS/OUT1.png"/>
-    <img src="LOGOS/OUT2.png" />
+    <img src="LOGOS/OUT1.png"height="333"/>
+    <img src="LOGOS/OUT2.png"height="333" />
 </p>
 <p align="left">
-    <img src="LOGOS/logo1.png"/>
-    <img src="LOGOS/logo2.png" width="400" height="333" />
+    <img src="LOGOS/logo1.png"height="333"/>
+    <img src="LOGOS/logo2.png"height="333" />
 </p>
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
