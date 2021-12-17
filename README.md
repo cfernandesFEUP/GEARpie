@@ -18,16 +18,16 @@ GEARpie is useful calculate cylindrical gears:
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
 
 <p>
-    <img src="LOGOS/OUT1.png" width="220" height="240" />
+    <img src="LOGOS/OUT1.png"/>
 </p>
 <p>
-    <img src="LOGOS/OUT2.png" width="220" height="240" />
+    <img src="LOGOS/OUT2.png" />
 </p>
 
 - contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
 
 <p>
-    <img src="LOGOS/logo1.png" width="220" height="240" />
+    <img src="LOGOS/logo1.png"/>
 </p>
 
 - film thickness along the path of contact
