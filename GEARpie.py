@@ -144,6 +144,8 @@ OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GEO, GFS, GCONTACT)
 if GRAPHICS:
     PLOTTING.GRAPHICS(GPATH, GFS, GCONTACT)
 
+# CLOSE PROGRAM ===============================================================
+input("Press enter to exit)")
 # x = GPATH.xd
 # y = GPATH.bpos
 # X, Y = np.meshgrid(x, y)

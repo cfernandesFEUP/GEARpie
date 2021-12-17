@@ -33,15 +33,19 @@ class GEAR:
         self.beta = float(input('Helix angle / \u00b0: '))
         self.m = float(input('Gear module / mm: '))
         self.z = [float(input('z1: ')), float(input('z2: '))]
-        self.x = [float(input('x1: ')), float(input('x2: '))]
-        self.b = [float(input('b1: ')), float(input('b2: '))]
-        self.dshaft = [float(input('ds1: ')), float(input('ds2: '))]
+        self.x = [float(input('Pinion profile shift x1: ')),
+                  float(input('Wheel profile shift x2: '))]
+        self.b = [float(input('Pinion facewith b1: ')),
+                  float(input('Wheel facewithb2: '))]
+        self.dshaft = [float(input('Pinion shaft ds1: ')),
+                       float(input('Wheel shaft ds2: '))]
         self.al = None
         self.haP = float(input('Addendum coefficient (default: 1): ') or '1')
         self.hfP = float(
             input('Deddendum coefficient (default: 1.25): ') or '1.25')
         self.rfP = float(
             input('Root radius coefficient (default: 0.38): ') or '0.38')
+        print('Gear surface finishing:')
         self.Ra = [float(input('Ra1 (default: 0.6) / \u03BCm: ') or '0.6'),
                    float(input('Ra2 (default: 0.6) / \u03BCm: ') or '0.6')]
         self.Rq = [float(input('Rq1 (default: 0.7) / \u03BCm: ') or '0.7'),
