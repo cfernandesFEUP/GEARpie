@@ -2,11 +2,11 @@
 
 
 <p align="center"> 
-<img src="LOGOS/logo2.png">
+<img src="https://github.com/cfernandesFEUP/GEARpie/edit/main/LOGOS/logo2.png">
 </p>
 
 <p align="center"> 
-<img src="LOGOS/logo1.png">
+<img src="https://github.com/cfernandesFEUP/GEARpie/edit/main/LOGOS/logo1.png">
 </p>
 
 ## Requirements
