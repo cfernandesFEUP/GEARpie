@@ -2,7 +2,11 @@
 
 
 <p align="center"> 
-<img src="https://github.com/cfernandesFEUP/Gear-Calculation/blob/master/GearC/logo.png">
+<img src="LOGOS/logo2.png">
+</p>
+
+<p align="center"> 
+<img src="LOGOS/logo1.png">
 </p>
 
 ## Requirements
