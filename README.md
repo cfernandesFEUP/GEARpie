@@ -4,10 +4,8 @@
 
 GEARpie requires the following Python libraries:
 
-- numpy (install "pip install numpy")
-- scipy (install "pip install scipy")
-- matplotlib (install "pip install matplotlib")
-- gmsh API (install "pip install gmsh")
+- scipy (which includes numpy and matplotlib) -- install with "pip install scipy"
+- gmsh API -- install with "pip install gmsh"
 
 ## How to use
 
