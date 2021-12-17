@@ -16,7 +16,7 @@ GEARpie requires the following Python libraries:
 
 ## How to use
 
-Run 'GEARpie.py':
+Run 'GEARpie.py'
 
 ## Capabilities
 
