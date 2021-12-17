@@ -12,7 +12,7 @@ GEARpie requires the following Python libraries:
 Run 'GEARpie.py'
 
 <p align="center"> 
-    <img src="LOGOS/OUT0.png"/>
+    <img src="LOGOS/OUT0.png" width="500" height="412"/>
 </p>
 
 ## Capabilities
@@ -20,32 +20,30 @@ Run 'GEARpie.py'
 GEARpie is useful calculate cylindrical gears:
 
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
+- contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
+- film thickness along the path of contact
+- gear power losses (local and average)
+- structured FEM mesh (1st or 2nd order elements)
+- load carrying capacity according to DIN 3990 for steel gears
+- load carrying capacity according to VDI 2736 for plastic gears
 
 <p align="center"> 
     <img src="LOGOS/OUT1.png"/>
 </p>
 
-- contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
-
 <p align="center">
     <img src="LOGOS/logo1.png"/>
 </p>
-
-- film thickness along the path of contact
-- gear power losses (local and average)
 
 <p align="center">
     <img src="LOGOS/OUT2.png" />
 </p>
 
-- structured FEM mesh (1st or 2nd order elements)
-
 <p align="center">
     <img src="LOGOS/logo2.png" width="500" height="412" />
 </p>
 
-- load carrying capacity according to DIN 3990 for steel gears
-- load carrying capacity according to VDI 2736 for plastic gears
+
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
