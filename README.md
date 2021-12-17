@@ -37,11 +37,11 @@ The mesh generation was used to create the FEM thermal model described in [8-9] 
 
 ## Report Output Example
 <p align="center"> 
-    <img src="LOGOS/OUT0.png"width="500"/>
-    <img src="LOGOS/OUT01.png"width="500"/>
-    <img src="LOGOS/OUT1.png"width="500"/>
-    <img src="LOGOS/OUT12.png"width="500"/>
-    <img src="LOGOS/OUT2.png"width="500" />
+    <img src="LOGOS/OUT0.png"width="600"/>
+    <img src="LOGOS/OUT01.png"width="600"/>
+    <img src="LOGOS/OUT1.png"width="600"/>
+    <img src="LOGOS/OUT12.png"width="600"/>
+    <img src="LOGOS/OUT2.png"width="600" />
 </p>
 
  ## References
