@@ -13,7 +13,7 @@ Run 'GEARpie.py'
 
 ## Capabilities
 
-GEARpie is useful calculate cylindrical gears:
+GEARpie is useful to calculate cylindrical gears:
 
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
 - contact pressure and stress fields considering friction (select the position along the path of contact: A, B, C, D, E or any other)
