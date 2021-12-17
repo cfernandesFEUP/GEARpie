@@ -25,7 +25,7 @@ GEARpie is useful calculate cylindrical gears:
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
-The power loss models are described in [2-5]. The Ohlendorf and Wimmer gear loss factor are implemented.
+The power loss models are described in [2-5]. The Ohlendorf (analytic) and Wimmer (numerical) gear loss factors are implemented.
 
 The mesh generation was used to create the FEM thermal model described in [8-9] The mesh is also useful for use in any Finite Element Analysis ( tested in Abaqus and CalculiX).
 
