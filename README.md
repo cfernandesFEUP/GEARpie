@@ -21,7 +21,7 @@ GEARpie is useful calculate cylindrical gears:
 - contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
 
 <p align="center"> 
-<img src="https://github.com/cfernandesFEUP/GEARpie/tree/main/LOGOS/LOGOS/logo1.png">
+<img src="/tree/main/LOGOS/LOGOS/logo1.png">
 </p>
 
 - film thickness along the path of contact
@@ -29,7 +29,7 @@ GEARpie is useful calculate cylindrical gears:
 - structured FEM mesh (1st or 2nd order elements)
 
 <p align="center"> 
-<img src="https://github.com/cfernandesFEUP/GEARpie/tree/main/LOGOS/logo2.png">
+<img src="/tree/main/LOGOS/logo2.png">
 </p>
 
 - load carrying capacity according to DIN 3990 for steel gears
