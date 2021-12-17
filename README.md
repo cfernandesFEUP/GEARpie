@@ -20,9 +20,7 @@ GEARpie is useful calculate cylindrical gears:
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
 - contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
 
-<p align="center"> 
-<img src="/tree/main/LOGOS/LOGOS/logo1.png">
-</p>
+![ScreenShot]("/tree/main/LOGOS/LOGOS/logo1.png")
 
 - film thickness along the path of contact
 - gear power losses (local and average)
