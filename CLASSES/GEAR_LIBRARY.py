@@ -27,7 +27,7 @@ class GEAR:
         default = 'No Gear Selected Input'
         getattr(self, GEAR_NAME, lambda: default)()
 
-    def New(self):
+    def NEW(self):
         self.alpha = float(
             input('Pressure angle (default: 20) / \u00b0: ') or '20')
         self.beta = float(input('Helix angle / \u00b0: '))

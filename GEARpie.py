@@ -40,8 +40,8 @@ print('='*65)
 print('\n')
 print('Gear geometries available:')
 print('C14, H501, H701, H951')
-print('To use a new geometry, type New')
-GEAR_NAME = str(input('Input gear geometry: '))
+print('To use a new geometry, type NEW')
+GEAR_NAME = str(input('Input gear geometry: ')).upper()
 
 # GEAR SELECTION ==============================================================
 GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
@@ -62,12 +62,13 @@ GLUB = lub()
 # pinion and wheel material
 print('\nMaterials available:\n')
 print('STEEL, ADI, POM, PA66, PEEK')
-MAT_PINION = str(input('Pinion material (default: STEEL): ') or 'STEEL')
-MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL')
+MAT_PINION = str(input('Pinion material (default: STEEL): ')
+                 or 'STEEL').upper()
+MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL').upper()
 
 # select element where is applied speed and torque (P - pinion, W - wheel)
 stringPW = 'Select (P - Pinion or W - Wheel) to apply torque and speeed: '
-element = str(input(stringPW))
+element = str(input(stringPW)).upper()
 
 # torque Nm
 torque = float(input('Torque / Nm: '))
@@ -82,7 +83,7 @@ size = 1000
 DISCRETIZATION = 100
 
 # graphics
-ANSWER_GRAPHICS = str(input('Graphical output (Y/N): '))
+ANSWER_GRAPHICS = str(input('Graphical output (Y/N): ')).upper()
 
 if ANSWER_GRAPHICS == 'Y':
     GRAPHICS = True
@@ -90,12 +91,14 @@ else:
     GRAPHICS = False
 
 # element order
-ANSWER_MESH = str(input('FEM mesh generation (Y/N): '))
+ANSWER_MESH = str(input('FEM mesh generation (Y/N): ')).upper()
 
 if ANSWER_MESH == 'Y':
     MESH = True
     NODEM = int(input('Number of nodes on meshing surface: '))
     ORDER = int(input('Element order (1/2): '))
+    PTOOTH = int(input('Number of tooth for pinion mesh: '))
+    WTOOTH = int(input('Number of tooth for wheel mesh: '))
 else:
     MESH = False
 
@@ -131,8 +134,8 @@ Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
 
 # INVOLUTE PROFILE GEOMETRY ===================================================
 if MESH:
-    MESH_GENERATOR.MESHING('P', GEAR_NAME, GEO, Pprofile, 3, ORDER, NODEM)
-    MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, 4, ORDER, NODEM)
+    MESH_GENERATOR.MESHING('P', GEAR_NAME, GEO, Pprofile, PTOOTH, ORDER, NODEM)
+    MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, WTOOTH, ORDER, NODEM)
 
 # OUTPUT PRINT ================================================================
 OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GEO, GFS, GCONTACT)

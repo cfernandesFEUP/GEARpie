@@ -31,6 +31,7 @@ class GRAPHICS:
         plt.xlabel('\u03B6')
         plt.ylabel(r'$L_t\left(x\right)/b$')
         plt.grid(True)
+        plt.show()
 
         plt.figure()
         plt.plot(GPATH.xf, GFS.gs1, 'b', label='pinion')
@@ -40,14 +41,7 @@ class GRAPHICS:
         plt.xlabel('\u03B6')
         plt.grid(True)
         plt.legend()
-
-        plt.figure()
-        plt.plot(GPATH.xf, GFS.fnx[:, 0]/GFS.fnx.max(), 'k')
-        plt.xlabel('\u03B6')
-        plt.ylabel(r'$\overline{F_N}~\left(x\right)$')
-        plt.title('Dimensionless normal load')
-        plt.grid(True)
-        plt.title('Total contact length over face width')
+        plt.show()
 
         plt.figure()
         plt.plot(GPATH.xf, GFS.fnx[:, 0], 'k')
@@ -55,6 +49,7 @@ class GRAPHICS:
         plt.xlabel('\u03B6')
         plt.title('Load per face width')
         plt.grid(True)
+        plt.show()
 
         plt.figure()
         plt.plot(GPATH.xf, GFS.vg, 'k')
@@ -62,6 +57,7 @@ class GRAPHICS:
         plt.title('Sliding Speed')
         plt.xlabel('\u03B6')
         plt.grid(True)
+        plt.show()
 
         cmap = plt.get_cmap('jet', 21)
         nc = 21
@@ -79,6 +75,7 @@ class GRAPHICS:
         plt.ylabel('z / b')
         plt.grid()
         plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+        plt.show()
 
         plt.figure()
         plt.title(r'$\sigma_{yy}$ / $p_0$')
@@ -92,6 +89,7 @@ class GRAPHICS:
         plt.ylabel('z / b')
         plt.grid()
         plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+        plt.show()
 
         plt.figure()
         plt.title(r'$\sigma_{zz}$ / $p_0$')
@@ -105,6 +103,7 @@ class GRAPHICS:
         plt.ylabel('z / b')
         plt.grid()
         plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+        plt.show()
 
         plt.figure()
         plt.title(r'$\tau_{xz}$ / $p_0$')
@@ -131,6 +130,7 @@ class GRAPHICS:
         plt.ylabel('z / b')
         plt.grid()
         plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+        plt.show()
 
         plt.figure()
         plt.title(r'$\tau_{oct}$ / $p_0$')
@@ -144,6 +144,7 @@ class GRAPHICS:
         plt.ylabel('z / b')
         plt.grid()
         plt.colorbar()
+        plt.show()
 
         plt.figure()
         plt.title(r'$\sigma_{von~Mises}$ / $p_0$')
@@ -157,3 +158,4 @@ class GRAPHICS:
         plt.ylabel('z / b')
         plt.grid()
         plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
+        plt.show()
