@@ -29,11 +29,10 @@ GEARpie is useful calculate cylindrical gears:
 
 <p align="left"> 
     <img src="LOGOS/OUT1.png"/>
-    <img src="LOGOS/logo1.png"/>
-</p>
-
-<p align="left">
     <img src="LOGOS/OUT2.png" />
+</p>
+<p align="left">
+    <img src="LOGOS/logo1.png"/>
     <img src="LOGOS/logo2.png" width="500" height="412" />
 </p>
 
