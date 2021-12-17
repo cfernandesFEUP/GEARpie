@@ -2,11 +2,11 @@
 
 
 <p align="center"> 
-<img src="https://github.com/cfernandesFEUP/GEARpie/edit/main/LOGOS/logo2.png">
+<img src="https://github.com/cfernandesFEUP/Gear-Calculation/blob/master/GEARpie/logo2.png">
 </p>
 
 <p align="center"> 
-<img src="https://github.com/cfernandesFEUP/GEARpie/edit/main/LOGOS/logo1.png">
+<img src="https://github.com/cfernandesFEUP/Gear-Calculation/blob/master/GEARpie/logo1.png">
 </p>
 
 ## Requirements
