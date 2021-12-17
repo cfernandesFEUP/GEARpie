@@ -18,6 +18,9 @@ Run 'GEARpie.py'
 GEARpie is useful calculate cylindrical gears:
 
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
+
+![ScreenShot]("https://github.com/cfernandesFEUP/GEARpie/LOGOS/OUT1.png")![ScreenShot]("https://github.com/cfernandesFEUP/GEARpie/LOGOS/OUT2.png")
+
 - contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
 
 ![ScreenShot]("https://github.com/cfernandesFEUP/GEARpie/LOGOS/logo1.png")
