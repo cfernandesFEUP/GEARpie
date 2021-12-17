@@ -20,15 +20,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. '''
 
+# AVOID CREATION OF PYCACHE FOLDER ============================================
+import sys
+sys.dont_write_bytecode = True
+
 # IMPORT LIBRARIES ============================================================
+
+
 from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY,
                      RIGID_LOAD_SHARING, FORCES_SPEEDS, CONTACT,
                      INVOLUTE_GEOMETRY, MESH_GENERATOR, OUTPUT_PRINT,
                      PLOTTING)
-import sys
-sys.dont_write_bytecode = True
-
-# AVOID CREATION OF PYCACHE FOLDER ============================================
 
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
