@@ -11,11 +11,6 @@ GEARpie requires the following Python libraries:
 
 Run 'GEARpie.py'
 
-<p align="left"> 
-    <img src="LOGOS/OUT0.png"height="400"/>
-    <img src="LOGOS/OUT01.png"height="400"/>
-</p>
-
 ## Capabilities
 
 GEARpie is useful calculate cylindrical gears:
@@ -28,23 +23,29 @@ GEARpie is useful calculate cylindrical gears:
 - load carrying capacity according to DIN 3990 for steel gears
 - load carrying capacity according to VDI 2736 for plastic gears
 
-<p align="left"> 
-    <img src="LOGOS/OUT1.png"height="400"/>
-    <img src="LOGOS/OUT12.png"height="400"/>
-</p>
-<p align="center"> 
-    <img src="LOGOS/OUT2.png"width="600" />
-</p>
-<p align="left">
-    <img src="LOGOS/logo1.png"height="333"/>
-    <img src="LOGOS/logo2.png"height="333" />
-</p>
+
+
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
 The power loss models are described in [2-5]. The Ohlendorf and Wimmer gear loss factor are implemented.
 
 The mesh generation was used to create the FEM thermal model described in [8-9] The mesh is also useful for use in any Finite Element Analysis ( tested in Abaqus and CalculiX).
+
+## Graphical Output Example
+<p align="center">
+    <img src="LOGOS/logo1.png"height="400"/>
+    <img src="LOGOS/logo2.png"height="400" />
+</p>
+
+## Report Output Example
+<p align="center"> 
+    <img src="LOGOS/OUT0.png"/>
+    <img src="LOGOS/OUT01.png"/>
+    <img src="LOGOS/OUT1.png"height="400"/>
+    <img src="LOGOS/OUT12.png"height="400"/>
+    <img src="LOGOS/OUT2.png"width="600" />
+</p>
 
  ## References
  
