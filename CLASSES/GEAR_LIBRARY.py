@@ -36,7 +36,7 @@ class GEAR:
         self.x = [float(input('Pinion profile shift x1: ')),
                   float(input('Wheel profile shift x2: '))]
         self.b = [float(input('Pinion facewith b1: ')),
-                  float(input('Wheel facewithb2: '))]
+                  float(input('Wheel facewith b2: '))]
         self.dshaft = [float(input('Pinion shaft ds1: ')),
                        float(input('Wheel shaft ds2: '))]
         self.al = None

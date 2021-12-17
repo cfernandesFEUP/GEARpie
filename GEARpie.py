@@ -82,6 +82,11 @@ size = 1000
 # discretization of involute geometry
 DISCRETIZATION = 100
 
+
+# stress field position
+POST = str(input('Stress field position along AE (A, B, C, D or E): ')).upper()
+POSAE = 'A' + POST
+
 # graphics
 ANSWER_GRAPHICS = str(input('Graphical output (Y/N): ')).upper()
 
@@ -119,7 +124,7 @@ GPATH = RIGID_LOAD_SHARING.LINES(size, GEO)
 GFS = FORCES_SPEEDS.OPERATION(element, torque, speed, GEO, GPATH)
 
 # GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) ==============
-GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS)
+GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS, POSAE)
 
 # INVOLUTE PROFILE GEOMETRY ===================================================
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
@@ -145,7 +150,7 @@ if GRAPHICS:
     PLOTTING.GRAPHICS(GPATH, GFS, GCONTACT)
 
 # CLOSE PROGRAM ===============================================================
-input("Press enter to exit)")
+input("Press enter to exit")
 # x = GPATH.xd
 # y = GPATH.bpos
 # X, Y = np.meshgrid(x, y)

@@ -25,7 +25,7 @@ class HERTZ:
     """Calculation of contact stresses, power loss and \
     film thickness along path of contact"""
 
-    def __init__(self, GMAT, GLUB, GEO, GPATH, GFS):
+    def __init__(self, GMAT, GLUB, GEO, GPATH, GFS, POSAE):
         import numpy as np
 
         # HERTZ ===============================================================
@@ -101,7 +101,10 @@ class HERTZ:
 
         # CONTACT STRESSES ====================================================
         # stress field position along path of contact index
-        self.indS = np.argmax(self.p0[:, 0])
+        if POSAE == 'AA':
+            self.indS = 0
+        else:
+            self.indS = np.argmin(np.abs(GPATH.xd - eval('GEO.' + POSAE)))
 
         self.aHS = self.aH[self.indS, 0]
         # create stress field vectors
