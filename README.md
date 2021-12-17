@@ -11,8 +11,9 @@ GEARpie requires the following Python libraries:
 
 Run 'GEARpie.py'
 
-<p align="center"> 
+<p align="left"> 
     <img src="LOGOS/OUT0.png"/>
+    <img src="LOGOS/OUT01.png"/>
 </p>
 
 ## Capabilities
@@ -29,6 +30,7 @@ GEARpie is useful calculate cylindrical gears:
 
 <p align="left"> 
     <img src="LOGOS/OUT1.png"height="333"/>
+    <img src="LOGOS/OUT12.png"height="333"/>
     <img src="LOGOS/OUT2.png"height="333" />
 </p>
 <p align="left">
