@@ -29,10 +29,10 @@ GEARpie is useful calculate cylindrical gears:
 - load carrying capacity according to VDI 2736 for plastic gears
 
 <p align="left"> 
-    <img src="LOGOS/OUT1.png"width="400"/>
-    <img src="LOGOS/OUT12.png"width="400"/>
+    <img src="LOGOS/OUT1.png"height="400"/>
+    <img src="LOGOS/OUT12.png"height="400"/>
 </p>
-<p align="left"> 
+<p align="center"> 
     <img src="LOGOS/OUT2.png"width="600" />
 </p>
 <p align="left">
