@@ -35,9 +35,9 @@ from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY,
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
 print('='*65)
-print('{:^65s}'.format('GeaR-Software'))
+print('{:^65s}'.format('GEARpie'))
 print('.'*65)
-print('{:^65s}'.format('MIT License,Carlos M.C.G. Fernandes, 2022'))
+print('{:^65s}'.format('MIT License, Carlos M.C.G. Fernandes, 2022'))
 print('='*65)
 print('\n')
 print('Gear geometries available:')
