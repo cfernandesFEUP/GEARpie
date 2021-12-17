@@ -16,16 +16,16 @@ Run 'GEARpie.py'
 GEARpie is useful calculate cylindrical gears:
 
 - geometry according to MAAG book (imposing axis distance or providing profile shifts x1 and x2)
-- contact pressure and stress fields (select the position along the path of contact: A, B, C, D or E)
+- contact pressure and stress fields considering friction (select the position along the path of contact: A, B, C, D, E or any other)
 - film thickness along the path of contact
 - gear power losses (local and average)
 - structured FEM mesh (1st or 2nd order elements)
 - load carrying capacity according to DIN 3990 for steel gears
-- load carrying capacity according to VDI 2736 for plastic gears
+- load carrying capacity and bulk temperature according to VDI 2736 for plastic gears
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
-The power loss models are described in [2-5]. The Ohlendorf and Wimmer gear loss factor are implemented.
+The power loss models are described in [2-5]. The Ohlendorf (analytic) and Wimmer (numerical) gear loss factors are implemented.
 
 The mesh generation was used to create the FEM thermal model described in [8-9] The mesh is also useful for use in any Finite Element Analysis ( tested in Abaqus and CalculiX).
 
@@ -36,12 +36,15 @@ The mesh generation was used to create the FEM thermal model described in [8-9] 
 </p>
 
 ## Report Output Example
+
+The report can be easily exported to pdf using pypdf (not implemented because is useless for the author).
+
 <p align="center"> 
-    <img src="LOGOS/OUT0.png"width="500"/>
-    <img src="LOGOS/OUT01.png"width="500"/>
-    <img src="LOGOS/OUT1.png"width="500"/>
-    <img src="LOGOS/OUT12.png"width="500"/>
-    <img src="LOGOS/OUT2.png"width="500" />
+    <img src="LOGOS/OUT0.png"width="600"/>
+    <img src="LOGOS/OUT01.png"width="600"/>
+    <img src="LOGOS/OUT1.png"width="600"/>
+    <img src="LOGOS/OUT12.png"width="600"/>
+    <img src="LOGOS/OUT2.png"width="600" />
 </p>
 
  ## References
