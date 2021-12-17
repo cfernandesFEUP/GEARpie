@@ -100,7 +100,8 @@ ANSWER_MESH = str(input('FEM mesh generation (Y/N): ')).upper()
 
 if ANSWER_MESH == 'Y':
     MESH = True
-    NODEM = int(input('Number of nodes on meshing surface: '))
+    NODEM = int(
+        input('Nº of nodes on meshing surface (tipically 11<n<41): '))
     ORDER = int(input('Element order (1/2): '))
     PTOOTH = int(input('Number of tooth for pinion mesh: '))
     WTOOTH = int(input('Number of tooth for wheel mesh: '))
