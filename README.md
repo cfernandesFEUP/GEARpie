@@ -23,9 +23,6 @@ GEARpie is useful calculate cylindrical gears:
 - load carrying capacity according to DIN 3990 for steel gears
 - load carrying capacity according to VDI 2736 for plastic gears
 
-
-
-
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
 The power loss models are described in [2-5]. The Ohlendorf and Wimmer gear loss factor are implemented.
@@ -40,11 +37,11 @@ The mesh generation was used to create the FEM thermal model described in [8-9] 
 
 ## Report Output Example
 <p align="center"> 
-    <img src="LOGOS/OUT0.png"/>
-    <img src="LOGOS/OUT01.png"/>
-    <img src="LOGOS/OUT1.png"height="400"/>
-    <img src="LOGOS/OUT12.png"height="400"/>
-    <img src="LOGOS/OUT2.png"width="600" />
+    <img src="LOGOS/OUT0.png"width="500"/>
+    <img src="LOGOS/OUT01.png"width="500"/>
+    <img src="LOGOS/OUT1.png"width="500"/>
+    <img src="LOGOS/OUT12.png"width="500"/>
+    <img src="LOGOS/OUT2.png"width="500" />
 </p>
 
  ## References
