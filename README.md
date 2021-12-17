@@ -29,7 +29,7 @@ GEARpie is useful calculate cylindrical gears:
 ![ScreenShot]("https://github.com/cfernandesFEUP/GEARpie/LOGOS/OUT3.png")
 
 - structured FEM mesh (1st or 2nd order elements)
-- 
+
 ![ScreenShot]("https://github.com/cfernandesFEUP/GEARpie/LOGOS/logo2.png")
 
 - load carrying capacity according to DIN 3990 for steel gears
