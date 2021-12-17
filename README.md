@@ -6,7 +6,7 @@
 </p>
 
 <p align="center"> 
-<img src="https://github.com/cfernandesFEUP/GEARpie/tree/main/LOGOS/logo1.png">
+<img src="../../tree/main/LOGOS/logo1.png">
 </p>
 
 ## Requirements
