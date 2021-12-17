@@ -33,7 +33,7 @@ GEARpie is useful calculate cylindrical gears:
 </p>
 <p align="left">
     <img src="LOGOS/logo1.png"/>
-    <img src="LOGOS/logo2.png" width="500" height="412" />
+    <img src="LOGOS/logo2.png" width="400" height="333" />
 </p>
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result though a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
