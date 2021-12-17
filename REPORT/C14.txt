@@ -1,0 +1,87 @@
+-----------------------------------------------------------------
+                            C14 GEAR                             
+.................................................................
+Presure angle α:                           20.0        °         
+Helix angle β:                             0.0         °         
+Module m:                                  4.5         mm        
+Number of teeth z1:                        16.0                  
+Number of teeth z2:                        24.0                  
+Profile shift x1:                         0.1817                 
+Profile shift x2:                         0.1715                 
+-----------------------------------------------------------------
+                         GEAR MATERIALS:                         
+.................................................................
+Pinion:
+  Young modulus E1:                        206         GPa       
+  Poisson ratio ν1:                        0.30                  
+  Thermal capacity cp1:                   465.00       J/kg.K    
+  Thermal conductivity k1:                46.00        W/m.K     
+  Density ρ1:                            7830.00       kg/m3     
+Wheel:
+  Young modulus E2:                        206         GPa       
+  Poisson ratio ν2:                        0.30                  
+  Thermal capacity cp2:                   465.00       J/kg.K    
+  Thermal conductivity k2:                46.00        W/m.K     
+  Density ρ2:                            7830.00       kg/m3     
+-----------------------------------------------------------------
+                         GEAR GEOMETRY:                          
+.................................................................
+Axis distance:                             91.5        mm        
+Base pitch n:                             13.285       mm        
+Base pitch t:                             13.285       mm        
+Root radius:                         31.193 / 49.147   mm        
+Reference radius:                    36.000 / 54.000   mm        
+Pitch radius:                        36.600 / 54.900   mm        
+Tip radius:                          41.228 / 59.182   mm        
+-----------------------------------------------------------------
+                         CONTACT RATIO:                          
+.................................................................
+Transverse εα:                             1.44                  
+Overlap εβ:                                0.00                  
+Total εγ:                                  1.44                  
+-----------------------------------------------------------------
+                        PATH OF CONTACT:                         
+.................................................................
+T1T2:                                     34.93        mm        
+AB:                                        5.81        mm        
+AC:                                        9.50        mm        
+AD:                                       13.28        mm        
+AE:                                       19.10        mm        
+-----------------------------------------------------------------
+                      OPERATING CONDITIONS:                      
+.................................................................
+Pin:                                     31415.9       W         
+Torque T:                             200.0 / 300.0    N.m       
+Speed n:                             1500.0 / 1000.0   rpm       
+Angular speed ω:                      157.1 / 104.7    rad/s     
+Tangential load F_t:                      5464.5       N         
+Radial load F_r:                          2256.6       N         
+Normal load F_n:                          5464.5       N         
+Axial load F_a:                            0.0         N         
+Base circle load F_bt:                    5912.1       N         
+Base circle load F_bn:                    5912.1       N         
+-----------------------------------------------------------------
+                        CONTACT RESULTS:                         
+.................................................................
+Maximum pressure p0:
+  At pitch point:                        1347.27       MPa       
+  Maximum along AE:                      1447.46       MPa       
+  Minimum along AE:                       933.54       MPa       
+Mean pressure pm:
+  At pitch point:                        1058.14       MPa       
+  Maximum along AE:                      1136.83       MPa       
+  Minimum along AE:                       733.20       MPa       
+Contact half-width aH:
+  At pitch point:                         99.771       μm        
+  Maximum along AE:                      101.830       μm        
+  Minimum along AE:                       48.100       μm        
+-----------------------------------------------------------------
+                           POWER LOSS:                           
+.................................................................
+Gear Loss Factor HVL:                     0.1945       Wimmer    
+Gear Loss Factor HV:                      0.1950       Ohlendorf 
+Coefficient of Friction μmZ:              0.0837       Schlenk   
+Average Power Loss Pvzp:                  511.32       W         
+Maximum Local Power Loss:                 44.29        W         
+Minimum Local Power Loss:                  0.01        W         
+-----------------------------------------------------------------
