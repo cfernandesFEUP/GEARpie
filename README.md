@@ -36,6 +36,9 @@ The mesh generation was used to create the FEM thermal model described in [8-9] 
 </p>
 
 ## Report Output Example
+
+The report can be easily exported to pdf using pypdf (not implemented because is useless for the author).
+
 <p align="center"> 
     <img src="LOGOS/OUT0.png"width="600"/>
     <img src="LOGOS/OUT01.png"width="600"/>
