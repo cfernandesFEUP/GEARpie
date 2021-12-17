@@ -6,7 +6,7 @@
 </p>
 
 <p align="center"> 
-<img src="../../LOGOS/logo1.png">
+<img src="../LOGOS/logo1.png">
 </p>
 
 ## Requirements
