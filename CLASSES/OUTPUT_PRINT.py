@@ -172,21 +172,21 @@ class PRINTING:
         print(dots, file=f)
         print('Maximum pressure p0:', file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
-            '  At pitch point:', "%.2f" % GCONTACT.p0I, 'MPa'), file=f)
+            '  At pitch point:', "%.1f" % GCONTACT.p0I, 'MPa'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  Maximum along AE:',
-                                             "%.2f" % GCONTACT.p0.max(),
+                                             "%.1f" % GCONTACT.p0.max(),
                                              'MPa'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  Minimum along AE:',
-                                             "%.2f" % GCONTACT.p0.min(),
+                                             "%.1f" % GCONTACT.p0.min(),
                                              'MPa'), file=f)
         print('Mean pressure pm:', file=f)
-        print('{:<35s}{:^20s}{:<10s}'.format('  At pitch point:', "%.2f" %
+        print('{:<35s}{:^20s}{:<10s}'.format('  At pitch point:', "%.1f" %
                                              GCONTACT.pmI, 'MPa'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  Maximum along AE:',
-                                             "%.2f" % GCONTACT.pm.max(),
+                                             "%.1f" % GCONTACT.pm.max(),
                                              'MPa'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  Minimum along AE:',
-                                             "%.2f" % GCONTACT.pm.min(),
+                                             "%.1f" % GCONTACT.pm.min(),
                                              'MPa'), file=f)
         print('Contact half-width aH:', file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  At pitch point:',
@@ -201,19 +201,19 @@ class PRINTING:
                                              (GCONTACT.aH.min()*1e3),
                                              '\u03BCm'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
-            'Maximum von Mises Stress:', "%.2f" % GCONTACT.SMises.max(), 
+            'Maximum von Mises Stress:', "%.1f" % GCONTACT.SMises.max(), 
             'MPa'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
-            'Maximum Shear Stress:', "%.2f" % GCONTACT.Tmax.max(), 'MPa'), 
+            'Maximum Shear Stress:', "%.1f" % GCONTACT.Tmax.max(), 'MPa'), 
             file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
-            'Maximum Octahedric Shear Stress:', "%.2f" % GCONTACT.Toct.max(), 
+            'Maximum Octahedric Shear Stress:', "%.1f" % GCONTACT.Toct.max(), 
             'MPa'), file=f)
         print(dash, file=f)
         print('{:^65s}'.format('FILM THICKNESS'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('Average Inlet Shear Heating:',
-                                             "%.2f" % GCONTACT.phiT.mean(),
+                                             "%.3f" % GCONTACT.phiT.mean(),
                                              ''), file=f)
         print('Central Film Thickness h0C:', file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  Maximum along AE:',

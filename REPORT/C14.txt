@@ -73,24 +73,24 @@ Base circle load F_bn:                    5912.1       N
                          CONTACT RESULTS                         
 .................................................................
 Maximum pressure p0:
-  At pitch point:                        1347.27       MPa       
-  Maximum along AE:                      1447.46       MPa       
-  Minimum along AE:                       933.54       MPa       
+  At pitch point:                         1347.3       MPa       
+  Maximum along AE:                       1447.5       MPa       
+  Minimum along AE:                       933.5        MPa       
 Mean pressure pm:
-  At pitch point:                        1058.14       MPa       
-  Maximum along AE:                      1136.83       MPa       
-  Minimum along AE:                       733.20       MPa       
+  At pitch point:                         1058.1       MPa       
+  Maximum along AE:                       1136.8       MPa       
+  Minimum along AE:                       733.2        MPa       
 Contact half-width aH:
   At pitch point:                         99.771       μm        
   Maximum along AE:                      101.830       μm        
   Minimum along AE:                       48.100       μm        
-Maximum von Mises Stress:                 571.61       MPa       
-Maximum Shear Stress:                     307.57       MPa       
-Maximum Octahedric Shear Stress:          269.17       MPa       
+Maximum von Mises Stress:                 571.6        MPa       
+Maximum Shear Stress:                     307.6        MPa       
+Maximum Octahedric Shear Stress:          269.2        MPa       
 -----------------------------------------------------------------
                          FILM THICKNESS                          
 .................................................................
-Average Inlet Shear Heating:               1.00                  
+Average Inlet Shear Heating:              0.996                  
 Central Film Thickness h0C:
   Maximum along AE:                        1.44        μm        
   Minimum along AE:                        0.94        μm        
