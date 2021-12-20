@@ -9,9 +9,8 @@ GEARpie requires Python 3 with the following libraries:
 
 ## How to use
 
-Run 'GEARpie.py'
+Run 'GEARpie.py' and complete the following prompt window:
 
-### Input Example
 <p align="center">
     <img src="SCREENSHOTS/INPUT.png"height="400"/>
 </p>
