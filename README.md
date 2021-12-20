@@ -11,6 +11,11 @@ GEARpie requires Python 3 with the following libraries:
 
 Run 'GEARpie.py'
 
+### Input Example
+<p align="center">
+    <img src="SCREENSHOTS/INPUT.png"height="400"/>
+</p>
+
 ## Capabilities
 
 GEARpie is useful to calculate cylindrical gears:
