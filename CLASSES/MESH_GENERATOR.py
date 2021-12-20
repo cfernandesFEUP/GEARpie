@@ -147,7 +147,7 @@ class MESHING:
 
         nR = NODEM//2+1
         nB = NODEM//2+1
-        nAXIAL = 40
+        nAXIAL = 2*NODEM
         coef = 1
 
         geog.mesh.setTransfiniteCurve(CAl, nB, 'Progression', -coef)
