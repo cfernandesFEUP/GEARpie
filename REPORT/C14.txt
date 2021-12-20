@@ -9,7 +9,7 @@ Number of teeth z2:                        24.0
 Profile shift x1:                         0.1817                 
 Profile shift x2:                         0.1715                 
 -----------------------------------------------------------------
-                         GEAR MATERIALS:                         
+                         GEAR MATERIALS                          
 .................................................................
 Pinion:
   Young modulus E1:                        206         GPa       
@@ -24,6 +24,15 @@ Wheel:
   Thermal conductivity k2:                46.00        W/m.K     
   Density ρ2:                            7830.00       kg/m3     
 -----------------------------------------------------------------
+                         M320 LUBRICANT                          
+.................................................................
+Lubricant temperature                       75         °C        
+Kinematic viscosity ν1:                   53.10        cSt       
+Dynamic viscosity ν1:                     46.23        mPa.s     
+Piezo-viscosity coefficient α:            71.05        1/GPa     
+Thermo-viscosity β:                       0.040        1/°C      
+Lubricant parameter XL:                    0.85                  
+-----------------------------------------------------------------
                          GEAR GEOMETRY:                          
 .................................................................
 Axis distance:                             91.5        mm        
@@ -34,13 +43,13 @@ Reference radius:                    36.000 / 54.000   mm
 Pitch radius:                        36.600 / 54.900   mm        
 Tip radius:                          41.228 / 59.182   mm        
 -----------------------------------------------------------------
-                         CONTACT RATIO:                          
+                          CONTACT RATIO                          
 .................................................................
 Transverse εα:                             1.44                  
 Overlap εβ:                                0.00                  
 Total εγ:                                  1.44                  
 -----------------------------------------------------------------
-                        PATH OF CONTACT:                         
+                   PATH OF CONTACT DIMENSIONS                    
 .................................................................
 T1T2:                                     34.93        mm        
 AB:                                        5.81        mm        
@@ -48,7 +57,7 @@ AC:                                        9.50        mm
 AD:                                       13.28        mm        
 AE:                                       19.10        mm        
 -----------------------------------------------------------------
-                      OPERATING CONDITIONS:                      
+                      OPERATING CONDITIONS                       
 .................................................................
 Pin:                                     31415.9       W         
 Torque T:                             200.0 / 300.0    N.m       
@@ -61,7 +70,7 @@ Axial load F_a:                            0.0         N
 Base circle load F_bt:                    5912.1       N         
 Base circle load F_bn:                    5912.1       N         
 -----------------------------------------------------------------
-                        CONTACT RESULTS:                         
+                         CONTACT RESULTS                         
 .................................................................
 Maximum pressure p0:
   At pitch point:                        1347.27       MPa       
@@ -75,13 +84,30 @@ Contact half-width aH:
   At pitch point:                         99.771       μm        
   Maximum along AE:                      101.830       μm        
   Minimum along AE:                       48.100       μm        
+Maximum von Mises Stress:                 571.61       MPa       
+Maximum Shear Stress:                     307.57       MPa       
+Maximum Octahedric Shear Stress:          269.17       MPa       
 -----------------------------------------------------------------
-                           POWER LOSS:                           
+                         FILM THICKNESS                          
+.................................................................
+Average Inlet Shear Heating:               1.00                  
+Central Film Thickness h0C:
+  Maximum along AE:                        1.44        μm        
+  Minimum along AE:                        0.94        μm        
+  Average along AE:                        1.28        μm        
+Minimum Film Thickness hmC:
+  Maximum along AE:                        1.18        μm        
+  Minimum along AE:                        0.77        μm        
+  Average along AE:                        1.05        μm        
+-----------------------------------------------------------------
+                           POWER LOSS                            
 .................................................................
 Gear Loss Factor HVL:                     0.1945       Wimmer    
 Gear Loss Factor HV:                      0.1950       Ohlendorf 
-Coefficient of Friction μmZ:              0.0837       Schlenk   
-Average Power Loss Pvzp:                  511.32       W         
-Maximum Local Power Loss:                 44.29        W/mm      
-Minimum Local Power Loss:                  0.01        W/mm      
+Coefficient of Friction μmZ:              0.0483       Schlenk   
+Coefficient of Friction μmZ:              0.0354       Fernandes 
+Coefficient of Friction μmZ:              0.0586       Matsumoto 
+Average Power Loss Pvzp:                  295.17       W         
+Maximum Local Power Loss:                 25.57        W/mm      
+Minimum Local Power Loss:                  0.00        W/mm      
 -----------------------------------------------------------------

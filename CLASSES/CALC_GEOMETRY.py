@@ -200,3 +200,5 @@ class MAAG:
         self.Ram = (GTYPE.Ra[0] + GTYPE.Ra[1])/2
 
         self.Rrms = (GTYPE.Rq[0]**2 + GTYPE.Ra[1]**2)**(1/2)
+        
+        self.RzS = (GTYPE.Rz[0] + GTYPE.Rz[1])

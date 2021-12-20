@@ -27,8 +27,8 @@ sys.dont_write_bytecode = True
 # IMPORT LIBRARIES ============================================================
 
 
-from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, CALC_GEOMETRY,
-                     RIGID_LOAD_SHARING, FORCES_SPEEDS, CONTACT,
+from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, LUBRICANT_LIBRARY,
+                     CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS, CONTACT,
                      INVOLUTE_GEOMETRY, MESH_GENERATOR, OUTPUT_PRINT,
                      PLOTTING)
 
@@ -48,25 +48,21 @@ GEAR_NAME = str(input('Input gear geometry: ')).upper()
 # GEAR SELECTION ==============================================================
 GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
 
-
-# LUBRICANT ===================================================================
-# lubricant
-
-
-class lub:
-    def __init__(self):
-        self.miu = 30
-        self.xl = 0.85
-
-
-GLUB = lub()
-
+# GEAR MATERIALS ==============================================================
 # pinion and wheel material
 print('\nMaterials available:\n')
 print('STEEL, ADI, POM, PA66, PEEK')
 MAT_PINION = str(input('Pinion material (default: STEEL): ')
                  or 'STEEL').upper()
 MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL').upper()
+
+# LUBRICANT ===================================================================
+# lubricant
+BASE_NAME = str(input('Input Base Oil (M - mineral, P - PAO): ')).upper()
+LUB_NAME = str(input('Input ISO VG grade: ')).upper()
+Tlub = float(input('Input lubricant temperature / \u00b0C: '))
+
+GLUB = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, Tlub)
 
 # select element where is applied speed and torque (P - pinion, W - wheel)
 stringPW = 'Select (P - Pinion or W - Wheel) to apply torque and speeed: '
@@ -83,7 +79,6 @@ size = 1000
 
 # discretization of involute geometry
 DISCRETIZATION = 100
-
 
 # stress field position
 POST = str(input('Stress field position along AE (A, B, C, D or E): ')).upper()
@@ -146,7 +141,7 @@ if MESH:
     MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, WTOOTH, ORDER, NODEM)
 
 # OUTPUT PRINT ================================================================
-OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GEO, GFS, GCONTACT)
+OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT)
 
 # OUTPUT GRAPHICS =============================================================
 if GRAPHICS:
