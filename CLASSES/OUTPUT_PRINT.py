@@ -86,9 +86,9 @@ class PRINTING:
                                              "%.0f" % (GLUB.TL),
                                              '\u00b0C'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
-            'Kinematic viscosity \u03BD1:', "%.2f" % GLUB.niu, 'cSt'), file=f)
+            'Kinematic viscosity \u03BD:', "%.2f" % GLUB.niu, 'cSt'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
-            'Dynamic viscosity \u03BD1:', "%.2f" % GLUB.miu, 'mPa.s'), file=f)
+            'Dynamic viscosity \u03B7:', "%.2f" % GLUB.miu, 'mPa.s'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Piezo-viscosity coefficient \u03B1:', "%.2f" % (GLUB.piezo/1e-9),
             '1/GPa'), file=f)
@@ -160,6 +160,10 @@ class PRINTING:
         print('{:<35s}{:^20s}{:<10s}'.format('Angular speed \u03C9:',
                                              "%.1f" % GFS.omega1 + ' / ' +
                                              "%.1f" % GFS.omega2, 'rad/s'), 
+              file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('Maximum specific sliding gs:', "%.1f" %
+                                             GFS.gs1.max() + ' / ' +
+                                             "%.1f" % GFS.gs2.max(), ''), 
               file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Tangential load F_t:', "%.1f" % GFS.ft, 'N'), file=f)
@@ -296,7 +300,7 @@ class PRINTING:
                                              ' %.2f' % GLCC.ZE, ''), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  Zone factor ZH: ', 
                                              ' %.2f' % GLCC.ZH, ''), file=f)
-        print('{:<35s}{:^20s}{:<10s}'.format('  Contact ratio factor Z\u03b3: '
+        print('{:<35s}{:^20s}{:<10s}'.format('  Contact ratio factor Z\u03b5: '
                                              ,' %.2f' % GLCC.ZEPS, ''), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('  Helix angle factor Z\u03b2: '
                                              ,' %.2f' % GLCC.ZBETA, ''), 

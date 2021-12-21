@@ -27,8 +27,8 @@ Wheel:
                          M320 LUBRICANT                          
 .................................................................
 Lubricant temperature                       75         °C        
-Kinematic viscosity ν1:                   53.10        cSt       
-Dynamic viscosity ν1:                     46.23        mPa.s     
+Kinematic viscosity ν:                    53.10        cSt       
+Dynamic viscosity η:                      46.23        mPa.s     
 Piezo-viscosity coefficient α:            71.05        1/GPa     
 Thermo-viscosity β:                       0.040        1/°C      
 Lubricant parameter XL:                    0.85                  
@@ -63,6 +63,7 @@ Pin:                                     31415.9       W
 Torque T:                             200.0 / 300.0    N.m       
 Speed n:                             1500.0 / 1000.0   rpm       
 Angular speed ω:                      157.1 / 104.7    rad/s     
+Maximum specific sliding gs:            3.5 / 2.1                
 Tangential load F_t:                      5464.5       N         
 Radial load F_r:                          2256.6       N         
 Normal load F_n:                          5464.5       N         
@@ -123,7 +124,7 @@ Influence factors:
 Contact factors:
   Elasticity factor ZE:                   189.81                 
   Zone factor ZH:                          2.34                  
-  Contact ratio factor Zγ:                 0.92                  
+  Contact ratio factor Zε:                 0.92                  
   Helix angle factor Zβ:                   1.00                  
   Lubrication factor ZL:                   1.05                  
   Speed factor ZV:                         0.99                  
