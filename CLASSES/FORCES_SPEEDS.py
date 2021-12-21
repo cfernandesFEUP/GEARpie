@@ -71,6 +71,8 @@ class OPERATION:
         self.vsumc = 2*self.omega1*GEO.rl1/1000*np.sin(GEO.alphatw)
         # tangent speed (base circle)
         self.vtb = self.omega1*GEO.rb1/1000
+        # tangential speed
+        self.vt = self.omega1*GEO.rl1/1000
         # rolling speed
         self.vr1 = self.omega1*GPATH.R1/(1000*np.cos(GEO.betab))
         self.vr2 = self.omega2*GPATH.R2/(1000*np.cos(GEO.betab))

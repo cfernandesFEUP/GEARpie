@@ -64,20 +64,13 @@ class LIBRARY_MAT:
         self.k = 0.26
         self.rho = 1140
 
-    def PEEK(self):
-        self.E = 3.65e3
-        self.v = 0.38
-        self.cp = 1472
-        self.k = 0.25
-        self.rho = 1320
-
-
 class MATERIAL:
     """Assign a material to pinion and wheel"""
 
     def __init__(self, PINION_MAT, WHEEL_MAT):
 
         Pmaterial = LIBRARY_MAT(PINION_MAT)
+        self.MAT1 = PINION_MAT 
         self.E1 = Pmaterial.E
         self.v1 = Pmaterial.v
         self.cp1 = Pmaterial.cp
@@ -85,6 +78,7 @@ class MATERIAL:
         self.rho1 = Pmaterial.rho
 
         Wmaterial = LIBRARY_MAT(PINION_MAT)
+        self.MAT2 = WHEEL_MAT
         self.E2 = Wmaterial.E
         self.v2 = Wmaterial.v
         self.cp2 = Wmaterial.cp

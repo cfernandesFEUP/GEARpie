@@ -55,31 +55,49 @@ class HERTZ:
         # mean contact pressure at pitch point
         self.pmI = self.p0I*np.pi/4
         # FILM THICKNESS ======================================================
-        # 
-        self.L = GLUB.beta*(GLUB.miu/1000)*(self.vr3D**2)/GLUB.k
-        # inlet shear heating
-        self.phiT = 1/(1 + 0.1*(1 + 14.8*(self.vg3D**0.83))*(self.L**0.64))
-        # central film thickness
-        self.U = GLUB.miu*self.vr3D/(self.Req*self.Eeq)
-        self.G = GLUB.piezo*self.Eeq
-        self.W = GFS.fnx/(self.Req*self.Eeq)
-        self.h0 = 1.95*self.Req*(self.U*self.G)**0.727*self.W**(-0.091)
-        self.hm = 1.6*self.Req*(self.U*self.G)**0.727*self.W**(-0.091)
-        self.h0C = self.phiT*self.h0*1e3  
-        self.hmC = self.phiT*self.hm*1e3
+        if GLUB == None:
+            pass
+        else:
+            # 
+            self.L = GLUB.beta*(GLUB.miu/1000)*(self.vr3D**2)/GLUB.k
+            # inlet shear heating
+            self.phiT = 1/(1 + 0.1*(1 + 14.8*(self.vg3D**0.83))*(self.L**0.64))
+            # central film thickness
+            self.U = GLUB.miu*self.vr3D/(self.Req*self.Eeq)
+            self.G = GLUB.piezo*self.Eeq
+            self.W = GFS.fnx/(self.Req*self.Eeq)
+            self.h0 = 1.95*self.Req*(self.U*self.G)**0.727*self.W**(-0.091)
+            self.hm = 1.6*self.Req*(self.U*self.G)**0.727*self.W**(-0.091)
+            self.h0C = self.phiT*self.h0*1e3  
+            self.hmC = self.phiT*self.hm*1e3
         # POWER LOSS ==========================================================
-        # coefficient of friction according to Schlenk
-        self.CoF = (0.048 * ((GFS.fbn / (GEO.b*GPATH.lxi.min())) /
-                             (GFS.vsumc * GEO.ReqI))**0.2 *
-                    GLUB.miu**(-0.05) * GEO.Ram**0.25 * GLUB.xl)
-        # coefficient of friction according to Fernandes
-        self.Sp = (GFS.vsumc*GLUB.miu*GLUB.piezo**0.5)/(1000*GFS.fbn**0.5)
-        self.Sg = (GEO.Ram*1e-6)/(1e-6*GEO.b*GPATH.lxi.min()*GEO.ReqI)**(1/2)
-        self.CoFF = 0.014*(1/self.Sp)**0.25*self.Sg**0.25*GLUB.xl
-        # coefficient of friction according to Matsumoto
-        self.DM = GEO.RzS/self.hmC
-        self.xiM = 0.5*np.log10(self.DM)
-        self.CoFM = self.xiM*GLUB.mubl + (1-self.xiM)*GLUB.muEHD
+        if GLUB == None:
+            # according to VDI 2736
+            if GMAT.MAT1 == GMAT.MAT2 == 'POM':
+                self.CoF = 0.28
+            elif GMAT.MAT1 == GMAT.MAT2 == 'PA66':
+                self.CoF = 0.40
+            elif GMAT.MAT1 != GMAT.MAT2 and GMAT.MAT1 == ('POM' or 'PA66'):
+                self.CoF = 0.18
+            elif GMAT.MAT1 != GMAT.MAT2 and\
+                GMAT.MAT1 == ('STEEL' or 'POM' or 'PA66'):
+                 self.CoF = 0.2
+            elif GMAT.MAT1 == GMAT.MAT2 == 'STEEL':
+                self.CoF = 0.8
+        else:
+            # coefficient of friction according to Schlenk
+            self.CoF = (0.048 * ((GFS.fbn / (GEO.b*GPATH.lxi.min())) /
+                                 (GFS.vsumc * GEO.ReqI))**0.2 *
+                        GLUB.miu**(-0.05) * GEO.Ram**0.25 * GLUB.xl)
+            # coefficient of friction according to Fernandes
+            self.Sp = (GFS.vsumc*GLUB.miu*GLUB.piezo**0.5)/(1000*GFS.fbn**0.5)
+            self.Sg = ((GEO.Ram*1e-6)/
+                       (1e-6*GEO.b*GPATH.lxi.min()*GEO.ReqI)**(1/2))
+            self.CoFF = 0.014*(1/self.Sp)**0.25*self.Sg**0.25*GLUB.xl
+            # coefficient of friction according to Matsumoto
+            self.DM = GEO.RzS/self.hmC
+            self.xiM = 0.5*np.log10(self.DM)
+            self.CoFM = self.xiM*GLUB.mubl + (1-self.xiM)*GLUB.muEHD
         # numerical gear loss factor according to Wimmer
         self.INTEGRAND = GFS.fnx*self.vg3D/(GFS.fbt*GFS.vtb)
         self.HVL = np.trapz(

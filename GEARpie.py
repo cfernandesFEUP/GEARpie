@@ -48,17 +48,21 @@ GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
 # GEAR MATERIALS ==============================================================
 # pinion and wheel material
 print('Materials available:')
-print('STEEL, ADI, POM, PA66, PEEK')
+print('STEEL, ADI, POM, PA66')
 MAT_PINION = str(input('Pinion material (default: STEEL): ')
                  or 'STEEL').upper()
 MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL').upper()
 # LUBRICANT ===================================================================
 # lubricant
-BASE_STR = 'Base Oil (M - mineral, P - PAO, E - ester, G - polyglicol, D - dry): '
-BASE_NAME = str(input(BASE_STR)).upper()
-LUB_NAME = str(input('ISO VG grade: ')).upper()
-Tlub = float(input('Lubricant temperature / \u00b0C: '))
-GLUB = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, Tlub)
+B_STR = 'Base Oil (M - mineral, P - PAO, E - ester, G - polyglicol, D - dry): '
+BASE_NAME = str(input(B_STR)).upper()
+if BASE_NAME == 'D':
+    GLUB = None
+    T0 = float(input('Ambient temperature / \u00b0C: '))
+else:
+    LUB_NAME = str(input('ISO VG grade: ')).upper()
+    Tlub = float(input('Lubricant temperature / \u00b0C: '))
+    GLUB = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, Tlub)
 # select element where is applied speed and torque (P - pinion, W - wheel)
 PW_STR = 'Select (P - Pinion, W - Wheel or F - FZG) to apply torque and speed: '
 element = str(input(PW_STR)).upper()
@@ -111,11 +115,12 @@ GFS = FORCES_SPEEDS.OPERATION(element, torque, speed, GEO, GPATH)
 GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS, POSAE)
 # LOAD CARRYING CAPACITY ======================================================
 KA = 1.25
-if MAT_PINION == ('STEEL' or 'ADI') and MAT_WHEEL == ('STEEL' or 'ADI'):
+if MAT_PINION == ('STEEL' or 'ADI') and MAT_WHEEL == ('STEEL' or 'ADI')\
+    and GLUB is not None:
     GL40 = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, 40)
     GLCC = DIN3990.LCC(GMAT, GEO, GFS, KA, GL40)
 else:
-    GLCC = VDI2736.LCC(GMAT, GEO, GFS, KA)
+    GLCC = VDI2736.LCC(GMAT, GEO, GFS, GCONTACT, T0, KA)
 # INVOLUTE PROFILE GEOMETRY ===================================================
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
