@@ -28,8 +28,8 @@ sys.dont_write_bytecode = True
 # IMPORT LIBRARIES ============================================================
 from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, LUBRICANT_LIBRARY,
                      LOAD_STAGES, CALC_GEOMETRY, RIGID_LOAD_SHARING, 
-                     FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, 
-                     MESH_GENERATOR, OUTPUT_PRINT, PLOTTING)
+                     FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, DIN3990, 
+                     VDI2736, MESH_GENERATOR, OUTPUT_PRINT, PLOTTING)
 
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
@@ -108,6 +108,13 @@ GPATH = RIGID_LOAD_SHARING.LINES(size, GEO)
 GFS = FORCES_SPEEDS.OPERATION(element, torque, speed, GEO, GPATH)
 # GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) ==============
 GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS, POSAE)
+# LOAD CARRYING CAPACITY ======================================================
+KA = 1.25
+if MAT_PINION == ('STEEL' or 'ADI') and MAT_WHEEL == ('STEEL' or 'ADI'):
+    GL40 = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, 40)
+    GLCC = DIN3990.LCC(GTYPE, GMAT, GEO, GFS, KA, GL40)
+else:
+    GLCC = VDI2736.LCC(GMAT, GEO, GFS, KA)
 # INVOLUTE PROFILE GEOMETRY ===================================================
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
@@ -116,7 +123,7 @@ if MESH:
     MESH_GENERATOR.MESHING('P', GEAR_NAME, GEO, Pprofile, PTOOTH, ORDER, NODEM)
     MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, WTOOTH, ORDER, NODEM)
 # OUTPUT PRINT ================================================================
-OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT)
+OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC)
 # OUTPUT GRAPHICS =============================================================
 if GRAPHICS:
     PLOTTING.GRAPHICS(GPATH, GFS, GCONTACT)

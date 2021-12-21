@@ -21,7 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. '''
 
 
-class THERMAL:
+class LCC:
+    
+    
     def __init__(self, xx, AB, AC, AD, AE, T1A, T2A, LS, fbn, fnx, E, v, al, x, m, z, alpha, alpha_tw,
                  r, rl, ra, rb, rf, b, k, rho, cp, vr, Pin, COF, n, Tamb, HVL, HV, PAIR, GB, cofT):
 
@@ -73,3 +75,19 @@ class THERMAL:
         self.ECV = self.QCV*self.t1
 
         self.QTV = self.QCV/(self.TV_R-self.TO)
+
+# ## PLSTIC AGAINST STEEL ###################################################
+# mat = str(mat)
+# if mat in 'POM' or mat in 'PA66' or mat in 'PEEK':
+#     KH = KA
+#     KF = KA
+#     ZLUB = ZL * ZV
+#     SFmin = 2
+#     YdelT[0] = 1
+#     YdelT[1] = 1
+#     YRrelT = 1
+# else:
+#     KH = KA * KV * KHB * KHA
+#     KF = KA * KV * KFB * KFA
+#     ZLUB = ZL * ZV * ZR
+#     SFmin = 1.4

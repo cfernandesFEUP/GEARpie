@@ -24,7 +24,7 @@ SOFTWARE. '''
 class PRINTING:
     """Create a text report with output results"""
 
-    def __init__(self, GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT):
+    def __init__(self, GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC):
 
         file = 'REPORT/' + GEAR_NAME + '.txt'
         dash = '-' * 65
@@ -271,4 +271,97 @@ class PRINTING:
                                              "%.2f" % GCONTACT.PvzpL.min(),
                                              'W/mm'), file=f)
         print(dash, file=f)
+        # load carrying capacity
+        print('{:^65s}'.format('LOAD CARRYING CAPACITY'), file=f)
+        print(dots, file=f)
+        print('Influence factors:', file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Application factor KA: ',
+                                             ' %.2f' % GLCC.KA, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Dynamic factor KV: ',
+                                             ' %.2f' % GLCC.KV, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            '  Face load factor contact KH\u03B2: ', ' %.2f' % GLCC.KHB,
+            ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            '  Face load factor bending KF\u03B2: ', ' %.2f' % GLCC.KFB,
+            ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            '  Transverse factor contact KH\u03B1: ', ' %.2f' % GLCC.KHA,
+            ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            '  Transverse factor bending KF\u03B1: ', ' %.2f' % GLCC.KFA,
+            ''), file=f)
+        print('Contact factors:', file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Elasticity factor ZE: ',
+                                             ' %.2f' % GLCC.ZE, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Zone factor ZH: ', 
+                                             ' %.2f' % GLCC.ZH, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Contact ratio factor Z\u03b3: '
+                                             ,' %.2f' % GLCC.ZEPS, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Helix angle factor Z\u03b2: '
+                                             ,' %.2f' % GLCC.ZBETA, ''), 
+              file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Lubrication factor ZL: '
+                                             ,' %.2f' % GLCC.ZL, ''), 
+              file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Speed factor ZV: '
+                                             ,' %.2f' % GLCC.ZV, ''), 
+              file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Nominal contact stress: ', ' %.2f' % GLCC.SigmaH0, 'MPa'),
+            file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Contact stress: ', 
+            ' %.2f' % GLCC.SigmaH1 + ' / ' + ' %.2f' % GLCC.SigmaH2, 'MPa'), 
+            file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Permissible contact stress: ', ' %.2f' % GLCC.SigmaHP, 'MPa'), 
+            file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Contact stress safety factor SH: ', 
+            ' %.2f' % GLCC.SH1 + ' / ' + ' %.2f' % GLCC.SH2, ''), 
+            file=f)
+        print('Bending factors:', file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Form factor YF: ',
+                                             ' %.2f' % GLCC.YF1 + ' / ' +
+                                             ' %.2f' % GLCC.YF2, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Stress correction factor YS: ',
+                                             ' %.2f' % GLCC.YS1 + ' / ' +
+                                             ' %.2f' % GLCC.YS2, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('  Helix angle factor Y\u03b2: '
+                                             ,' %.2f' % GLCC.YB, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            '  Notch sensitivity factor Y\u03b4T: ', 
+            ' %.2f' % GLCC.YdelT1 + ' / ' + ' %.2f' % GLCC.YdelT2, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            '  Surface factor YRT: ', 
+            ' %.2f' % GLCC.YRrelT1 + ' / ' + ' %.2f' % GLCC.YRrelT2, ''), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Nominal root stress: ', 
+            ' %.2f' % GLCC.SigmaF01 + ' / ' + ' %.2f' % GLCC.SigmaF02, 'MPa'),
+            file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Tooth root stress: ', 
+            ' %.2f' % GLCC.SigmaF1 + ' / ' + ' %.2f' % GLCC.SigmaF2, 'MPa'), 
+            file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Limit tooth root stress: ', 
+            ' %.2f' % GLCC.SigmaFG1 + ' / ' + ' %.2f' % GLCC.SigmaFG2, 'MPa'), 
+            file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Permissible tooth root stress: ', 
+            ' %.2f' % GLCC.SigmaFP1 + ' / ' + ' %.2f' % GLCC.SigmaFP2, 'MPa'), 
+            file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format(
+            'Tooth root stress safety factor SF: ', 
+            ' %.2f' % GLCC.SF1 + ' / ' + ' %.2f' % GLCC.SF2, ''), 
+            file=f)
+              
+              # print(sigmaHP)
+              # print(sigmaH)
+              # print('Nominal flank pressure: ' + str(sigmaH0))
+              # print('Flank pressure: ' + str(sigmaH))
+              # print('Permissible flank pressure: ' + str(sigmaHP))
+              # print('Flank pressure safety factor (SH): ' + str(SH))
+         
         f.close()
