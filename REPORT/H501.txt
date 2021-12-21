@@ -122,25 +122,25 @@ Influence factors:
   Transverse factor contact KHα:           1.02                  
   Transverse factor bending KFα:           1.02                  
 Contact factors:
-  Elasticity factor ZE:                   189.81                 
-  Zone factor ZH:                          2.33                  
-  Contact ratio factor Zε:                 0.87                  
-  Helix angle factor Zβ:                   0.98                  
-  Lubrication factor ZL:                   1.05                  
-  Speed factor ZV:                         0.99                  
+  Elasticity factor ZE:                   189.812                
+  Zone factor ZH:                          2.335                 
+  Contact ratio factor Zε:                 0.871                 
+  Helix angle factor Zβ:                   0.983                 
+  Lubrication factor ZL:                   1.046                 
+  Speed factor ZV:                         0.985                 
 Nominal contact stress:                   887.09       MPa       
 Contact stress:                     1092.42 /  1069.87 MPa       
 Permissible contact stress:               1484.89      MPa       
 Contact stress safety factor SH:       1.36 /  1.39              
 Bending factors:
-  Form factor YF:                      1.48 /  1.49              
-  Stress correction factor YS:         2.05 /  2.04              
-  Helix angle factor Yβ:                   0.93                  
-  Notch sensitivity factor YδT:        1.00 /  1.00              
-  Surface factor YRT:                  1.04 /  1.04              
+  Form factor YF:                     1.479 /  1.490             
+  Stress correction factor YS:        2.047 /  2.036             
+  Helix angle factor Yβ:                   0.932                 
+  Notch sensitivity factor YδT:       0.998 /  0.998             
+  Surface factor YRT:                 0.957 /  0.957             
 Nominal root stress:                 191.60 /  192.03  MPa       
 Tooth root stress:                   270.54 /  271.14  MPa       
-Limit tooth root stress:             895.25 /  895.55  MPa       
-Permissible tooth root stress:       639.47 /  639.47  MPa       
-Tooth root stress safety factor SF:     2.36 /  2.36              
+Limit tooth root stress:             821.17 /  821.44  MPa       
+Permissible tooth root stress:       586.55 /  586.55  MPa       
+Tooth root stress safety factor SF:     3.04 /  3.03              
 -----------------------------------------------------------------

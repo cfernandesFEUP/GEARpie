@@ -22,7 +22,7 @@ SOFTWARE. '''
 class LCC:
     """Calculation of load carrying capacity according to DIN 3990 method C"""
     
-    def __init__(self, GTYPE, GMAT, GEO, GFS, KA, GL40):
+    def __init__(self, GMAT, GEO, GFS, KA, GL40):
 
         import numpy as np
         self.KA = KA
@@ -321,17 +321,18 @@ class LCC:
         self.YdelT2 = 0.9434 + 0.0231*(1 + 2*self.qs2)**0.5
         # # YdelT = 0.44 * YS + 0.12 # static analysis
         # surface factor (YRrelT)
-        # self.YRrelT = 0.957
-        if GTYPE.Rz[0] < 1:
-            self.RzDIN1 = 1
-        else:
-            self.RzDIN1 = GTYPE.Rz[0]
-        if GTYPE.Rz[1]  < 1:
-            self.RzDIN2 = 1
-        else:
-            self.RzDIN2 = GTYPE.Rz[1]
-        self.YRrelT1 = 1.674 - 0.529 * (self.RzDIN1 + 1) ** 0.1
-        self.YRrelT2 = 1.674 - 0.529 * (self.RzDIN2 + 1) ** 0.1
+        self.YRrelT1 = 0.957
+        self.YRrelT2 = 0.957
+        # if GTYPE.Rz[0] < 1:
+        #     self.RzDIN1 = 1
+        # else:
+        #     self.RzDIN1 = GTYPE.Rz[0]
+        # if GTYPE.Rz[1]  < 1:
+        #     self.RzDIN2 = 1
+        # else:
+        #     self.RzDIN2 = GTYPE.Rz[1]
+        # self.YRrelT1 = 1.674 - 0.529 * (self.RzDIN1 + 1) ** 0.1
+        # self.YRrelT2 = 1.674 - 0.529 * (self.RzDIN2 + 1) ** 0.1
         # 5.306 - 4.203 * (RzDIN + 1) ** 0.01
         # # YRrelT = 4.299 - 3.259 * (RzDIN + 1) ** 0.0058
         # ROOT STRESS =========================================================
@@ -347,5 +348,5 @@ class LCC:
         self.SigmaFG2 = self.SigmaFE*self.YdelT2*self.YRrelT2
         self.SigmaFP1 = self.SigmaFG1/self.SFmin
         self.SigmaFP2 = self.SigmaFG1/self.SFmin
-        self.SF1 = self.SigmaFP1/self.SigmaF1
-        self.SF2 = self.SigmaFP2/self.SigmaF2
+        self.SF1 = self.SigmaFG1/self.SigmaF1
+        self.SF2 = self.SigmaFG2/self.SigmaF2
