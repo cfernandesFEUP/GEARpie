@@ -24,13 +24,12 @@ SOFTWARE. '''
 import sys
 sys.dont_write_bytecode = True
 
+
 # IMPORT LIBRARIES ============================================================
-
-
 from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, LUBRICANT_LIBRARY,
-                     CALC_GEOMETRY, RIGID_LOAD_SHARING, FORCES_SPEEDS, CONTACT,
-                     INVOLUTE_GEOMETRY, MESH_GENERATOR, OUTPUT_PRINT,
-                     PLOTTING)
+                     LOAD_STAGES, CALC_GEOMETRY, RIGID_LOAD_SHARING, 
+                     FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, 
+                     MESH_GENERATOR, OUTPUT_PRINT, PLOTTING)
 
 # GEAR GEOMETRY, MATERIAL AND FINISHING =======================================
 # name of gear on library (includes geometry and surface finishing)
@@ -44,46 +43,40 @@ print('Gear geometries available:')
 print('C14, H501, H701, H951')
 print('To use a new geometry, type NEW')
 GEAR_NAME = str(input('Input gear geometry: ')).upper()
-
 # GEAR SELECTION ==============================================================
 GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
-
 # GEAR MATERIALS ==============================================================
 # pinion and wheel material
-print('\nMaterials available:\n')
+print('Materials available:')
 print('STEEL, ADI, POM, PA66, PEEK')
 MAT_PINION = str(input('Pinion material (default: STEEL): ')
                  or 'STEEL').upper()
 MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL').upper()
-
 # LUBRICANT ===================================================================
 # lubricant
-BASE_NAME = str(input('Input Base Oil (M - mineral, P - PAO): ')).upper()
-LUB_NAME = str(input('Input ISO VG grade: ')).upper()
-Tlub = float(input('Input lubricant temperature / \u00b0C: '))
-
+BASE_NAME = str(input('Base Oil (M - mineral, P - PAO, E - ester, G - polyglicol, D - dry): ')).upper()
+LUB_NAME = str(input('ISO VG grade: ')).upper()
+Tlub = float(input('Lubricant temperature / \u00b0C: '))
 GLUB = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, Tlub)
-
 # select element where is applied speed and torque (P - pinion, W - wheel)
-stringPW = 'Select (P - Pinion or W - Wheel) to apply torque and speeed: '
+stringPW = 'Select (P - Pinion, W - Wheel or F - FZG) to apply torque and speed: '
 element = str(input(stringPW)).upper()
-
-# torque Nm
-torque = float(input('Torque / Nm: '))
-
-# speed rpm
-speed = float(input('Speed / rpm: '))
-
+if element == 'F':
+    STAGE = LOAD_STAGES.FZG()
+    torque = STAGE.torque
+    speed = float(input('FZG motor speed / rpm: '))
+else:
+    # torque Nm
+    torque = float(input('Torque / Nm: '))
+    # speed rpm
+    speed = float(input('Speed / rpm: '))
 # discretization of path of contact
 size = 1000
-
 # discretization of involute geometry
 DISCRETIZATION = 100
-
 # stress field position
 POST = str(input('Stress field position along AE (A, B, C, D or E): ')).upper()
 POSAE = 'A' + POST
-
 # graphics
 ANSWER_GRAPHICS = str(input('Graphical output (Y/N): ')).upper()
 
@@ -98,7 +91,7 @@ ANSWER_MESH = str(input('FEM mesh generation (Y/N): ')).upper()
 if ANSWER_MESH == 'Y':
     MESH = True
     NODEM = int(
-        input('Nº of nodes on meshing surface (tipically 11<n<41): '))
+        input('Nº of nodes on meshing surface: '))
     ORDER = int(input('Element order (1/2): '))
     PTOOTH = int(input('Number of tooth for pinion mesh: '))
     WTOOTH = int(input('Number of tooth for wheel mesh: '))
@@ -107,54 +100,25 @@ else:
 
 # ASSIGN GEAR MATERIALS =======================================================
 GMAT = MATERIAL_LIBRARY.MATERIAL(MAT_PINION, MAT_WHEEL)
-
-# FZG LOAD STAGE CONDITIONS ===================================================
-if torque is str:
-    torque = torque
-
 # GEAR GEOMETRY ACCORDING TO MAAG BOOK ========================================
 GEO = CALC_GEOMETRY.MAAG(GTYPE)
-
 # LINES OF CONTACT ASSUMING A RIGID LOAD SHARING (SPUR AND HELICAL) ===========
 GPATH = RIGID_LOAD_SHARING.LINES(size, GEO)
-
 # FORCES AND SPEEDS ===========================================================
 GFS = FORCES_SPEEDS.OPERATION(element, torque, speed, GEO, GPATH)
-
 # GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) ==============
 GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS, POSAE)
-
 # INVOLUTE PROFILE GEOMETRY ===================================================
 Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
-
-# thF = np.arccos(GEO.rb1/GEO.ra1)
-# thP = np.arccos(GEO.rb1/GEO.r1)
-# Sinvol = GEO.rb1*(np.tan(thF)**2-np.tan(thP)**2)/2
-# ce = 0.25
-# eS = (-0.2*ce + 1.2)*GCONTACT.aH.min()
-# NODEM = int(Sinvol/eS)
-
 # INVOLUTE PROFILE GEOMETRY ===================================================
 if MESH:
     MESH_GENERATOR.MESHING('P', GEAR_NAME, GEO, Pprofile, PTOOTH, ORDER, NODEM)
     MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, WTOOTH, ORDER, NODEM)
-
 # OUTPUT PRINT ================================================================
 OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT)
-
 # OUTPUT GRAPHICS =============================================================
 if GRAPHICS:
     PLOTTING.GRAPHICS(GPATH, GFS, GCONTACT)
-
 # CLOSE PROGRAM ===============================================================
 input("Press enter to exit")
-# x = GPATH.xd
-# y = GPATH.bpos
-# X, Y = np.meshgrid(x, y)
-# Sr = GPATH.lsum.T
-# fig = plt.figure()
-# ax = plt.axes(projection='3d')
-# ax.plot_surface(X, Y, Sr, cmap='jet', edgecolor='k')
-# # ax.view_init(10, 15)
-# plt.show()

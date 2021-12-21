@@ -22,7 +22,7 @@ SOFTWARE. '''
 
 
 class PRINTING:
-    """Print a table with output results"""
+    """Create a text report with output results"""
 
     def __init__(self, GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT):
 
@@ -33,6 +33,7 @@ class PRINTING:
         # stdoutOrigin=sys.stdout 
         f = open(file, "w", encoding="utf-8")
         print(dash, file=f)
+        # gear type
         print('{:^65s}'.format(GEAR_NAME + ' GEAR'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -50,6 +51,7 @@ class PRINTING:
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Profile shift x2:', "%.4f" % GTYPE.x[1], ''), file=f)
         print(dash, file=f)
+        # gear materials
         print('{:^65s}'.format('GEAR MATERIALS'), file=f)
         print(dots, file=f)
         print('Pinion:', file=f)
@@ -77,6 +79,7 @@ class PRINTING:
         print('{:<35s}{:^20s}{:<10s}'.format(
             '  Density \u03C12:', "%.2f" % GMAT.rho2, 'kg/m3'), file=f)
         print(dash, file=f)
+        # lubricant
         print('{:^65s}'.format(GLUB.NAME+' LUBRICANT'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('Lubricant temperature',
@@ -96,6 +99,7 @@ class PRINTING:
             'Lubricant parameter XL:', "%.2f" % GLUB.xl,
             ''), file=f)
         print(dash, file=f)
+        # gear geometry
         print('{:^65s}'.format('GEAR GEOMETRY:'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -117,6 +121,7 @@ class PRINTING:
                                              GEO.ra1 + ' / ' +
                                              "%.3f" % GEO.ra2, 'mm'), file=f)
         print(dash, file=f)
+        # contact ratio
         print('{:^65s}'.format('CONTACT RATIO'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -139,6 +144,7 @@ class PRINTING:
         print('{:<35s}{:^20s}{:<10s}'.format('AE:', "%.2f" % GEO.AE, 'mm'), 
               file=f)
         print(dash, file=f)
+        # operating conditions
         print('{:^65s}'.format('OPERATING CONDITIONS'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
@@ -168,6 +174,7 @@ class PRINTING:
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Base circle load F_bn:', "%.1f" % GFS.fbn, 'N'), file=f)
         print(dash, file=f)
+        # contact results
         print('{:^65s}'.format('CONTACT RESULTS'), file=f)
         print(dots, file=f)
         print('Maximum pressure p0:', file=f)
@@ -210,6 +217,7 @@ class PRINTING:
             'Maximum Octahedric Shear Stress:', "%.1f" % GCONTACT.Toct.max(), 
             'MPa'), file=f)
         print(dash, file=f)
+        # film thickness
         print('{:^65s}'.format('FILM THICKNESS'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('Average Inlet Shear Heating:',
@@ -236,6 +244,7 @@ class PRINTING:
                                      "%.2f" % GCONTACT.hmC.mean(),
                                      '\u03BCm'), file=f)
         print(dash, file=f)
+        # power loss
         print('{:^65s}'.format('POWER LOSS'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('Gear Loss Factor HVL:',

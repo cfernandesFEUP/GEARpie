@@ -22,6 +22,8 @@ SOFTWARE. '''
 
 
 class GEAR:
+    """Library with gear geometries and input prompt for new gear geometries"""
+
     def __init__(self, GEAR_NAME):
 
         default = 'No Gear Selected Input'

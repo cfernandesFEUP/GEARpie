@@ -27,51 +27,38 @@ class HERTZ:
 
     def __init__(self, GMAT, GLUB, GEO, GPATH, GFS, POSAE):
         import numpy as np
-
         # tile speeds
         self.vg3D = np.tile(GFS.vg, (len(GPATH.bpos), 1)).T
         self.vr13D = np.tile(GFS.vr1, (len(GPATH.bpos), 1)).T
         self.vr23D = np.tile(GFS.vr2, (len(GPATH.bpos), 1)).T
         self.vr3D = np.tile(GFS.vr, (len(GPATH.bpos), 1)).T
-
         # HERTZ ===============================================================
         # effective Young modulus
         self.Eeq = 1/((1 - GMAT.v1**2)/GMAT.E1 + (1 - GMAT.v2**2)/GMAT.E2)
-
         # equivalent radius
         self.R13D = np.tile(GPATH.R1, (len(GPATH.bpos), 1)).T
         self.R23D = np.tile(GPATH.R2, (len(GPATH.bpos), 1)).T
         self.Req = 1/((1/self.R13D) + (1/self.R23D))/np.cos(GEO.betab)
-
         # pitch point index
         self.indP = np.argmin(np.abs(GPATH.xd - GEO.AC))
-
-        # Hertz half-width (aHI)
+        # Hertz half-width (aH)
         self.aH = (GFS.fnx*self.Req/(np.pi*self.Eeq))**(1/2)
-
-        # Hertz half-width (aHI)
+        # Hertz half-width at pitch point (aHI)
         self.aHI = self.aH[self.indP, 0]
-
         # maximum Hertz pressure
         self.p0 = (GFS.fnx*self.Eeq/(np.pi*self.Req))**(1/2)
-
-        # pitch point maximum Hertz presure
+        # maximum Hertz presure at pitch point 
         self.p0I = (GFS.fbn*self.Eeq/(GPATH.lsum[self.indP, 0] *
                                       np.pi*GEO.ReqI))**(1/2)
-
         # mean contact pressure
         self.pm = self.p0*np.pi/4
-
-        # pitch point mean contact pressure
+        # mean contact pressure at pitch point
         self.pmI = self.p0I*np.pi/4
-
         # FILM THICKNESS ======================================================
-        
+        # 
         self.L = GLUB.beta*(GLUB.miu/1000)*(self.vr3D**2)/GLUB.k
-        
         # inlet shear heating
         self.phiT = 1/(1 + 0.1*(1 + 14.8*(self.vg3D**0.83))*(self.L**0.64))
-        
         # central film thickness
         self.U = GLUB.miu*self.vr3D/(self.Req*self.Eeq)
         self.G = GLUB.piezo*self.Eeq
@@ -80,74 +67,60 @@ class HERTZ:
         self.hm = 1.6*self.Req*(self.U*self.G)**0.727*self.W**(-0.091)
         self.h0C = self.phiT*self.h0*1e3  
         self.hmC = self.phiT*self.hm*1e3
-       
         # POWER LOSS ==========================================================
         # coefficient of friction according to Schlenk
         self.CoF = (0.048 * ((GFS.fbn / (GEO.b*GPATH.lxi.min())) /
                              (GFS.vsumc * GEO.ReqI))**0.2 *
                     GLUB.miu**(-0.05) * GEO.Ram**0.25 * GLUB.xl)
-        
         # coefficient of friction according to Fernandes
         self.Sp = (GFS.vsumc*GLUB.miu*GLUB.piezo**0.5)/(1000*GFS.fbn**0.5)
         self.Sg = (GEO.Ram*1e-6)/(1e-6*GEO.b*GPATH.lxi.min()*GEO.ReqI)**(1/2)
         self.CoFF = 0.014*(1/self.Sp)**0.25*self.Sg**0.25*GLUB.xl
-        
         # coefficient of friction according to Matsumoto
         self.DM = GEO.RzS/self.hmC
         self.xiM = 0.5*np.log10(self.DM)
         self.CoFM = self.xiM*GLUB.mubl + (1-self.xiM)*GLUB.muEHD
-        
-        # numeric gear loss factor according to Wimmer
+        # numerical gear loss factor according to Wimmer
         self.INTEGRAND = GFS.fnx*self.vg3D/(GFS.fbt*GFS.vtb)
         self.HVL = np.trapz(
             np.trapz(self.INTEGRAND, GPATH.bpos), GPATH.xd)/GEO.pbt
-
-        # mean power loss
+        # average power loss
         self.Pvzp = GFS.Pin*self.HVL*self.CoF
-
         # local power loss
         self.PvzpL = GFS.fnx*self.vg3D*self.CoF
-
         #
-        self.thermal1 = GMAT.k1*GMAT.rho1*GMAT.cp1*self.vr13D
-        self.thermal2 = GMAT.k2*GMAT.rho2*GMAT.cp2*self.vr23D
-
+        self.thermal1 = (GMAT.k1*GMAT.rho1*GMAT.cp1*self.vr13D)**(1/2)
+        self.thermal2 = (GMAT.k2*GMAT.rho2*GMAT.cp2*self.vr23D)**(1/2)
         # heat partition factors: 1 - pinion, 2- wheel
         self.beta1 = self.thermal1/(self.thermal1 + self.thermal2)
         self.beta2 = self.thermal2/(self.thermal1 + self.thermal2)
-
         # instantaneous heat generation: 1 - pinion, 2- wheel
         self.Qvzp1 = self.beta1*GFS.fnx*self.vg3D*self.CoF
         self.Qvzp2 = self.beta2*GFS.fnx*self.vg3D*self.CoF
-
         # average heat generation: 1 - pinion, 2- wheel
         self.Qvzp1m = self.Qvzp1*self.aH/(np.pi*self.R13D)
         self.Qvzp2m = self.Qvzp2*self.aH/(np.pi*self.R23D)
-
         # CONTACT STRESSES ====================================================
         # stress field position along path of contact index
         if POSAE == 'AA':
             self.indS = 0
         else:
             self.indS = np.argmin(np.abs(GPATH.xd - eval('GEO.' + POSAE)))
-
+        # Hertz half-width at desired position
         self.aHS = self.aH[self.indS, 0]
-        # create stress field vectors
+        # create stress field arrays
         self.DISC_X = 150
         self.DISC_Z = 200
         self.xa = np.tile(np.linspace(-1.5, 1.5, self.DISC_X),
                           (self.DISC_Z, 1)).T
         self.za = np.tile(np.linspace(
             0.00001, 2., self.DISC_Z), (self.DISC_X, 1))
-
+        # create x and z arrays
         self.xH = self.xa*self.aHS
         self.zH = self.za*self.aHS
-
         self.B = 1/self.Req[self.indS, 0]
-
         self.M = ((self.aHS + self.xH)**2 + self.zH**2)**(1/2)
         self.N = ((self.aHS - self.xH)**2 + self.zH**2)**(1/2)
-
         self.phi1 = np.pi*(self.M + self.N)/(self.M*self.N *
                                              (2*self.M*self.N + 2 *
                                               self.xH**2 +
