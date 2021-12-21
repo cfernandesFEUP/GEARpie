@@ -26,11 +26,13 @@ GEARpie is useful to calculate cylindrical gears:
 - instantaneous and average heat generation according to [8]
 - structured FEM mesh (1st or 2nd order elements)
 - load carrying capacity according to DIN 3990 method B (steel gears)
-- load carrying capacity and bulk temperature according to VDI 2736 Part 2 (plastic gears, open gearboxes)
+- load carrying capacity and bulk temperature according to VDI 2736 Part 2 (plastic gears)
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result in a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
 The power loss models are described in [2-5]. The Ohlendorf (analytic) and Wimmer (numerical) gear loss factors are implemented.
+
+The VDI 2736 temperature calculation uses Wimmer gear loss factor instead of Ohlendorf (to have more accuracy). The calculation according to VDI 2736 is done by default for open gearboxes which doesn't require the gearbox surface area (if the user needs this calculation, just change the default value inside VDI 2736 class.
 
 The mesh generation was used to create the FEM thermal model described in [8-9]. The mesh is useful for any Finite Element Analysis (tested in Abaqus and CalculiX).
 
