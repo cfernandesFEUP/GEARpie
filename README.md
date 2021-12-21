@@ -26,7 +26,7 @@ GEARpie is useful to calculate cylindrical gears:
 - instantaneous and average heat generation according to [8]
 - structured FEM mesh (1st or 2nd order elements)
 - load carrying capacity according to DIN 3990 method B (steel gears)
-- load carrying capacity and bulk temperature according to VDI 2736 Part 2 (plastic gears)
+- load carrying capacity and bulk temperature according to VDI 2736 Part 2 (plastic gears, open gearboxes)
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result in a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
