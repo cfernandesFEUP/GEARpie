@@ -40,7 +40,7 @@ The mesh generation was used to create the FEM thermal model described in [8-9].
     <img src="SCREENSHOTS/logo2.png"height="400" />
 </p>
 
-The 3D output is not implemented by default, but is possible adding 3D entries to PLOTTING class. Every quantity calculated in CONTACT class is 3D. Central film thickness with inlet shear heating correction for an helical gear:
+The 3D output is not implemented by default, but is possible adding 3D entries to PLOTTING class. Every quantity calculated in CONTACT class is discretized along path of contact and facewidth, so it is adequate to 3D output. Example: central film thickness with inlet shear heating correction for an helical gear:
 <p align="center">
     <img src="SCREENSHOTS/logo3.png"height="400"/>
 </p>
