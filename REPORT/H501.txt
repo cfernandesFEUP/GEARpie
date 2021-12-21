@@ -26,11 +26,11 @@ Wheel:
 -----------------------------------------------------------------
                          M320 LUBRICANT                          
 .................................................................
-Lubricant temperature                       80         °C        
-Kinematic viscosity ν1:                   43.68        cSt       
-Dynamic viscosity ν1:                     37.91        mPa.s     
-Piezo-viscosity coefficient α:            58.55        1/GPa     
-Thermo-viscosity β:                       0.038        1/°C      
+Lubricant temperature                       75         °C        
+Kinematic viscosity ν1:                   53.10        cSt       
+Dynamic viscosity ν1:                     46.23        mPa.s     
+Piezo-viscosity coefficient α:            71.05        1/GPa     
+Thermo-viscosity β:                       0.040        1/°C      
 Lubricant parameter XL:                    0.85                  
 -----------------------------------------------------------------
                          GEAR GEOMETRY:                          
@@ -92,22 +92,54 @@ Maximum Octahedric Shear Stress:          210.4        MPa
 .................................................................
 Average Inlet Shear Heating:              0.997                  
 Central Film Thickness h0C:
-  Maximum along AE:                        1.15        μm        
-  Minimum along AE:                        0.81        μm        
-  Average along AE:                        1.04        μm        
+  Maximum along AE:                        1.53        μm        
+  Minimum along AE:                        1.07        μm        
+  Average along AE:                        1.38        μm        
 Minimum Film Thickness hmC:
-  Maximum along AE:                        0.94        μm        
-  Minimum along AE:                        0.66        μm        
-  Average along AE:                        0.85        μm        
+  Maximum along AE:                        1.25        μm        
+  Minimum along AE:                        0.88        μm        
+  Average along AE:                        1.13        μm        
 -----------------------------------------------------------------
                            POWER LOSS                            
 .................................................................
 Gear Loss Factor HVL:                     0.1869       Wimmer    
 Gear Loss Factor HV:                      0.1639       Ohlendorf 
-Coefficient of Friction μmZ:              0.0444       Schlenk   
-Coefficient of Friction μmZ:              0.0360       Fernandes 
-Coefficient of Friction μmZ:              0.0621       Matsumoto 
-Average Power Loss Pvzp:                  260.50       W         
-Maximum Local Power Loss:                 24.66        W/mm      
+Coefficient of Friction μmZ:              0.0437       Schlenk   
+Coefficient of Friction μmZ:              0.0333       Fernandes 
+Coefficient of Friction μmZ:              0.0572       Matsumoto 
+Average Power Loss Pvzp:                  256.71       W         
+Maximum Local Power Loss:                 24.30        W/mm      
 Minimum Local Power Loss:                  0.01        W/mm      
+-----------------------------------------------------------------
+                     LOAD CARRYING CAPACITY                      
+.................................................................
+Influence factors:
+  Application factor KA:                   1.25                  
+  Dynamic factor KV:                       1.03                  
+  Face load factor contact KHβ:            1.10                  
+  Face load factor bending KFβ:            1.07                  
+  Transverse factor contact KHα:           1.02                  
+  Transverse factor bending KFα:           1.02                  
+Contact factors:
+  Elasticity factor ZE:                   189.81                 
+  Zone factor ZH:                          2.33                  
+  Contact ratio factor Zγ:                 0.87                  
+  Helix angle factor Zβ:                   0.98                  
+  Lubrication factor ZL:                   1.05                  
+  Speed factor ZV:                         0.99                  
+Nominal contact stress:                   887.09       MPa       
+Contact stress:                     1092.42 /  1069.87 MPa       
+Permissible contact stress:               1484.89      MPa       
+Contact stress safety factor SH:       1.36 /  1.39              
+Bending factors:
+  Form factor YF:                      1.48 /  1.49              
+  Stress correction factor YS:         2.05 /  2.04              
+  Helix angle factor Yβ:                   0.93                  
+  Notch sensitivity factor YδT:        1.00 /  1.00              
+  Surface factor YRT:                  1.04 /  1.04              
+Nominal root stress:                 191.60 /  192.03  MPa       
+Tooth root stress:                   270.54 /  271.14  MPa       
+Limit tooth root stress:             895.25 /  895.55  MPa       
+Permissible tooth root stress:       639.47 /  639.47  MPa       
+Tooth root stress safety factor SF:     2.36 /  2.36              
 -----------------------------------------------------------------

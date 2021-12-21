@@ -85,6 +85,7 @@ class LINES:
         self.C1 = self.xx < self.COND_B
         # final x coordinate along path of contact
         self.xf = self.xx[self.C1]/self.COND_B
+        self.XF = self.XC[:,self.C1,:]
         # sum of contacting lines
         self.lsum = self.L[self.C1, :]
         # number of lines simultaneously in contact

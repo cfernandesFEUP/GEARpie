@@ -159,3 +159,4 @@ class GRAPHICS:
         plt.grid()
         plt.colorbar(format=tick.FormatStrFormatter('%.2f'))
         plt.show()
+        

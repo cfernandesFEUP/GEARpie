@@ -26,11 +26,11 @@ Wheel:
 -----------------------------------------------------------------
                          M320 LUBRICANT                          
 .................................................................
-Lubricant temperature                       80         °C        
-Kinematic viscosity ν1:                   43.68        cSt       
-Dynamic viscosity ν1:                     37.91        mPa.s     
-Piezo-viscosity coefficient α:            58.55        1/GPa     
-Thermo-viscosity β:                       0.038        1/°C      
+Lubricant temperature                       75         °C        
+Kinematic viscosity ν1:                   53.10        cSt       
+Dynamic viscosity ν1:                     46.23        mPa.s     
+Piezo-viscosity coefficient α:            71.05        1/GPa     
+Thermo-viscosity β:                       0.040        1/°C      
 Lubricant parameter XL:                    0.85                  
 -----------------------------------------------------------------
                          GEAR GEOMETRY:                          
@@ -90,25 +90,25 @@ Maximum Octahedric Shear Stress:          269.2        MPa
 -----------------------------------------------------------------
                          FILM THICKNESS                          
 .................................................................
-Average Inlet Shear Heating:              0.997                  
+Average Inlet Shear Heating:              0.996                  
 Central Film Thickness h0C:
-  Maximum along AE:                        1.09        μm        
-  Minimum along AE:                        0.71        μm        
-  Average along AE:                        0.96        μm        
+  Maximum along AE:                        1.44        μm        
+  Minimum along AE:                        0.94        μm        
+  Average along AE:                        1.28        μm        
 Minimum Film Thickness hmC:
-  Maximum along AE:                        0.89        μm        
-  Minimum along AE:                        0.58        μm        
-  Average along AE:                        0.79        μm        
+  Maximum along AE:                        1.18        μm        
+  Minimum along AE:                        0.77        μm        
+  Average along AE:                        1.05        μm        
 -----------------------------------------------------------------
                            POWER LOSS                            
 .................................................................
 Gear Loss Factor HVL:                     0.1945       Wimmer    
 Gear Loss Factor HV:                      0.1950       Ohlendorf 
-Coefficient of Friction μmZ:              0.0486       Schlenk   
-Coefficient of Friction μmZ:              0.0380       Fernandes 
-Coefficient of Friction μmZ:              0.0635       Matsumoto 
-Average Power Loss Pvzp:                  296.71       W         
-Maximum Local Power Loss:                 25.70        W/mm      
+Coefficient of Friction μmZ:              0.0481       Schlenk   
+Coefficient of Friction μmZ:              0.0353       Fernandes 
+Coefficient of Friction μmZ:              0.0586       Matsumoto 
+Average Power Loss Pvzp:                  293.78       W         
+Maximum Local Power Loss:                 25.45        W/mm      
 Minimum Local Power Loss:                  0.00        W/mm      
 -----------------------------------------------------------------
                      LOAD CARRYING CAPACITY                      
