@@ -142,3 +142,4 @@ Tooth root stress:                   363.18 /  352.10  MPa
 Limit tooth root stress:             892.07 /  893.52  MPa       
 Permissible tooth root stress:       637.20 /  637.20  MPa       
 Tooth root stress safety factor SF:     1.75 /  1.81              
+-----------------------------------------------------------------

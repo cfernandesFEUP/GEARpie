@@ -356,12 +356,5 @@ class PRINTING:
             'Tooth root stress safety factor SF: ', 
             ' %.2f' % GLCC.SF1 + ' / ' + ' %.2f' % GLCC.SF2, ''), 
             file=f)
-              
-              # print(sigmaHP)
-              # print(sigmaH)
-              # print('Nominal flank pressure: ' + str(sigmaH0))
-              # print('Flank pressure: ' + str(sigmaH))
-              # print('Permissible flank pressure: ' + str(sigmaHP))
-              # print('Flank pressure safety factor (SH): ' + str(SH))
-         
+        print(dash, file=f)
         f.close()
