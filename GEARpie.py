@@ -54,13 +54,14 @@ MAT_PINION = str(input('Pinion material (default: STEEL): ')
 MAT_WHEEL = str(input('Wheel material (default: STEEL): ') or 'STEEL').upper()
 # LUBRICANT ===================================================================
 # lubricant
-BASE_NAME = str(input('Base Oil (M - mineral, P - PAO, E - ester, G - polyglicol, D - dry): ')).upper()
+BASE_STR = 'Base Oil (M - mineral, P - PAO, E - ester, G - polyglicol, D - dry): '
+BASE_NAME = str(input(BASE_STR)).upper()
 LUB_NAME = str(input('ISO VG grade: ')).upper()
 Tlub = float(input('Lubricant temperature / \u00b0C: '))
 GLUB = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, Tlub)
 # select element where is applied speed and torque (P - pinion, W - wheel)
-stringPW = 'Select (P - Pinion, W - Wheel or F - FZG) to apply torque and speed: '
-element = str(input(stringPW)).upper()
+PW_STR = 'Select (P - Pinion, W - Wheel or F - FZG) to apply torque and speed: '
+element = str(input(PW_STR)).upper()
 if element == 'F':
     STAGE = LOAD_STAGES.FZG()
     torque = STAGE.torque
