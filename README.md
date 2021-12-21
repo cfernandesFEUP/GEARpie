@@ -12,7 +12,7 @@ GEARpie requires Python 3 with the following libraries:
 Run 'GEARpie.py' and complete the following prompt window:
 
 <p align="center">
-    <img src="SCREENSHOTS/INPUT.png"height="400"/>
+    <img src="SCREENSHOTS/INPUT.png"height="800"/>
 </p>
 
 ## Capabilities
