@@ -87,25 +87,120 @@ class LUBRICANT:
         self.mubl = 0.1
         self.muEHD = 0.02
         self.xl = 0.585
-        
+    
+    # mineral
+    def M32(self):#
+        self.m = 9.5259
+        self.n = 3.7449
+    def M46(self):#
+        self.m = 9.7044
+        self.n = 3.7995
+    def M68(self):
+        self.m = 9.4422
+        self.b = 3.6778
+    def M100(self):
+        self.m = 9.2479
+        self.n = 3.5849
+    def M150(self):
+        self.m = 9.0379
+        self.n = 3.4861
+    def M220(self):
+        self.m = 8.8178
+        self.n = 3.3852
     def M320(self):
         self.m = 9.0658
         self.n = 3.4730
-        
-    def P320(self): 
-        self.m = 7.3514
-        self.n = 2.7865
+    def M460(self):
+        self.m = 8.7179
+        self.n = 3.3229
+    def M680(self):
+        self.m = 8.4969
+        self.n = 3.2236
     
+    # PAO
+    def P32(self):#
+        self.m = 7.8018
+        self.n = 3.0540
+    def P46(self):#
+        self.m = 7.7036
+        self.n = 2.9977
+    def P68(self):#
+        self.m = 7.9787
+        self.n = 3.0914
+    def P100(self):
+        self.m = 7.8091
+        self.n = 3.0083
     def P150(self):
         self.m = 7.646383
         self.n = 2.928541
-        
+    def P220(self):
+        self.m = 7.4846
+        self.n = 2.8510
+    def P320(self): 
+        self.m = 7.3514
+        self.n = 2.7865
+    def P460(self):
+        self.m = 6.9799
+        self.n = 2.6265
+    def P680(self):
+        self.m = 7.3405
+        self.n = 2.7602
+    
+    # ester
+    def E32(self):#
+        self.m = 7.8018
+        self.n = 3.0540
+    def E46(self):#
+        self.m = 7.7036
+        self.n = 2.9977
+    def E68(self):#
+        self.m = 7.9787
+        self.n = 3.0914
+    def E100(self):#
+        self.m = 7.8091
+        self.n = 3.0083
+    def E150(self):#
+        self.m = 7.646383
+        self.n = 2.928541
+    def E220(self):#
+        self.m = 7.4846
+        self.n = 2.8510
     def E320(self):
         self.m = 7.5823
         self.n = 2.8802
-        
+    def E460(self):#
+        self.m = 6.9799
+        self.n = 2.6265
+    def E680(self):#
+        self.m = 7.3405
+        self.n = 2.7602
+    
+    # poliglycol
+    def G32(self):#
+        self.m = 6.2768
+        self.n = 2.4430
+    def G46(self):#
+        self.m = 7.1020
+        self.n = 2.7567
+    def G68(self):#
+        self.m = 6.7159
+        self.n = 2.5853
+    def G100(self):#
+        self.m = 6.7648
+        self.n = 2.5898
+    def G150(self):
+        self.m = 6.5268
+        self.n = 2.4799
+    def G220(self):
+        self.m = 6.5834
+        self.n = 2.4898
     def G320(self):
         self.m = 5.7597
         self.n = 2.1512
-
-
+    def G460(self):
+        self.m = 5.7612
+        self.n = 2.1381
+    def G680(self):#
+        self.m = 6.0852
+        self.n = 2.2572
+    

@@ -60,7 +60,7 @@ if BASE_NAME == 'D':
     GLUB = None
     T0 = float(input('Ambient temperature / \u00b0C: '))
 else:
-    LUB_NAME = str(input('ISO VG grade: ')).upper()
+    LUB_NAME = str(input('ISO VG grade (32 to 680): ')).upper()
     Tlub = float(input('Lubricant temperature / \u00b0C: '))
     GLUB = LUBRICANT_LIBRARY.LUBRICANT(BASE_NAME, LUB_NAME, Tlub)
 # select element where is applied speed and torque (P - pinion, W - wheel)
