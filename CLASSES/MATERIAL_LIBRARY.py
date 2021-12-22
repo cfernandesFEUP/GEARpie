@@ -62,10 +62,13 @@ class LIBRARY_MAT:
         self.rho = 1415
         self.SigmaHlim = None
         def SHlimPOM(temp,cycles):
+            if temp > 120: temp = 120
             return 36 - 0.0012*temp**2 + (1000 - 0.025*temp**2)*cycles**(-0.21)
         self.SigmaHlim = SHlimPOM
         def SFlimPOM(temp, cycles):
-            return 26 - 0.0025*temp**2 + 400*cycles**(-0.2)
+            if temp > 120: temp = 120
+            SFL = 26 - 0.0025*temp**2 + 400*cycles**(-0.2)
+            return SFL
         self.SigmaFlim = SFlimPOM
 
     def PA66(self):
@@ -75,10 +78,14 @@ class LIBRARY_MAT:
         self.k = 0.26
         self.rho = 1140
         def SHlimPA66(temp,cycles):
-            return 36 - 0.0012*temp**2 + (1000 - 0.025*temp**2)*cycles**(-0.21)
+            if temp > 120: temp = 120
+            SHL = 36 - 0.0012*temp**2 + (1000 - 0.025*temp**2)*cycles**(-0.21)
+            return SHL 
         self.SigmaHlim = SHlimPA66
         def SFlimPA66(temp,cycles):
-            return 30 - 0.22*temp + (4600 - 900*temp**(0.3))*cycles**(-1/3)
+            if temp > 120: temp = 120
+            SFL = 30 - 0.22*temp + (4600 - 900*temp**(0.3))*cycles**(-1/3)
+            return SFL
         self.SigmaFlim = SFlimPA66
         
 class MATERIAL:
