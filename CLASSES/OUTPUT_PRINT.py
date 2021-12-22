@@ -249,6 +249,9 @@ class PRINTING:
             print('{:<35s}{:^20s}{:<10s}'.format('  Average along AE:',
                                                  "%.2f" % GCONTACT.h0C.mean(),
                                                  '\u03BCm'), file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Central lambda ratio \u039B0C:', 
+                "%.2f" % GCONTACT.Lambda0C.min(), ''), file=f)
             print('Minimum Film Thickness hmC:', file=f)
             print('{:<35s}{:^20s}{:<10s}'.format('  Maximum along AE:',
                                          "%.2f" % GCONTACT.hmC.max(),
@@ -259,6 +262,9 @@ class PRINTING:
             print('{:<35s}{:^20s}{:<10s}'.format('  Average along AE:',
                                          "%.2f" % GCONTACT.hmC.mean(),
                                          '\u03BCm'), file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Minimum lambda ratio \u039BmC:', 
+                "%.2f" % GCONTACT.LambdamC.min(), ''), file=f)
             print(dash, file=f)
         # power loss
         print('{:^65s}'.format('POWER LOSS'), file=f)

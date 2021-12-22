@@ -186,8 +186,8 @@ class LUBRICANT:
         self.m = 6.7159
         self.n = 2.5853
     def G100(self):#
-        self.m = 6.7648
-        self.n = 2.5898
+        self.m = 7.6011
+        self.n = 2.9401
     def G150(self):
         self.m = 6.5268
         self.n = 2.4799

@@ -63,13 +63,15 @@ class HERTZ:
             # inlet shear heating
             self.phiT = 1/(1 + 0.1*(1 + 14.8*(self.vg3D**0.83))*(self.L**0.64))
             # central film thickness
-            self.U = GLUB.miu*self.vr3D/(self.Req*self.Eeq)
-            self.G = GLUB.piezo*self.Eeq
+            self.U = 1e-6*GLUB.miu*self.vr3D/(self.Req*self.Eeq)
+            self.G = 1e6*GLUB.piezo*self.Eeq
             self.W = GFS.fnx/(self.Req*self.Eeq)
-            self.h0 = 1.95*self.Req*(self.U*self.G)**0.727*self.W**(-0.091)
-            self.hm = 1.6*self.Req*(self.U*self.G)**0.727*self.W**(-0.091)
-            self.h0C = self.phiT*self.h0*1e3  
+            self.h0 = 1.95*self.Req*(self.U*self.G)**(8/11)*self.W**(-1/11)
+            self.hm = 2.65*self.Req*self.U**(0.7)*self.G**(0.54)*self.W**(-0.13)
+            self.h0C = self.phiT*self.h0*1e3
             self.hmC = self.phiT*self.hm*1e3
+            self.Lambda0C = self.h0C/GEO.Rrms
+            self.LambdamC = self.hmC/GEO.Rrms
         # POWER LOSS ==========================================================
         if GLUB == None:
             # according to VDI 2736
