@@ -349,7 +349,8 @@ class PRINTING:
                 ' %.2f' % GLCC.SigmaH1 + ' / ' + ' %.2f' % GLCC.SigmaH2, 
                 'MPa'), file=f)
             print('{:<35s}{:^20s}{:<10s}'.format(
-                'Permissible contact stress: ', ' %.2f' % GLCC.SigmaHP, 'MPa'), 
+                'Permissible contact stress: ', ' %.2f' % GLCC.SigmaHP1 + ' / ' 
+                + ' %.2f' % GLCC.SigmaHP2, 'MPa'), 
                 file=f)
             print('{:<35s}{:^20s}{:<10s}'.format(
                 'Contact stress safety factor SH: ', 
@@ -398,14 +399,70 @@ class PRINTING:
                                                  "%.1f" % (GLCC.TO),
                                                  '\u00b0C'), file=f)
             print('{:<35s}{:^20s}{:<10s}'.format('Root temperature',
-                                                 "%.1f" % (GLCC.TR),
+                                                 "%.1f" % (GLCC.TR1) + ' / ' + 
+                                                 "%.1f" % (GLCC.TR2),
                                                  '\u00b0C'), file=f)
             print('{:<35s}{:^20s}{:<10s}'.format('Flank temperature',
-                                                 "%.1f" % (GLCC.TF),
+                                                 "%.1f" % (GLCC.TF1) + ' / ' + 
+                                                 "%.1f" % (GLCC.TF2),
                                                  '\u00b0C'), file=f)
             print('Influence factors:', file=f)
-            print('{:<35s}{:^20s}{:<10s}'.format('  Application factor KA: ',
-                                                 ' %.2f' % GLCC.KA, ''), 
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                '  Application factor KA=KF=KH: ', ' %.2f' % GLCC.KA, ''), 
+                file=f)
+            print('Contact factors (Valid for lubricated PA66 gears):',
                   file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format('  Elasticity factor ZE: ',
+                                                 ' %.3f' % GLCC.ZE, ''), 
+                  file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format('  Zone factor ZH: ', 
+                                                 ' %.3f' % GLCC.ZH, ''), 
+                  file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                '  Contact ratio factor Z\u03b5: ' ,' %.3f' % GLCC.ZEPS, ''), 
+                file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                '  Helix angle factor Z\u03b2: ' ,' %.3f' % GLCC.ZBETA, ''), 
+                  file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Contact stress: ', ' %.2f' % GLCC.SigmaH, 'MPa'),
+                file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Permissible contact stress: ', ' %.2f' % GLCC.SigmaHP1 + ' / ' 
+                + ' %.2f' % GLCC.SigmaHP2, 'MPa'), 
+                file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Contact stress safety factor SH: ', 
+                ' %.2f' % GLCC.SH1 + ' / ' + ' %.2f' % GLCC.SH2, ''), 
+                file=f)
+            print('Bending factors:', file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                '  Form factor YFa: ', ' %.3f' % GLCC.YFa1 + ' / ' +
+                ' %.3f' % GLCC.YFa2, ''), file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                '  Stress correction factor YSa: ', ' %.3f' % GLCC.YSa1 + 
+                ' / ' + ' %.3f' % GLCC.YSa2, ''), file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                '  Contact ratio factor Y\u03b5: ' ,' %.3f' % GLCC.Yeps, ''), 
+                file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                '  Helix angle factor Y\u03b2: ' ,' %.3f' % GLCC.Ybeta, ''), 
+                file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Tooth root stress: ', 
+                ' %.2f' % GLCC.SigmaF1 + ' / ' + ' %.2f' % GLCC.SigmaF2, 
+                'MPa'), file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Limit tooth root stress: ', 
+                ' %.2f' % GLCC.SigmaFG1 + ' / ' + ' %.2f' % GLCC.SigmaFG2, 
+                'MPa'), file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Permissible tooth root stress: ', 
+                ' %.2f' % GLCC.SigmaFP1 + ' / ' + ' %.2f' % GLCC.SigmaFP2, 
+                'MPa'), file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Tooth root stress safety factor SF: ', 
+                ' %.2f' % GLCC.SF1 + ' / ' + ' %.2f' % GLCC.SF2, ''), 
+                file=f)
             print(dash, file=f)
         f.close()

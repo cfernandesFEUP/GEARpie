@@ -215,15 +215,15 @@ class LCC:
         self.ZR = 1.02*(GEO.al**(1/3)/(GEO.RzS))**0.08
         self.ZLUB = self.ZL*self.ZV*self.ZR
         # FLANK STRESS ========================================================
-        self.SigmaHlim = 1500
         self.SigmaH0 = (self.ZE*self.ZH*self.ZEPS*self.ZBETA*
                     (GFS.ft*(GEO.u+1)/(GEO.b*GEO.d1*GEO.u))**(1/2))
         self.SigmaH1 = self.ZP*self.SigmaH0*self.KH**(1/2)
         self.SigmaH2 = self.ZW*self.SigmaH0*self.KH**(1/2)
         self.SHmin = 1.0
-        self.SigmaHP = self.SigmaHlim/self.SHmin*self.ZLUB
-        self.SH1 = self.SigmaHP*self.SHmin/self.SigmaH1
-        self.SH2 = self.SigmaHP*self.SHmin/self.SigmaH2
+        self.SigmaHP1 = GMAT.SigmaHlim1/self.SHmin*self.ZLUB
+        self.SigmaHP2 = GMAT.SigmaHlim2/self.SHmin*self.ZLUB
+        self.SH1 = self.SigmaHP1*self.SHmin/self.SigmaH1
+        self.SH2 = self.SigmaHP2*self.SHmin/self.SigmaH2
         # tooth form factor (YF)
         if GEO.beta == 0:
             self.rfer = 0.375
@@ -339,13 +339,14 @@ class LCC:
         self.SigmaFlim = 430
         self.SFmin = 1.4
         self.Yst = 2
-        self.SigmaFE = self.SigmaFlim*self.Yst
+        self.SigmaFE1 = GMAT.SigmaFlim1*self.Yst
+        self.SigmaFE2 = GMAT.SigmaFlim2*self.Yst
         self.SigmaF01 = GFS.ft/(GEO.b*GEO.m)*self.YF1*self.YS1*self.YB
         self.SigmaF02 = GFS.ft/(GEO.b*GEO.m)*self.YF2*self.YS2*self.YB
         self.SigmaF1 = self.SigmaF01*self.KF
         self.SigmaF2 = self.SigmaF02*self.KF
-        self.SigmaFG1 = self.SigmaFE*self.YdelT1*self.YRrelT1
-        self.SigmaFG2 = self.SigmaFE*self.YdelT2*self.YRrelT2
+        self.SigmaFG1 = self.SigmaFE1*self.YdelT1*self.YRrelT1
+        self.SigmaFG2 = self.SigmaFE2*self.YdelT2*self.YRrelT2
         self.SigmaFP1 = self.SigmaFG1/self.SFmin
         self.SigmaFP2 = self.SigmaFG1/self.SFmin
         self.SF1 = self.SigmaFG1/self.SigmaF1
