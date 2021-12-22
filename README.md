@@ -32,7 +32,9 @@ The rigid load sharing model implemented on the software is descibed in [1]. If 
 
 The power loss models are described in [2-5]. The Ohlendorf (analytic) and Wimmer (numerical) gear loss factors are implemented.
 
-The VDI 2736 temperature calculation uses Wimmer gear loss factor instead of Ohlendorf (to have more accuracy). The calculation according to VDI 2736 is done by default for open gearboxes which doesn't require the gearbox surface area (if the user needs this calculation, just change the default value inside VDI 2736 class.
+The VDI 2736 temperature calculation uses Wimmer gear loss factor instead of Ohlendorf (to have more accuracy). The calculation according to VDI 2736 is done by default for open gearboxes (gearbox surface area is not needed). If the user needs the calculation for closed or semi-open gearboxes, just change the default value inside VDI 2736 class.
+
+The implementation of VDI 2736 standard makes the verification both for tooth root stress and tooth flank stress. However, the tooth flank is tipically performed only for lubricated PA66 gears (so only for those cases is accurate and according to the standard). The material properties are available only for an operating temperature lower than 120 °C. Every safety factor (SF or SH) calculated above 120 °C is incorrect due to lack of material data - the material properties have the values calaculated for 120 °C. If the user has accurate material data, should include it on MATERIAL_LIBRARY class.
 
 The mesh generation was used to create the FEM thermal model described in [8-9]. The mesh is useful for any Finite Element Analysis (tested in Abaqus and CalculiX).
 
