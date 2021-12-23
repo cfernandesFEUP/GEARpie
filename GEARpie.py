@@ -42,9 +42,9 @@ print('\n')
 print('Gear geometries available:')
 print('C14, H501, H701, H951')
 print('To use a new geometry, type NEW')
-GEAR_NAME = str(input('Input gear geometry: ')).upper()
+GEAR_TYPE = str(input('Input gear geometry: ')).upper()
 # GEAR SELECTION ==============================================================
-GTYPE = GEAR_LIBRARY.GEAR(GEAR_NAME)
+GTYPE = GEAR_LIBRARY.GEAR(GEAR_TYPE)
 # GEAR MATERIALS ==============================================================
 # pinion and wheel material
 print('Materials available:')
@@ -126,10 +126,10 @@ Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
 # INVOLUTE PROFILE GEOMETRY ===================================================
 if MESH:
-    MESH_GENERATOR.MESHING('P', GEAR_NAME, GEO, Pprofile, PTOOTH, ORDER, NODEM)
-    MESH_GENERATOR.MESHING('W', GEAR_NAME, GEO, Wprofile, WTOOTH, ORDER, NODEM)
+    MESH_GENERATOR.MESHING('P', GTYPE, GEO, Pprofile, PTOOTH, ORDER, NODEM)
+    MESH_GENERATOR.MESHING('W', GTYPE, GEO, Wprofile, WTOOTH, ORDER, NODEM)
 # OUTPUT PRINT ================================================================
-OUTPUT_PRINT.PRINTING(GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC)
+OUTPUT_PRINT.PRINTING(GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC)
 # OUTPUT GRAPHICS =============================================================
 if GRAPHICS:
     PLOTTING.GRAPHICS(GPATH, GFS, GCONTACT)

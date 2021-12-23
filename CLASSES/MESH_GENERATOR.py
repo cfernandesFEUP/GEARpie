@@ -24,7 +24,7 @@ SOFTWARE. '''
 class MESHING:
     '''Generate the gear mesh with GMSH Python API'''
 
-    def __init__(self, GEAR_ELEMENT, GEAR_NAME, GEO, PROFILE, NZ,
+    def __init__(self, GEAR_ELEMENT, GTYPE, GEO, PROFILE, NZ,
                  ORDER, NODEM):
 
         import sys
@@ -66,7 +66,7 @@ class MESHING:
         geog = model.geo
 
         # create GMSH model
-        model.add(str(GEAR_NAME))
+        model.add(str(GTYPE.GEAR_NAME))
 
         geog.synchronize()
 
@@ -300,7 +300,7 @@ class MESHING:
         print('MESH CREATED')
 
         # save mesh
-        file = GEAR_ELEMENT + str(GEAR_NAME)
+        file = GEAR_ELEMENT + str(GTYPE.GEAR_NAME)
         gmsh.write('MESH/' + file + ".inp")
         print('SAVING MESH')
         gmsh.fltk.run()

@@ -1,0 +1,150 @@
+-----------------------------------------------------------------
+                            OM1 GEAR                             
+.................................................................
+Presure angle α:                           20.0        °         
+Helix angle β:                             0.0         °         
+Module m:                                  2.0         mm        
+Number of teeth z1:                        20.0                  
+Number of teeth z2:                        41.0                  
+Profile shift x1:                         0.0000                 
+Profile shift x2:                         0.0000                 
+-----------------------------------------------------------------
+                         GEAR MATERIALS                          
+.................................................................
+Pinion:
+  Young modulus E1:                        206         GPa       
+  Poisson ratio ν1:                        0.30                  
+  Thermal capacity cp1:                   465.00       J/kg.K    
+  Thermal conductivity k1:                46.00        W/m.K     
+  Density ρ1:                            7830.00       kg/m3     
+Wheel:
+  Young modulus E2:                        206         GPa       
+  Poisson ratio ν2:                        0.30                  
+  Thermal capacity cp2:                   465.00       J/kg.K    
+  Thermal conductivity k2:                46.00        W/m.K     
+  Density ρ2:                            7830.00       kg/m3     
+-----------------------------------------------------------------
+                         P150 LUBRICANT                          
+.................................................................
+Lubricant temperature                       80         °C        
+Kinematic viscosity ν:                    33.15        cSt       
+Dynamic viscosity η:                      27.46        mPa.s     
+Piezo-viscosity coefficient α:            13.74        1/GPa     
+Thermo-viscosity β:                       0.030        1/°C      
+Lubricant parameter XL:                    0.65                  
+-----------------------------------------------------------------
+                         GEAR GEOMETRY:                          
+.................................................................
+Axis distance:                             61.0        mm        
+Base pitch n:                             5.904        mm        
+Base pitch t:                             5.904        mm        
+Root radius:                         17.500 / 38.500   mm        
+Reference radius:                    20.000 / 41.000   mm        
+Pitch radius:                        20.000 / 41.000   mm        
+Tip radius:                          22.000 / 43.000   mm        
+-----------------------------------------------------------------
+                          CONTACT RATIO                          
+.................................................................
+Transverse εα:                             1.64                  
+Overlap εβ:                                0.00                  
+Total εγ:                                  1.64                  
+-----------------------------------------------------------------
+                   PATH OF CONTACT DIMENSIONS                    
+.................................................................
+T1T2:                                     20.86        mm        
+AB:                                        3.76        mm        
+AC:                                        5.07        mm        
+AD:                                        5.90        mm        
+AE:                                        9.67        mm        
+-----------------------------------------------------------------
+                      OPERATING CONDITIONS                       
+.................................................................
+Pin:                                     31415.9       W         
+Torque T:                             200.0 / 410.0    N.m       
+Speed n:                              1500.0 / 731.7   rpm       
+Angular speed ω:                       157.1 / 76.6    rad/s     
+Tangential speed vt:                       3.14        m/s       
+Base tangent speed vtb:                    2.95        m/s       
+Maximum specific sliding gs:            4.3 / 1.5                
+Tangential load F_t:                     10000.0       N         
+Radial load F_r:                          3639.7       N         
+Normal load F_n:                         10000.0       N         
+Axial load F_a:                            0.0         N         
+Base circle load F_bt:                   10641.8       N         
+Base circle load F_bn:                   10641.8       N         
+-----------------------------------------------------------------
+                         CONTACT RESULTS                         
+.................................................................
+Maximum pressure p0:
+  At pitch point:                         2042.0       MPa       
+  Maximum along AE:                       2434.0       MPa       
+  Minimum along AE:                       1355.6       MPa       
+Mean pressure pm:
+  At pitch point:                         1603.8       MPa       
+  Maximum along AE:                       1911.7       MPa       
+  Minimum along AE:                       1064.7       MPa       
+Contact half-width aH:
+  At pitch point:                         82.941       μm        
+  Maximum along AE:                       85.196       μm        
+  Minimum along AE:                       34.792       μm        
+Maximum von Mises Stress:                 1211.8       MPa       
+Maximum Shear Stress:                     652.2        MPa       
+Maximum Octahedric Shear Stress:          570.8        MPa       
+-----------------------------------------------------------------
+                         FILM THICKNESS                          
+.................................................................
+Average Inlet Shear Heating:              1.000                  
+Central Film Thickness h0C:
+  Maximum along AE:                        0.15        μm        
+  Minimum along AE:                        0.08        μm        
+  Average along AE:                        0.12        μm        
+Central lambda ratio Λ0C:                  0.12                  
+Minimum Film Thickness hmC:
+  Maximum along AE:                        0.14        μm        
+  Minimum along AE:                        0.06        μm        
+  Average along AE:                        0.11        μm        
+Minimum lambda ratio ΛmC:                  0.10                  
+-----------------------------------------------------------------
+                           POWER LOSS                            
+.................................................................
+Gear Loss Factor HVL:                     0.1649       Wimmer    
+Gear Loss Factor HV:                      0.1651       Ohlendorf 
+Coefficient of Friction μmZ:              0.0434       Schlenk   
+Coefficient of Friction μmZ:              0.0423       Fernandes 
+Coefficient of Friction μmZ:              0.0902       Matsumoto 
+Average Power Loss Pvzp:                  224.94       W         
+Maximum Local Power Loss:                 13.70        W/mm      
+Minimum Local Power Loss:                  0.01        W/mm      
+-----------------------------------------------------------------
+                     LOAD CARRYING CAPACITY                      
+.................................................................
+Influence factors:
+  Application factor KA:                   1.25                  
+  Dynamic factor KV:                       1.01                  
+  Face load factor contact KHβ:            1.05                  
+  Face load factor bending KFβ:            1.04                  
+  Transverse factor contact KHα:           1.00                  
+  Transverse factor bending KFα:           1.00                  
+Contact factors:
+  Elasticity factor ZE:                   189.812                
+  Zone factor ZH:                          2.495                 
+  Contact ratio factor Zε:                 0.887                 
+  Helix angle factor Zβ:                   1.000                 
+  Lubrication factor ZL:                   0.992                 
+  Speed factor ZV:                         0.972                 
+Nominal contact stress:                   1812.03      MPa       
+Contact stress:                     2224.55 /  2091.78 MPa       
+Permissible contact stress:         1426.21 /  1426.21 MPa       
+Contact stress safety factor SH:       0.64 /  0.68              
+Bending factors:
+  Form factor YF:                     1.593 /  1.379             
+  Stress correction factor YS:        1.820 /  1.986             
+  Helix angle factor Yβ:                   1.000                 
+  Notch sensitivity factor YδT:       0.992 /  0.995             
+  Surface factor YRT:                 0.957 /  0.957             
+Nominal root stress:                 724.95 /  684.77  MPa       
+Tooth root stress:                   955.70 /  902.73  MPa       
+Limit tooth root stress:             816.37 /  819.25  MPa       
+Permissible tooth root stress:       583.12 /  583.12  MPa       
+Tooth root stress safety factor SF:     0.85 /  0.91              
+-----------------------------------------------------------------

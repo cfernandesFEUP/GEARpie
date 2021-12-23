@@ -24,12 +24,13 @@ SOFTWARE. '''
 class GEAR:
     """Library with gear geometries and input prompt for new gear geometries"""
 
-    def __init__(self, GEAR_NAME):
+    def __init__(self, GEAR_TYPE):
 
         default = 'No Gear Selected Input'
-        getattr(self, GEAR_NAME, lambda: default)()
+        getattr(self, GEAR_TYPE, lambda: default)()
 
     def NEW(self):
+        self.GEAR_NAME = input('Gear name: ').upper()
         self.alpha = float(
             input('Pressure angle (default: 20) / \u00b0: ') or '20')
         self.beta = float(input('Helix angle / \u00b0: '))
@@ -56,6 +57,7 @@ class GEAR:
                    float(input('Rz2 (default: 4.8) / \u03BCm: ') or '4.8')]
 
     def C14(self):
+        self.GEAR_NAME = 'C14'
         self.alpha = 20.0
         self.beta = 0.0
         self.m = 4.5
@@ -72,6 +74,7 @@ class GEAR:
         self.Rz = [4.8, 4.8]
 
     def H501(self):
+        self.GEAR_NAME = 'H501'
         self.alpha = 20.
         self.beta = 15.
         self.m = 3.5
@@ -88,6 +91,7 @@ class GEAR:
         self.Rz = [4.8, 4.8]
 
     def H701(self):
+        self.GEAR_NAME = 'H701'
         self.alpha = 20.
         self.beta = 15.
         self.m = 2.5
@@ -104,6 +108,7 @@ class GEAR:
         self.Rz = [4.8, 4.8]
 
     def H951(self):
+        self.GEAR_NAME = 'H951'
         self.alpha = 20.
         self.beta = 15.
         self.m = 1.75

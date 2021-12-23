@@ -24,9 +24,9 @@ SOFTWARE. '''
 class PRINTING:
     """Create a text report with output results"""
 
-    def __init__(self, GEAR_NAME, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC):
+    def __init__(self, GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC):
 
-        file = 'REPORT/' + GEAR_NAME + '.txt'
+        file = 'REPORT/' + GTYPE.GEAR_NAME + '.txt'
         dash = '-' * 65
         dots = '.' * 65
         # import sys 
@@ -34,7 +34,7 @@ class PRINTING:
         f = open(file, "w", encoding="utf-8")
         print(dash, file=f)
         # gear type
-        print('{:^65s}'.format(GEAR_NAME + ' GEAR'), file=f)
+        print('{:^65s}'.format(GTYPE.GEAR_NAME + ' GEAR'), file=f)
         print(dots, file=f)
         print('{:<35s}{:^20s}{:<10s}'.format(
             'Presure angle \u03B1:', "%.1f" % GTYPE.alpha, '\u00b0'), file=f)
@@ -464,5 +464,5 @@ class PRINTING:
                 'Tooth root stress safety factor SF: ', 
                 ' %.2f' % GLCC.SF1 + ' / ' + ' %.2f' % GLCC.SF2, ''), 
                 file=f)
-            print(dash, file=f)
+        print(dash, file=f)
         f.close()
