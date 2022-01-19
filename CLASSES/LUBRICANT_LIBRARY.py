@@ -97,7 +97,7 @@ class LUBRICANT:
         self.n = 3.7995
     def M68(self):
         self.m = 9.4422
-        self.b = 3.6778
+        self.n = 3.6778
     def M100(self):
         self.m = 9.2479
         self.n = 3.5849

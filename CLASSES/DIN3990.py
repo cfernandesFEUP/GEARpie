@@ -47,8 +47,8 @@ class LCC:
         self.CR = 1
         self.CB = 1
         if GFS.ft*self.KA/GEO.b < 100:
-            self.cl = (self.clth*self.CM*self.CR*self.CB*self.np.cos(GEO.beta)*
-                       ((GEO.ft*self.KA/GEO.b)/100)**0.25)
+            self.cl = (self.clth*self.CM*self.CR*self.CB*np.cos(GEO.beta)*
+                       ((GFS.ft*self.KA/GEO.b)/100)**0.25)
         else:
             self.cl = self.clth*self.CM*self.CR*self.CB*np.cos(GEO.beta)
         self.cgama = self.cl*(0.75*GEO.epslon_alpha + 0.25)
