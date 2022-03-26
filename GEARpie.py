@@ -97,6 +97,8 @@ if ANSWER_MESH == 'Y':
     MESH = True
     NODEM = int(
         input('Nº of nodes on meshing surface: '))
+    DIM_MESH = int(input('Mesh dimension (2/3): '))
+    DIM = str(DIM_MESH)+'D'
     ORDER = int(input('Element order (1/2): '))
     PTOOTH = int(input('Number of tooth for pinion mesh: '))
     WTOOTH = int(input('Number of tooth for wheel mesh: '))
@@ -126,8 +128,8 @@ Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
 Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
 # INVOLUTE PROFILE GEOMETRY ===================================================
 if MESH:
-    MESH_GENERATOR.MESHING('P', GTYPE, GEO, Pprofile, PTOOTH, ORDER, NODEM)
-    MESH_GENERATOR.MESHING('W', GTYPE, GEO, Wprofile, WTOOTH, ORDER, NODEM)
+    MESH_GENERATOR.MESHING('P', GTYPE, GEO, Pprofile, PTOOTH, ORDER, NODEM, DIM)
+    MESH_GENERATOR.MESHING('W', GTYPE, GEO, Wprofile, WTOOTH, ORDER, NODEM, DIM)
 # OUTPUT PRINT ================================================================
 OUTPUT_PRINT.PRINTING(GTYPE, GMAT, GLUB, GEO, GFS, GCONTACT, GLCC)
 # OUTPUT GRAPHICS =============================================================
