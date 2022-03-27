@@ -24,7 +24,7 @@ SOFTWARE. '''
 class LCC:
     
     
-    def __init__(self, GMAT, GEO, GFS, GCONTACT, T0, KA):
+    def __init__(self, GMAT, GEO, GFS, GPATH, GCONTACT, T0, KA):
 
         import numpy as np
         # TEMPERATURE =========================================================
@@ -198,3 +198,11 @@ class LCC:
         self.SigmaHP2 = GMAT.SigmaHlim1(self.TF2,self.NL)/self.SHmin*self.ZR
         self.SH1 = self.SigmaHP1*self.SHmin/self.SigmaH
         self.SH2 = self.SigmaHP2*self.SHmin/self.SigmaH
+        
+        # WEAR LOCAL ==========================================================
+        self.NL = 10000
+        self.kw = 1e-6
+        self.gs1_3D = np.tile(GFS.gs1, (len(GPATH.bpos), 1)).T
+        self.gs2_3D = np.tile(GFS.gs2, (len(GPATH.bpos), 1)).T
+        self.W_LOCAL1 = GFS.fnx*self.NL*self.gs1_3D*self.kw
+        self.W_LOCAL2 = GFS.fnx*self.NL*self.gs2_3D*self.kw

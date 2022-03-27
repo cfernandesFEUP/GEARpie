@@ -294,17 +294,19 @@ class MESHING:
 
         # generate mesh
         geog.synchronize()
-        if GEAR_ELEMENT == 'W':
-            gmsh.option.setNumber("Mesh.FirstElementTag", 3000000)
-            gmsh.option.setNumber("Mesh.FirstNodeTag", 300000)
-        
         gmsh.option.setNumber("Mesh.RecombineAll", 1)
         gmsh.option.setNumber("Mesh.ElementOrder", ORDER)
         gmsh.option.setNumber("Mesh.SecondOrderIncomplete", 1)
         gmsh.option.setNumber("Mesh.SaveGroupsOfNodes", 1)
         if DIM_MESH=='3D':
+            if GEAR_ELEMENT == 'W':
+                gmsh.option.setNumber("Mesh.FirstElementTag", 300000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 300000)
             model.mesh.generate(3)
         elif DIM_MESH=='2D':
+            if GEAR_ELEMENT == 'W':
+                gmsh.option.setNumber("Mesh.FirstElementTag", 100000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 100000)
             model.mesh.generate(2)
             
         print('MESH CREATED')

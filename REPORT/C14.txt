@@ -78,25 +78,26 @@ Contact half-width aH:
   At pitch point:                        175.773       μm        
   Maximum along AE:                      179.399       μm        
   Minimum along AE:                       84.740       μm        
-Maximum von Mises Stress:                  24.7        MPa       
+Maximum von Mises Stress:                  22.0        MPa       
 Maximum Shear Stress:                      12.0        MPa       
-Maximum Octahedric Shear Stress:           10.2        MPa       
+Maximum Octahedric Shear Stress:           10.1        MPa       
 -----------------------------------------------------------------
                            POWER LOSS                            
 .................................................................
 Gear Loss Factor HVL:                     0.1945       Wimmer    
 Gear Loss Factor HV:                      0.1950       Ohlendorf 
-Coefficient of Friction μmZ:              0.2800       VDI 2736  
-Average Power Loss Pvzp:                  57.04        W         
-Maximum Local Power Loss:                  4.94        W/mm      
+Coefficient of Friction μmZ:              0.1800       VDI 2736  
+Average Power Loss Pvzp:                  36.67        W         
+Maximum Local Power Loss:                  3.18        W/mm      
 Minimum Local Power Loss:                  0.00        W/mm      
 -----------------------------------------------------------------
                      LOAD CARRYING CAPACITY                      
 .................................................................
 Influence factors:
-Ambient temperature                        20.0        °C        
-Root temperature                       84.6 / 63.1     °C        
-Flank temperature                     290.8 / 200.5    °C        
+  Application factor KA:                   1.25                  
+
+Root temperature                       61.5 / 47.7     °C        
+Flank temperature                     194.1 / 136.1    °C        
 Influence factors:
   Application factor KA=KF=KH:             1.25                  
 Contact factors (Valid for lubricated PA66 gears):
@@ -113,7 +114,7 @@ Bending factors:
   Contact ratio factor Yε:                 0.772                 
   Helix angle factor Yβ:                   1.000                 
 Tooth root stress:                    14.21 /  13.57   MPa       
-Limit tooth root stress:              36.29 /  52.20   MPa       
-Permissible tooth root stress:        18.14 /  26.10   MPa       
-Tooth root stress safety factor SF:     2.55 /  3.85              
+Limit tooth root stress:              53.15 /  60.72   MPa       
+Permissible tooth root stress:        26.58 /  30.36   MPa       
+Tooth root stress safety factor SF:     3.74 /  4.47              
 -----------------------------------------------------------------
