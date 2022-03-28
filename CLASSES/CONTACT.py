@@ -100,6 +100,10 @@ class HERTZ:
             self.DM = GEO.RzS/self.hmC
             self.xiM = 0.5*np.log10(self.DM)
             self.CoFM = self.xiM*GLUB.mubl + (1-self.xiM)*GLUB.muEHD
+        # normal force with friction
+        self.signVG = (GFS.vr1-GFS.vr2)/abs(GFS.vr1-GFS.vr2)
+        self.fnx_COF = GFS.fnx[:, 0]*GEO.b*GEO.rb1/(
+            GEO.rb1+(GEO.T1A+GPATH.xf*GEO.epslon_alpha)*self.CoF*self.signVG)
         # numerical gear loss factor according to Wimmer
         self.INTEGRAND = GFS.fnx*self.vg3D/(GFS.fbt*GFS.vtb)
         self.HVL = np.trapz(

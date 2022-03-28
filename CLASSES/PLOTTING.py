@@ -50,6 +50,14 @@ class GRAPHICS:
         plt.title('Load per face width')
         plt.grid(True)
         plt.show()
+        
+        plt.figure()
+        plt.plot(GPATH.xf, GCONTACT.fnx_COF, 'k')
+        plt.ylabel(r'$Fn\left(x\right)$ / Nmm$^{-1}$')
+        plt.xlabel('\u03B6')
+        plt.title('Load per face width with friction')
+        plt.grid(True)
+        plt.show()
 
         plt.figure()
         plt.plot(GPATH.xf, GFS.vg, 'k')
