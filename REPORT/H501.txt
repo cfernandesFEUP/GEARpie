@@ -24,13 +24,13 @@ Wheel:
   Thermal conductivity k2:                46.00        W/m.K     
   Density ρ2:                            7830.00       kg/m3     
 -----------------------------------------------------------------
-                         M320 LUBRICANT                          
+                         M150 LUBRICANT                          
 .................................................................
 Lubricant temperature                       70         °C        
-Kinematic viscosity ν:                    65.36        cSt       
-Dynamic viscosity η:                      57.08        mPa.s     
-Piezo-viscosity coefficient α:            87.28        1/GPa     
-Thermo-viscosity β:                       0.043        1/°C      
+Kinematic viscosity ν:                    37.41        cSt       
+Dynamic viscosity η:                      32.67        mPa.s     
+Piezo-viscosity coefficient α:            50.23        1/GPa     
+Thermo-viscosity β:                       0.038        1/°C      
 Lubricant parameter XL:                    0.85                  
 -----------------------------------------------------------------
                          GEAR GEOMETRY:                          
@@ -59,92 +59,92 @@ AE:                                       15.55        mm
 -----------------------------------------------------------------
                       OPERATING CONDITIONS                       
 .................................................................
-Pin:                                     22514.7       W         
-Torque T:                             215.0 / 322.5    N.m       
+Pin:                                     10472.0       W         
+Torque T:                             100.0 / 150.0    N.m       
 Speed n:                              1000.0 / 666.7   rpm       
 Angular speed ω:                       104.7 / 69.8    rad/s     
 Tangential speed vt:                       3.83        m/s       
 Base tangent speed vtb:                    3.55        m/s       
 Maximum specific sliding gs:            2.0 / 1.6                
-Tangential load F_t:                      5874.3       N         
-Radial load F_r:                          2387.1       N         
-Normal load F_n:                          6056.1       N         
-Axial load F_a:                           1589.9       N         
-Base circle load F_bt:                    6340.8       N         
-Base circle load F_bn:                    6537.1       N         
+Tangential load F_t:                      2732.2       N         
+Radial load F_r:                          1110.3       N         
+Normal load F_n:                          2816.8       N         
+Axial load F_a:                           739.5        N         
+Base circle load F_bt:                    2949.2       N         
+Base circle load F_bn:                    3040.5       N         
 -----------------------------------------------------------------
                          CONTACT RESULTS                         
 .................................................................
 Maximum pressure p0:
-  At pitch point:                         880.2        MPa       
-  Maximum along AE:                       1366.7       MPa       
-  Minimum along AE:                       777.7        MPa       
+  At pitch point:                         600.3        MPa       
+  Maximum along AE:                       932.1        MPa       
+  Minimum along AE:                       530.4        MPa       
 Mean pressure pm:
-  At pitch point:                         691.3        MPa       
-  Maximum along AE:                       1073.4       MPa       
-  Minimum along AE:                       610.8        MPa       
+  At pitch point:                         471.5        MPa       
+  Maximum along AE:                       732.1        MPa       
+  Minimum along AE:                       416.6        MPa       
 Contact half-width aH:
-  At pitch point:                         65.283       μm        
-  Maximum along AE:                       82.850       μm        
-  Minimum along AE:                       47.151       μm        
-Maximum von Mises Stress:                 762.8        MPa       
-Maximum Shear Stress:                     410.5        MPa       
-Maximum Octahedric Shear Stress:          359.2        MPa       
+  At pitch point:                         44.522       μm        
+  Maximum along AE:                       56.503       μm        
+  Minimum along AE:                       32.157       μm        
+Maximum von Mises Stress:                 520.1        MPa       
+Maximum Shear Stress:                     279.9        MPa       
+Maximum Octahedric Shear Stress:          245.0        MPa       
 -----------------------------------------------------------------
                          FILM THICKNESS                          
 .................................................................
-Average Inlet Shear Heating:              0.998                  
+Average Inlet Shear Heating:              0.999                  
 Central Film Thickness h0C:
-  Maximum along AE:                        1.53        μm        
-  Minimum along AE:                        1.07        μm        
-  Average along AE:                        1.38        μm        
-Central lambda ratio Λ0C:                  1.16                  
+  Maximum along AE:                        0.73        μm        
+  Minimum along AE:                        0.51        μm        
+  Average along AE:                        0.66        μm        
+Central lambda ratio Λ0C:                  0.55                  
 Minimum Film Thickness hmC:
-  Maximum along AE:                        0.98        μm        
-  Minimum along AE:                        0.65        μm        
-  Average along AE:                        0.88        μm        
-Minimum lambda ratio ΛmC:                  0.71                  
+  Maximum along AE:                        0.54        μm        
+  Minimum along AE:                        0.36        μm        
+  Average along AE:                        0.49        μm        
+Minimum lambda ratio ΛmC:                  0.39                  
 -----------------------------------------------------------------
                            POWER LOSS                            
 .................................................................
 Gear Loss Factor HVL:                     0.1869       Wimmer    
 Gear Loss Factor HV:                      0.1639       Ohlendorf 
-Coefficient of Friction μmZ:              0.0476       Schlenk   
-Coefficient of Friction μmZ:              0.0344       Fernandes 
-Coefficient of Friction μmZ:              0.0617       Matsumoto 
-Average Power Loss Pvzp:                  200.30       W         
-Maximum Local Power Loss:                 18.96        W/mm      
-Minimum Local Power Loss:                  0.01        W/mm      
+Coefficient of Friction μmZ:              0.0420       Schlenk   
+Coefficient of Friction μmZ:              0.0385       Fernandes 
+Coefficient of Friction μmZ:              0.0719       Matsumoto 
+Average Power Loss Pvzp:                  82.20        W         
+Maximum Local Power Loss:                  7.78        W/mm      
+Minimum Local Power Loss:                  0.00        W/mm      
 -----------------------------------------------------------------
                      LOAD CARRYING CAPACITY                      
 .................................................................
 Influence factors:
   Application factor KA:                   1.25                  
-  Dynamic factor KV:                       1.02                  
-  Face load factor contact KHβ:            1.10                  
-  Face load factor bending KFβ:            1.07                  
-  Transverse factor contact KHα:           1.02                  
-  Transverse factor bending KFα:           1.02                  
+  Dynamic factor KV:                       1.03                  
+  Face load factor contact KHβ:            1.20                  
+  Face load factor bending KFβ:            1.14                  
+  Transverse factor contact KHα:           1.12                  
+  Transverse factor bending KFα:           1.12                  
 Contact factors:
   Elasticity factor ZE:                   189.812                
   Zone factor ZH:                          2.335                 
   Contact ratio factor Zε:                 0.871                 
   Helix angle factor Zβ:                   0.983                 
-  Lubrication factor ZL:                   1.046                 
+  Lubrication factor ZL:                   0.992                 
   Speed factor ZV:                         0.976                 
-Nominal contact stress:                   919.76       MPa       
-Contact stress:                     1119.42 /  1096.31 MPa       
-Permissible contact stress:         1471.07 /  1471.07 MPa       
-Contact stress safety factor SH:       1.31 /  1.34              
+Nominal contact stress:                   627.27       MPa       
+Contact stress:                      846.05 /  828.59  MPa       
+Permissible contact stress:         1393.97 /  1393.97 MPa       
+Contact stress safety factor SH:       1.65 /  1.68              
 Bending factors:
   Form factor YF:                     1.479 /  1.490             
   Stress correction factor YS:        2.047 /  2.036             
   Helix angle factor Yβ:                   0.932                 
   Notch sensitivity factor YδT:       0.998 /  0.998             
   Surface factor YRT:                 0.957 /  0.957             
-Nominal root stress:                 205.97 /  206.43  MPa       
-Tooth root stress:                   284.55 /  285.19  MPa       
+Nominal root stress:                  95.80 /  96.01   MPa       
+Tooth root stress:                   157.93 /  158.28  MPa       
 Limit tooth root stress:             821.17 /  821.44  MPa       
 Permissible tooth root stress:       586.55 /  586.55  MPa       
-Tooth root stress safety factor SF:     2.89 /  2.88              
+Tooth root stress safety factor SF:     5.20 /  5.19              
 -----------------------------------------------------------------

@@ -36,7 +36,7 @@ class MESHING:
             b = GEO.b1
             ra = GEO.ra1
             r = GEO.r1
-            rs = GEO.dshaft1/2
+            rs = GEO.rf1*.8
             xc = 0
             yc = 0
             self.alfaZ = np.pi/z
@@ -47,7 +47,7 @@ class MESHING:
             b = GEO.b2
             ra = GEO.ra2
             r = GEO.r2
-            rs = GEO.dshaft2/2
+            rs = GEO.rf2*.8
             xc = 0
             yc = GEO.al
             self.alfaZ = np.pi/z
@@ -147,8 +147,8 @@ class MESHING:
         SCl = geog.addPlaneSurface([CLCl])
         SCr = geog.addPlaneSurface([CLCr])
 
-        nR = NODEM//2+1
-        nB = NODEM//2+1
+        nR = NODEM//4+1
+        nB = NODEM//4+1
         nAXIAL = 2*NODEM
         coef = 1
 
@@ -300,13 +300,13 @@ class MESHING:
         gmsh.option.setNumber("Mesh.SaveGroupsOfNodes", 1)
         if DIM_MESH=='3D':
             if GEAR_ELEMENT == 'W':
-                gmsh.option.setNumber("Mesh.FirstElementTag", 300000)
-                gmsh.option.setNumber("Mesh.FirstNodeTag", 300000)
+                gmsh.option.setNumber("Mesh.FirstElementTag", 1000000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 1000000)
             model.mesh.generate(3)
         elif DIM_MESH=='2D':
             if GEAR_ELEMENT == 'W':
-                gmsh.option.setNumber("Mesh.FirstElementTag", 100000)
-                gmsh.option.setNumber("Mesh.FirstNodeTag", 100000)
+                gmsh.option.setNumber("Mesh.FirstElementTag", 200000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 200000)
             model.mesh.generate(2)
             
         print('MESH CREATED')
