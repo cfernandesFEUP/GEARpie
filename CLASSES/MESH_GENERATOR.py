@@ -36,7 +36,7 @@ class MESHING:
             b = GEO.b1
             ra = GEO.ra1
             r = GEO.r1
-            rs = GEO.rf1*.8
+            rs = GEO.ds1
             xc = 0
             yc = 0
             self.alfaZ = np.pi/z
@@ -47,7 +47,7 @@ class MESHING:
             b = GEO.b2
             ra = GEO.ra2
             r = GEO.r2
-            rs = GEO.rf2*.8
+            rs = GEO.ds2
             xc = 0
             yc = GEO.al
             self.alfaZ = np.pi/z
