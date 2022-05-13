@@ -42,6 +42,7 @@ class MESHING:
             self.alfaZ = np.pi/z
             self.helix = b*np.tan(GEO.beta)
             self.twist = self.helix/r
+            rot = self.alfaZ
         elif GEAR_ELEMENT == 'W':
             z = GEO.z2
             b = GEO.b2
@@ -53,7 +54,7 @@ class MESHING:
             self.alfaZ = np.pi/z
             self.helix = -b*np.tan(GEO.beta)
             self.twist = self.helix/r
-            rot = np.pi + 2*(NZ-1)*self.alfaZ - self.alfaZ
+            rot = np.pi + 2*(NZ-1)*self.alfaZ - 2*self.alfaZ
 
         PF = 1.2
 
@@ -187,9 +188,8 @@ class MESHING:
 
         geog.synchronize()
 
-        if GEAR_ELEMENT == 'W':
-            geog.rotate(model.getEntities(dim=2), 0, 0, 0, 0, 0, 1, rot)
-            geog.translate(model.getEntities(dim=2), xc, yc, 0)
+        geog.rotate(model.getEntities(dim=2), 0, 0, 0, 0, 0, 1, rot)
+        geog.translate(model.getEntities(dim=2), xc, yc, 0)
 
         geog.synchronize()
 
@@ -260,37 +260,37 @@ class MESHING:
     
             if NZ >= 3:
                 if GEAR_ELEMENT == 'P':
-                    for j in range(3):
+                    for j in range(NZ):
                         model.addPhysicalGroup(2, [self.Bmesh[0]+j*132], 8+j)
                         model.setPhysicalName(2, 8+j, GEAR_ELEMENT+'CONT'+str(j+1))
-                    for j in range(3):
-                        model.addPhysicalGroup(2, [self.Broot[1]+j*132], 11+j)
+                    for j in range(NZ):
+                        model.addPhysicalGroup(2, [self.Broot[1]+j*132], 8+NZ+j)
                         model.setPhysicalName(
-                            2, 11+j, GEAR_ELEMENT+'ROOT'+str(j+1))
+                            2, 8+NZ+j, GEAR_ELEMENT+'ROOT'+str(j+1))
                 elif GEAR_ELEMENT == 'W':
-                    for j in range(3):
+                    for j in range(NZ):
                         model.addPhysicalGroup(2, [self.Bmesh[-2]-j*132], 8+j)
                         model.setPhysicalName(2, 8+j, GEAR_ELEMENT+'CONT'+str(j+1))
-                    for j in range(3):
-                        model.addPhysicalGroup(2, [self.Broot[-3]-j*132], 11+j)
+                    for j in range(NZ):
+                        model.addPhysicalGroup(2, [self.Broot[-3]-j*132], 8+NZ+j)
                         model.setPhysicalName(
-                            2, 11+j, GEAR_ELEMENT+'ROOT'+str(j+1))
+                            2, 8+NZ+j, GEAR_ELEMENT+'ROOT'+str(j+1))
     
             model.addPhysicalGroup(3, [EL[1] for EL in self.VOLS], 1)
             model.setPhysicalName(3, 1, 'Gear' + GEAR_ELEMENT)
     
             # left/right
             if NZ < z:
-                model.addPhysicalGroup(2, [12+self.ADD, 56+self.ADD], 14)
-                model.setPhysicalName(2, 14, GEAR_ELEMENT+'LEFT')
+                model.addPhysicalGroup(2, [12+self.ADD, 56+self.ADD], 8+2*NZ)
+                model.setPhysicalName(2, 8+2*NZ, GEAR_ELEMENT+'LEFT')
                 model.addPhysicalGroup(2, [26+self.ADD+(NZ-1)*132,
-                                           70+self.ADD+(NZ-1)*132], 15)
-                model.setPhysicalName(2, 15, GEAR_ELEMENT+'RIGHT')
+                                           70+self.ADD+(NZ-1)*132], 8+2*NZ+1)
+                model.setPhysicalName(2, 8+2*NZ+1, GEAR_ELEMENT+'RIGHT')
                 model.addPhysicalGroup(2, [12+self.ADD, 56+self.ADD,
                                            26+self.ADD+(NZ-1)*132,
                                            70+self.ADD+(NZ-1)*132]
-                                       + self.Bshaft, 16)
-                model.setPhysicalName(2, 16, GEAR_ELEMENT+'SLR')
+                                       + self.Bshaft, 8+2*NZ+2)
+                model.setPhysicalName(2, 8+2*NZ+2, GEAR_ELEMENT+'SLR')
 
         # generate mesh
         geog.synchronize()
@@ -300,13 +300,13 @@ class MESHING:
         gmsh.option.setNumber("Mesh.SaveGroupsOfNodes", 1)
         if DIM_MESH=='3D':
             if GEAR_ELEMENT == 'W':
-                gmsh.option.setNumber("Mesh.FirstElementTag", 1000000)
-                gmsh.option.setNumber("Mesh.FirstNodeTag", 1000000)
+                gmsh.option.setNumber("Mesh.FirstElementTag", 2000000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 2000000)
             model.mesh.generate(3)
         elif DIM_MESH=='2D':
             if GEAR_ELEMENT == 'W':
-                gmsh.option.setNumber("Mesh.FirstElementTag", 200000)
-                gmsh.option.setNumber("Mesh.FirstNodeTag", 200000)
+                gmsh.option.setNumber("Mesh.FirstElementTag", 1000000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 1000000)
             model.mesh.generate(2)
             
         print('MESH CREATED')
