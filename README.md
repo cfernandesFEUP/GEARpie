@@ -32,7 +32,7 @@ GEARpie is useful to calculate cylindrical gears:
 
 The rigid load sharing model implemented on the software is descibed in [1]. If a load sharing result is provided (for example a FEM result in a text file, k=f(meshing position)) the stiffness is considered for all the calculations.
 
-The power loss models are described in [2-5]. The Ohlendorf (analytic) and Wimmer (numerical) gear loss factors are implemented.
+The power loss models are described in [2-5,7]. The Ohlendorf (analytic) and Wimmer (numerical) gear loss factors are implemented.
 
 The VDI 2736 temperature calculation uses Wimmer gear loss factor instead of Ohlendorf (to have more accuracy). The calculation according to VDI 2736 is done by default for open gearboxes (gearbox surface area is not needed). If the user needs the calculation for closed or semi-open gearboxes, just change the default value inside VDI 2736 class.
 
