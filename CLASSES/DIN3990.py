@@ -316,6 +316,18 @@ class LCC:
             self.betaDIN = GEO.beta*180/np.pi
         
         self.YB = 1 - self.ebeta*self.betaDIN / 120
+        
+        # rim thickness factor
+        # ht1, ht2 = GEO.ra1-GEO.rf1, GEO.ra2-GEO.rf2
+        # if GEO.sR1/ht1 <1.2:
+        #     self.YA1 = 1.6*np.log(2.242*ht1/GEO.sR1)
+        # else:
+        #     self.YA1 = 1
+        # if GEO.sR2/ht2<1.2:
+        #     self.YA2 = 1.6*np.log(2.242*ht2/GEO.sR2)
+        # else:
+        #     self.YA2 = 1
+        
         # notch sensitivity factor (YdelT)
         self.YdelT1 = 0.9434 + 0.0231*(1 + 2*self.qs1)**0.5
         self.YdelT2 = 0.9434 + 0.0231*(1 + 2*self.qs2)**0.5
@@ -341,8 +353,8 @@ class LCC:
         self.Yst = 2
         self.SigmaFE1 = GMAT.SigmaFlim1*self.Yst
         self.SigmaFE2 = GMAT.SigmaFlim2*self.Yst
-        self.SigmaF01 = GFS.ft/(GEO.b*GEO.m)*self.YF1*self.YS1*self.YB
-        self.SigmaF02 = GFS.ft/(GEO.b*GEO.m)*self.YF2*self.YS2*self.YB
+        self.SigmaF01 = GFS.ft/(GEO.b*GEO.m)*self.YF1*self.YS1*self.YB#*self.YA1
+        self.SigmaF02 = GFS.ft/(GEO.b*GEO.m)*self.YF2*self.YS2*self.YB#*self.YA2
         self.SigmaF1 = self.SigmaF01*self.KF
         self.SigmaF2 = self.SigmaF02*self.KF
         self.SigmaFG1 = self.SigmaFE1*self.YdelT1*self.YRrelT1

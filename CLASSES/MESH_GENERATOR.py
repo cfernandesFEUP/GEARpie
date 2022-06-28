@@ -300,13 +300,13 @@ class MESHING:
         gmsh.option.setNumber("Mesh.SaveGroupsOfNodes", 1)
         if DIM_MESH=='3D':
             if GEAR_ELEMENT == 'W':
-                gmsh.option.setNumber("Mesh.FirstElementTag", 2000000)
-                gmsh.option.setNumber("Mesh.FirstNodeTag", 2000000)
+                gmsh.option.setNumber("Mesh.FirstElementTag", 4000000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 4000000)
             model.mesh.generate(3)
         elif DIM_MESH=='2D':
             if GEAR_ELEMENT == 'W':
-                gmsh.option.setNumber("Mesh.FirstElementTag", 1000000)
-                gmsh.option.setNumber("Mesh.FirstNodeTag", 1000000)
+                gmsh.option.setNumber("Mesh.FirstElementTag", 4000000)
+                gmsh.option.setNumber("Mesh.FirstNodeTag", 4000000)
             model.mesh.generate(2)
             
         print('MESH CREATED')
