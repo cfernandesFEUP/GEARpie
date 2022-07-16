@@ -38,6 +38,7 @@ class GEAR:
         self.z = [float(input('z1: ')), float(input('z2: '))]
         self.x = [float(input('Pinion profile shift x1: ')),
                   float(input('Wheel profile shift x2: '))]
+        self.addendum_reduction = str(input('Calculate addendum reduction factor (Y/N): ')).upper()
         self.b = [float(input('Pinion facewith b1: ')),
                   float(input('Wheel facewith b2: '))]
         self.dshaft = [float(input('Pinion shaft ds1: ')),

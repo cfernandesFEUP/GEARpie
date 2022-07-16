@@ -100,12 +100,15 @@ class MAAG:
         self.dl2 = 2*self.u*self.al/(self.u + 1)
         self.rl1, self.rl2 = self.dl1/2, self.dl2/2
         # addendum reduction factor
-        self.k = (self.z1+self.z2)/2*(((involute(self.alphatw)
+        if GTYPE.addendum_reduction == 'Y':
+            self.k = (self.z1+self.z2)/2*(((involute(self.alphatw)
                                         - involute(self.alphat))
                                        / np.tan(self.alpha)) -
                                       1/np.cos(self.beta) *
                                       (np.cos(self.alphat) /
                                        np.cos(self.alphatw) - 1))
+        else:
+            self.k = 0
         # tip diameter
         self.da1 = self.d1 + 2*self.m*(self.haP + self.x1 - self.k)
         self.da2 = self.d2 + 2*self.m*(self.haP + self.x2 - self.k)
