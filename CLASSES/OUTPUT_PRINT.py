@@ -116,6 +116,9 @@ class PRINTING:
         print('{:<35s}{:^20s}{:<10s}'.format('Root radius:', "%.3f" %
                                              GEO.rf1 + ' / ' +
                                              "%.3f" % GEO.rf2, 'mm'), file=f)
+        print('{:<35s}{:^20s}{:<10s}'.format('Base radius:', "%.3f" %
+                                             GEO.rb1 + ' / ' +
+                                             "%.3f" % GEO.rb2, 'mm'), file=f)
         print('{:<35s}{:^20s}{:<10s}'.format('Reference radius:', "%.3f" %
                                              GEO.r1 + ' / ' +
                                              "%.3f" % GEO.r2, 'mm'), file=f)
