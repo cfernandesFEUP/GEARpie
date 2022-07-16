@@ -95,6 +95,14 @@ class PRINTING:
                 'Dynamic viscosity \u03B7:', "%.2f" % GLUB.miu, 'mPa.s'), 
                 file=f)
             print('{:<35s}{:^20s}{:<10s}'.format(
+                'Density @ 15 \u00B0C  \u03C1\u2080:', 
+                "%.2f" % GLUB.rho0, 'g/cm3'), 
+                file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
+                'Density @ ' + "%.0f" % (GLUB.TL) + ' \u00B0C \u03C1:', 
+                "%.2f" % GLUB.rho, 'g/cm3'), 
+                file=f)
+            print('{:<35s}{:^20s}{:<10s}'.format(
                 'Piezo-viscosity coefficient \u03B1:', 
                 "%.2f" % (GLUB.piezo/1e-9), '1/GPa'), file=f)
             print('{:<35s}{:^20s}{:<10s}'.format(
