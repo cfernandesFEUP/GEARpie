@@ -64,6 +64,7 @@ class GEAR:
         self.m = 4.5
         self.z = [16, 24]
         self.x = [0.1817, 0.1715]
+        self.addendum_reduction = 'N'
         self.b = [14., 14.]
         self.dshaft = [30., 30.]
         self.al = None
@@ -81,6 +82,7 @@ class GEAR:
         self.m = 3.5
         self.z = [20, 30]
         self.x = [0.1809, 0.0891]
+        self.addendum_reduction = 'N'
         self.b = [23., 23.]
         self.dshaft = [30., 30.]
         self.al = None
@@ -98,6 +100,7 @@ class GEAR:
         self.m = 2.5
         self.z = [28, 42]
         self.x = [0.2290, 0.1489]
+        self.addendum_reduction = 'N'
         self.b = [17., 17.]
         self.dshaft = [30., 30.]
         self.al = None
@@ -115,6 +118,7 @@ class GEAR:
         self.m = 1.75
         self.z = [38, 57]
         self.x = [1.6915, 2.0003]
+        self.addendum_reduction = 'N'
         self.b = [21.2418, 21.2418]
         self.dshaft = [30., 30.]
         self.al = None
