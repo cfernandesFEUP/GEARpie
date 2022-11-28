@@ -38,7 +38,7 @@ The VDI 2736 temperature calculation uses Wimmer gear loss factor instead of Ohl
 
 The implementation of VDI 2736 standard makes the verification both for tooth root stress and tooth flank stress. However, the tooth flank is tipically performed only for lubricated PA66 gears (so only for those cases is accurate and according to the standard). The material properties are available only for an operating temperature lower than 120 °C. Every safety factor (SF or SH) calculated above 120 °C is incorrect due to lack of material data - the material properties have the values calaculated for 120 °C. If the user has accurate material data, should include it on MATERIAL_LIBRARY class.
 
-The mesh generation was used to create the FEM thermal model described in [8-9]. The mesh is useful for any Finite Element Analysis (tested in Abaqus and CalculiX).
+The mesh generation is useful to create, for example, the FEM thermal model described in [8-9]. The mesh is useful for any Finite Element Analysis (tested in Abaqus and CalculiX).
 
 ## Graphical Output Example
 <p align="center">
