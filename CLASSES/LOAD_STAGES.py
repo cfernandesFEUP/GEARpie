@@ -81,7 +81,7 @@ class FZG:
     def K9_05(self):
         self.torque = 302
     def K10_05(self):
-        self.torque = 272.7
+        self.torque = 372.6
     def K11_05(self):
         self.torque = 450.1
     def K12_05(self):
