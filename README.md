@@ -26,7 +26,7 @@ GEARpie is useful to calculate cylindrical gears:
 - instantaneous and average heat generation according to [8]
 - structured FEM mesh (1st or 2nd order elements)
 - load carrying capacity according to DIN 3990 method B (steel gears)
-- load carrying capacity and bulk temperature according to VDI 2736 Part 2 (plastic gears) 
+- load carrying capacity and bulk temperature according to VDI 2736 Part 2 (plastic gears) [10]
 - VDI 2736 tooth root stress is calculated according to method C as suggested in the standard (method B is possible)
 - VDI 2736 local wear, deformation and peak loads verification. 
 
@@ -100,5 +100,8 @@ The report is automatically saved to "REPORT" folder in txt format.
  [9] Fernandes, C. M. C. G., Rocha, D. M. P., Martins, R. C., Magalhães, L., & Seabra, J. H. O. (2019). 
  Hybrid Polymer Gear Concepts to Improve Thermal Behavior. 
  Journal of Tribology, 141(3), 032201. https://doi.org/10.1115/1.4041461
+ 
+ [10] V. Roda-casanova, C.M.C.G. Fernandes, A comparison of analytical methods to predict the bulk temperature in polymer spur gears, Mechanism and Machine Theory. 173 (2022) 104849. https://doi.org/10.1016/j.mechmachtheory.2022.104849.
 
-Copyright (c) 2022 Carlos M.C.G. Fernandes
+
+Copyright (c) 2023 Carlos M.C.G. Fernandes
