@@ -49,11 +49,13 @@ class LITVIN:
         # tooth rotation
         self.aROOT = np.pi/z
         # point A
-        self.aA = np.pi*GEO.mt/4 - GEO.m * \
-            np.tan(GEO.alphat)-GEO.rhoF*np.cos(GEO.alphat)
-        self.bA = 1.25*GEO.m - x*GEO.m - GEO.rhoF
-        self.alphaG = np.arctan(np.tan(GEO.alphat) - 4*(GEO.m-x*GEO.m)
-                                / (GEO.mt*z*np.sin(2*GEO.alphat)))
+        #self.aA = np.pi*GEO.mt/4 - GEO.m * \
+        #    np.tan(GEO.alphat)-GEO.rhoF*np.cos(GEO.alphat)
+        self.aA = GEO.mt*(np.pi/4 - 1.25*np.tan(GEO.alphat))\
+             - GEO.rhoF*(1-np.sin(GEO.alphat))/np.cos(GEO.alphat)
+        self.bA = 1.25*GEO.m - GEO.rhoF
+        self.alphaG = np.arctan(np.tan(GEO.alphat) - 4*(1-x)
+                                / (z*np.sin(2*GEO.alphat)))
         self.rG = r*np.cos(GEO.alphat)/(np.cos(self.alphaG))
         # root fillet
         self.thetaR = np.linspace(0, np.pi/2-GEO.alphat, DISCRETIZATION)

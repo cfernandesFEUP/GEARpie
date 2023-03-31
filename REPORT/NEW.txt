@@ -1,0 +1,120 @@
+-----------------------------------------------------------------
+                            NEW GEAR                             
+.................................................................
+Presure angle α:                           20.0        °         
+Helix angle β:                             0.0         °         
+Module m:                                  2.0         mm        
+Number of teeth z1:                        30.0                  
+Number of teeth z2:                        30.0                  
+Profile shift x1:                         0.0000                 
+Profile shift x2:                         0.0000                 
+-----------------------------------------------------------------
+                         GEAR MATERIALS                          
+.................................................................
+Pinion:
+  Young modulus E1:                         3          GPa       
+  Poisson ratio ν1:                        0.35                  
+  Thermal capacity cp1:                  1465.00       J/kg.K    
+  Thermal conductivity k1:                 0.30        W/m.K     
+  Density ρ1:                            1415.00       kg/m3     
+Wheel:
+  Young modulus E2:                         3          GPa       
+  Poisson ratio ν2:                        0.35                  
+  Thermal capacity cp2:                  1465.00       J/kg.K    
+  Thermal conductivity k2:                 0.30        W/m.K     
+  Density ρ2:                            1415.00       kg/m3     
+-----------------------------------------------------------------
+                         GEAR GEOMETRY:                          
+.................................................................
+Axis distance:                             60.0        mm        
+Base pitch n:                             5.904        mm        
+Base pitch t:                             5.904        mm        
+Root radius:                         27.500 / 27.500   mm        
+Base radius:                         28.191 / 28.191   mm        
+Reference radius:                    30.000 / 30.000   mm        
+Pitch radius:                        30.000 / 30.000   mm        
+Tip radius:                          32.000 / 32.000   mm        
+-----------------------------------------------------------------
+                          CONTACT RATIO                          
+.................................................................
+Transverse εα:                             1.65                  
+Overlap εβ:                                0.00                  
+Total εγ:                                  1.65                  
+-----------------------------------------------------------------
+                   PATH OF CONTACT DIMENSIONS                    
+.................................................................
+T1T2:                                     20.52        mm        
+AB:                                        3.86        mm        
+AC:                                        4.88        mm        
+AD:                                        5.90        mm        
+AE:                                        9.76        mm        
+-----------------------------------------------------------------
+                      OPERATING CONDITIONS                       
+.................................................................
+Pin:                                      1047.2       W         
+Torque T:                              10.0 / 10.0     N.m       
+Speed n:                             1000.0 / 1000.0   rpm       
+Angular speed ω:                      104.7 / 104.7    rad/s     
+Tangential speed vt:                       3.14        m/s       
+Base tangent speed vtb:                    2.95        m/s       
+Maximum specific sliding gs:            1.8 / 1.8                
+Tangential load F_t:                      333.3        N         
+Radial load F_r:                          121.3        N         
+Normal load F_n:                          333.3        N         
+Axial load F_a:                            0.0         N         
+Base circle load F_bt:                    354.7        N         
+Base circle load F_bn:                    354.7        N         
+-----------------------------------------------------------------
+                         CONTACT RESULTS                         
+.................................................................
+Maximum pressure p0:
+  At pitch point:                          51.7        MPa       
+  Maximum along AE:                        52.0        MPa       
+  Minimum along AE:                        36.8        MPa       
+Mean pressure pm:
+  At pitch point:                          40.6        MPa       
+  Maximum along AE:                        40.8        MPa       
+  Minimum along AE:                        28.9        MPa       
+Contact half-width aH:
+  At pitch point:                        145.533       μm        
+  Maximum along AE:                      145.533       μm        
+  Minimum along AE:                       90.516       μm        
+Maximum von Mises Stress:                  25.9        MPa       
+Maximum Shear Stress:                      12.6        MPa       
+Maximum Octahedric Shear Stress:           10.7        MPa       
+-----------------------------------------------------------------
+                           POWER LOSS                            
+.................................................................
+Gear Loss Factor HVL:                     0.1492       Wimmer    
+Gear Loss Factor HV:                      0.1494       Ohlendorf 
+Coefficient of Friction μmZ:              0.2800       VDI 2736  
+Average Power Loss Pvzp:                  43.75        W         
+Maximum Local Power Loss:                  3.38        W/mm      
+Minimum Local Power Loss:                  0.01        W/mm      
+-----------------------------------------------------------------
+                     LOAD CARRYING CAPACITY                      
+.................................................................
+Influence factors:
+Ambient temperature                        20.0        °C        
+Root temperature                       72.6 / 72.6     °C        
+Flank temperature                     240.5 / 240.5    °C        
+Influence factors:
+  Application factor KA=KF=KH:             1.25                  
+Contact factors (Valid for lubricated PA66 gears):
+  Elasticity factor ZE:                   24.091                 
+  Zone factor ZH:                          2.495                 
+  Contact ratio factor Zε:                 0.884                 
+  Helix angle factor Zβ:                   1.000                 
+Contact stress:                            45.74       MPa       
+Permissible contact stress:           22.92 /  22.92   MPa       
+Contact stress safety factor SH:       0.70 /  0.70              
+Bending factors:
+  Form factor YFa:                    2.532 /  2.532             
+  Stress correction factor YSa:       1.625 /  1.625             
+  Contact ratio factor Yε:                 0.704                 
+  Helix angle factor Yβ:                   1.000                 
+Tooth root stress:                    32.17 /  32.17   MPa       
+Limit tooth root stress:              45.73 /  45.73   MPa       
+Permissible tooth root stress:        22.86 /  22.86   MPa       
+Tooth root stress safety factor SF:     1.42 /  1.42              
+-----------------------------------------------------------------

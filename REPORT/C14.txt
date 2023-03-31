@@ -24,16 +24,16 @@ Wheel:
   Thermal conductivity k2:                46.00        W/m.K     
   Density ρ2:                            7830.00       kg/m3     
 -----------------------------------------------------------------
-                         P150 LUBRICANT                          
+                          M32 LUBRICANT                          
 .................................................................
 Lubricant temperature                       70         °C        
-Kinematic viscosity ν:                    45.42        cSt       
-Dynamic viscosity η:                      37.83        mPa.s     
-Density @ 15 °C  ρ₀:                       0.86        g/cm3     
-Density @ 70 °C ρ:                         0.83        g/cm3     
-Piezo-viscosity coefficient α:            16.91        1/GPa     
-Thermo-viscosity β:                       0.033        1/°C      
-Lubricant parameter XL:                    0.65                  
+Kinematic viscosity ν:                    11.14        cSt       
+Dynamic viscosity η:                       9.73        mPa.s     
+Density @ 15 °C  ρ₀:                       0.90        g/cm3     
+Density @ 70 °C ρ:                         0.87        g/cm3     
+Piezo-viscosity coefficient α:            15.13        1/GPa     
+Thermo-viscosity β:                       0.029        1/°C      
+Lubricant parameter XL:                    0.85                  
 -----------------------------------------------------------------
                          GEAR GEOMETRY:                          
 .................................................................
@@ -62,70 +62,70 @@ AE:                                       19.43        mm
 -----------------------------------------------------------------
                       OPERATING CONDITIONS                       
 .................................................................
-Pin:                                     50779.1       W         
-Torque T:                             215.5 / 323.3    N.m       
-Speed n:                             2250.0 / 1500.0   rpm       
-Angular speed ω:                      235.6 / 157.1    rad/s     
-Tangential speed vt:                       8.62        m/s       
-Base tangent speed vtb:                    7.97        m/s       
+Pin:                                     20944.0       W         
+Torque T:                             200.0 / 300.0    N.m       
+Speed n:                              1000.0 / 666.7   rpm       
+Angular speed ω:                       104.7 / 69.8    rad/s     
+Tangential speed vt:                       3.83        m/s       
+Base tangent speed vtb:                    3.54        m/s       
 Maximum specific sliding gs:            3.8 / 2.2                
-Tangential load F_t:                      5888.3       N         
-Radial load F_r:                          2431.7       N         
-Normal load F_n:                          5888.3       N         
+Tangential load F_t:                      5464.5       N         
+Radial load F_r:                          2256.6       N         
+Normal load F_n:                          5464.5       N         
 Axial load F_a:                            0.0         N         
-Base circle load F_bt:                    6370.7       N         
-Base circle load F_bn:                    6370.7       N         
+Base circle load F_bt:                    5912.1       N         
+Base circle load F_bn:                    5912.1       N         
 -----------------------------------------------------------------
                          CONTACT RESULTS                         
 .................................................................
 Maximum pressure p0:
-  At pitch point:                         1398.5       MPa       
-  Maximum along AE:                       1496.6       MPa       
-  Minimum along AE:                       969.0        MPa       
+  At pitch point:                         1347.3       MPa       
+  Maximum along AE:                       1441.8       MPa       
+  Minimum along AE:                       933.4        MPa       
 Mean pressure pm:
-  At pitch point:                         1098.4       MPa       
-  Maximum along AE:                       1175.5       MPa       
-  Minimum along AE:                       761.0        MPa       
+  At pitch point:                         1058.1       MPa       
+  Maximum along AE:                       1132.4       MPa       
+  Minimum along AE:                       733.1        MPa       
 Contact half-width aH:
-  At pitch point:                        103.581       μm        
-  Maximum along AE:                      105.705       μm        
-  Minimum along AE:                       49.092       μm        
-Maximum von Mises Stress:                 823.0        MPa       
-Maximum Shear Stress:                     443.1        MPa       
-Maximum Octahedric Shear Stress:          387.7        MPa       
+  At pitch point:                         99.783       μm        
+  Maximum along AE:                      101.830       μm        
+  Minimum along AE:                       47.292       μm        
+Maximum von Mises Stress:                 793.6        MPa       
+Maximum Shear Stress:                     426.9        MPa       
+Maximum Octahedric Shear Stress:          373.6        MPa       
 -----------------------------------------------------------------
                          FILM THICKNESS                          
 .................................................................
-Average Inlet Shear Heating:              0.993                  
+Average Inlet Shear Heating:              0.999                  
 Central Film Thickness h0C:
-  Maximum along AE:                        0.58        μm        
-  Minimum along AE:                        0.37        μm        
-  Average along AE:                        0.51        μm        
-Central lambda ratio Λ0C:                  0.41                  
+  Maximum along AE:                        0.11        μm        
+  Minimum along AE:                        0.07        μm        
+  Average along AE:                        0.10        μm        
+Central lambda ratio Λ0C:                  0.08                  
 Minimum Film Thickness hmC:
-  Maximum along AE:                        0.49        μm        
-  Minimum along AE:                        0.30        μm        
-  Average along AE:                        0.43        μm        
-Minimum lambda ratio ΛmC:                  0.33                  
+  Maximum along AE:                        0.10        μm        
+  Minimum along AE:                        0.06        μm        
+  Average along AE:                        0.09        μm        
+Minimum lambda ratio ΛmC:                  0.07                  
 -----------------------------------------------------------------
                            POWER LOSS                            
 .................................................................
 Gear Loss Factor HVL:                     0.1984       Wimmer    
 Gear Loss Factor HV:                      0.1986       Ohlendorf 
-Coefficient of Friction μmZ:              0.0349       Schlenk   
-Coefficient of Friction μmZ:              0.0311       Fernandes 
-Coefficient of Friction μmZ:              0.0741       Matsumoto 
-Average Power Loss Pvzp:                  351.73       W         
-Maximum Local Power Loss:                 30.37        W/mm      
-Minimum Local Power Loss:                  0.06        W/mm      
+Coefficient of Friction μmZ:              0.0564       Schlenk   
+Coefficient of Friction μmZ:              0.0699       Fernandes 
+Coefficient of Friction μmZ:              0.1013       Matsumoto 
+Average Power Loss Pvzp:                  234.14       W         
+Maximum Local Power Loss:                 20.21        W/mm      
+Minimum Local Power Loss:                  0.04        W/mm      
 -----------------------------------------------------------------
                      LOAD CARRYING CAPACITY                      
 .................................................................
 Influence factors:
   Application factor KA:                   1.25                  
-  Dynamic factor KV:                       1.03                  
-  Face load factor contact KHβ:            1.05                  
-  Face load factor bending KFβ:            1.03                  
+  Dynamic factor KV:                       1.02                  
+  Face load factor contact KHβ:            1.06                  
+  Face load factor bending KFβ:            1.04                  
   Transverse factor contact KHα:           1.00                  
   Transverse factor bending KFα:           1.00                  
 Contact factors:
@@ -133,21 +133,21 @@ Contact factors:
   Zone factor ZH:                          2.342                 
   Contact ratio factor Zε:                 0.920                 
   Helix angle factor Zβ:                   1.000                 
-  Lubrication factor ZL:                   0.992                 
-  Speed factor ZV:                         0.995                 
-Nominal contact stress:                   1275.66      MPa       
-Contact stress:                     1591.30 /  1486.90 MPa       
-Permissible contact stress:         1421.69 /  1421.69 MPa       
-Contact stress safety factor SH:       0.89 /  0.96              
+  Lubrication factor ZL:                   0.922                 
+  Speed factor ZV:                         0.976                 
+Nominal contact stress:                   1228.89      MPa       
+Contact stress:                     1522.48 /  1422.60 MPa       
+Permissible contact stress:         1296.29 /  1296.29 MPa       
+Contact stress safety factor SH:       0.85 /  0.91              
 Bending factors:
   Form factor YF:                     1.689 /  1.583             
   Stress correction factor YS:        1.851 /  1.917             
   Helix angle factor Yβ:                   1.000                 
   Notch sensitivity factor YδT:       0.994 /  0.996             
   Surface factor YRT:                 0.957 /  0.957             
-Nominal root stress:                 292.22 /  283.58  MPa       
-Tooth root stress:                   391.04 /  379.47  MPa       
+Nominal root stress:                 271.19 /  263.17  MPa       
+Tooth root stress:                   357.44 /  346.86  MPa       
 Limit tooth root stress:             818.25 /  819.58  MPa       
 Permissible tooth root stress:       584.47 /  584.47  MPa       
-Tooth root stress safety factor SF:     2.09 /  2.16              
+Tooth root stress safety factor SF:     2.29 /  2.36              
 -----------------------------------------------------------------

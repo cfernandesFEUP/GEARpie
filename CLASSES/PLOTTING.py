@@ -66,6 +66,15 @@ class GRAPHICS:
         plt.xlabel('\u03B6')
         plt.grid(True)
         plt.show()
+        
+        plt.figure()
+        plt.plot(GPATH.xf, GCONTACT.p0[:,0], 'k')
+        plt.ylabel(r'$\sigma_H\left(x\right)$ / MPa')
+        plt.title('Contact pressure')
+        plt.xlabel('\u03B6')
+        plt.grid(True)
+        plt.show()
+
 
         cmap = plt.get_cmap('jet', 21)
         nc = 21
