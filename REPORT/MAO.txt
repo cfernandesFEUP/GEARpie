@@ -79,9 +79,9 @@ Contact half-width aH:
   At pitch point:                        145.533       μm        
   Maximum along AE:                      145.533       μm        
   Minimum along AE:                       90.516       μm        
-Maximum von Mises Stress:                  25.9        MPa       
-Maximum Shear Stress:                      12.6        MPa       
-Maximum Octahedric Shear Stress:           10.7        MPa       
+Maximum von Mises Stress:                  32.4        MPa       
+Maximum Shear Stress:                      15.8        MPa       
+Maximum Octahedric Shear Stress:           13.3        MPa       
 -----------------------------------------------------------------
                            POWER LOSS                            
 .................................................................
@@ -95,9 +95,9 @@ Minimum Local Power Loss:                  0.01        W/mm
                      LOAD CARRYING CAPACITY                      
 .................................................................
 Influence factors:
-Ambient temperature                        20.0        °C        
-Root temperature                       72.6 / 72.6     °C        
-Flank temperature                     240.5 / 240.5    °C        
+Ambient temperature                        23.0        °C        
+Root temperature                       75.6 / 75.6     °C        
+Flank temperature                     243.5 / 243.5    °C        
 Influence factors:
   Application factor KA=KF=KH:             1.25                  
 Contact factors (Valid for lubricated PA66 gears):
@@ -114,7 +114,7 @@ Bending factors:
   Contact ratio factor Yε:                 0.704                 
   Helix angle factor Yβ:                   1.000                 
 Tooth root stress:                    32.17 /  32.17   MPa       
-Limit tooth root stress:              45.73 /  45.73   MPa       
-Permissible tooth root stress:        22.86 /  22.86   MPa       
-Tooth root stress safety factor SF:     1.42 /  1.42              
+Limit tooth root stress:              43.50 /  43.50   MPa       
+Permissible tooth root stress:        21.75 /  21.75   MPa       
+Tooth root stress safety factor SF:     1.35 /  1.35              
 -----------------------------------------------------------------

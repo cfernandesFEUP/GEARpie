@@ -313,7 +313,7 @@ class PRINTING:
         # load carrying capacity
         print('{:^65s}'.format('LOAD CARRYING CAPACITY'), file=f)
         print(dots, file=f)
-        if (GMAT.MAT1 and GMAT.MAT2) == ('STEEL' or 'ADI'):
+        if GMAT.MAT1 == ('STEEL' or 'ADI') and GMAT.MAT2 == ('STEEL' or 'ADI'):
             print('Influence factors:', file=f)
             print('{:<35s}{:^20s}{:<10s}'.format('  Application factor KA: ',
                                                  ' %.2f' % GLCC.KA, ''), 
