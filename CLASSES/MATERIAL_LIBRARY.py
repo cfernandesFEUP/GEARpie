@@ -103,7 +103,7 @@ class MATERIAL:
         self.SigmaHlim1 = Pmaterial.SigmaHlim
         self.SigmaFlim1 = Pmaterial.SigmaFlim
         
-        Wmaterial = LIBRARY_MAT(PINION_MAT)
+        Wmaterial = LIBRARY_MAT(WHEEL_MAT)
         self.MAT2 = WHEEL_MAT
         self.E2 = Wmaterial.E
         self.v2 = Wmaterial.v
