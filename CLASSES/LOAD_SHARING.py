@@ -104,7 +104,7 @@ class LINES:
         def inv(alpha):
             return np.tan(alpha) - alpha
         
-        def STIFFNESS(E, v, b, yC, alphaC, profile):
+        def STIFFNESS(E, v, b, rC, gammaC, yC, alphaC, profile):
             Cs = 1.5
             G = E/(2*(1+v))
             x = -profile.xLS[profile.yLS<=yC]
@@ -112,7 +112,7 @@ class LINES:
             gammaY = np.arctan(x/y)
             rY = y/np.cos(gammaY)
             eY = 2*rY*np.sin(gammaY)
-            kPbI = 12/(E*b)*(((yC-y)*np.cos(alphaC))**2/eY**3)
+            kPbI = 12/(E*b)*(((yC-y)*np.cos(alphaC)-rC*np.sin(gammaC/2)*np.sin(alphaC))**2/eY**3)
             kPsI = Cs/(G*b)*(np.cos(alphaC))**2/eY
             kPcI = 1/(E*b)*(np.sin(alphaC))**2/eY
             kPtI = kPbI + kPsI + kPcI
@@ -127,7 +127,7 @@ class LINES:
         self.alphaT1 = np.arccos(GEO.rb1/self.rC1)
         self.alphaT2 = np.arccos(GEO.rb2/self.rC2)
         self.gammaC1 = 2*(self.s1/GEO.d1 + inv(GEO.alphat) - inv(self.alphaT1))
-        self.gammaC2 = 2*(self.s2/GEO.d1 + inv(GEO.alphat) - inv(self.alphaT1))
+        self.gammaC2 = 2*(self.s2/GEO.d2 + inv(GEO.alphat) - inv(self.alphaT2))
         
         self.alphaC1 = self.alphaT1 - 0.5*self.gammaC1
         self.alphaC2 = self.alphaT2 - 0.5*self.gammaC2
@@ -137,8 +137,10 @@ class LINES:
         self.kP1 = np.zeros(len(self.rC1))
         self.kP2 = np.zeros(len(self.rC2))
         for j in range(len(self.rC1)):
-            self.kP1[j] = STIFFNESS(GMAT.E1,GMAT.v1,GEO.b1,self.yC1[j],self.alphaC1[j],Pprofile)
-            self.kP2[j] = STIFFNESS(GMAT.E2,GMAT.v2,GEO.b2,self.yC2[j],self.alphaC2[j],Wprofile)
+            self.kP1[j] = STIFFNESS(GMAT.E1,GMAT.v1,GEO.b1,self.rC1[j],
+                                    self.gammaC1[j],self.yC1[j],self.alphaC1[j],Pprofile)
+            self.kP2[j] = STIFFNESS(GMAT.E2,GMAT.v2,GEO.b2,self.rC2[j],
+                                    self.gammaC2[j],self.yC2[j],self.alphaC2[j],Wprofile)
         self.K0 = (self.kP1 + self.kP2)**-1
         self.KA = np.zeros(len(self.K0))
         self.KA[:len(self.K0[self.xd>=GEO.AD])] = self.K0[self.xd>=GEO.AD]

@@ -24,17 +24,6 @@ Wheel:
   Thermal conductivity k2:                 0.30        W/m.K     
   Density ρ2:                            1415.00       kg/m3     
 -----------------------------------------------------------------
-                          M32 LUBRICANT                          
-.................................................................
-Lubricant temperature                       50         °C        
-Kinematic viscosity ν:                    21.39        cSt       
-Dynamic viscosity η:                      18.90        mPa.s     
-Density @ 15 °C  ρ₀:                       0.90        g/cm3     
-Density @ 50 °C ρ:                         0.88        g/cm3     
-Piezo-viscosity coefficient α:            28.86        1/GPa     
-Thermo-viscosity β:                       0.037        1/°C      
-Lubricant parameter XL:                    0.85                  
------------------------------------------------------------------
                          GEAR GEOMETRY:                          
 .................................................................
 Axis distance:                             91.5        mm        
@@ -81,50 +70,34 @@ Base circle load F_bn:                    295.6        N
 Maximum pressure p0:
   At pitch point:                          38.2        MPa       
   Maximum along AE:                        40.9        MPa       
-  Minimum along AE:                        26.5        MPa       
+  Minimum along AE:                        22.0        MPa       
 Mean pressure pm:
   At pitch point:                          30.0        MPa       
-  Maximum along AE:                        32.1        MPa       
-  Minimum along AE:                        20.8        MPa       
+  Maximum along AE:                        32.2        MPa       
+  Minimum along AE:                        17.3        MPa       
 Contact half-width aH:
   At pitch point:                        175.794       μm        
   Maximum along AE:                      179.399       μm        
-  Minimum along AE:                       83.317       μm        
-Maximum von Mises Stress:                  22.1        MPa       
-Maximum Shear Stress:                      12.3        MPa       
-Maximum Octahedric Shear Stress:           10.4        MPa       
------------------------------------------------------------------
-                         FILM THICKNESS                          
-.................................................................
-Average Inlet Shear Heating:              0.999                  
-Central Film Thickness h0C:
-  Maximum along AE:                        0.26        μm        
-  Minimum along AE:                        0.17        μm        
-  Average along AE:                        0.23        μm        
-Central lambda ratio Λ0C:                  0.18                  
-Minimum Film Thickness hmC:
-  Maximum along AE:                        0.39        μm        
-  Minimum along AE:                        0.24        μm        
-  Average along AE:                        0.34        μm        
-Minimum lambda ratio ΛmC:                  0.26                  
+  Minimum along AE:                       81.508       μm        
+Maximum von Mises Stress:                  24.6        MPa       
+Maximum Shear Stress:                      12.0        MPa       
+Maximum Octahedric Shear Stress:           10.1        MPa       
 -----------------------------------------------------------------
                            POWER LOSS                            
 .................................................................
-Gear Loss Factor HVL:                     0.1984       Wimmer    
+Gear Loss Factor HVL:                     0.1932       Wimmer    
 Gear Loss Factor HV:                      0.1986       Ohlendorf 
-Coefficient of Friction μmZ:              0.0299       Schlenk   
-Coefficient of Friction μmZ:              0.0376       Fernandes 
-Coefficient of Friction μmZ:              0.0782       Matsumoto 
-Average Power Loss Pvzp:                   6.22        W         
-Maximum Local Power Loss:                  0.54        W/mm      
-Minimum Local Power Loss:                  0.00        W/mm      
+Coefficient of Friction μmZ:              0.2800       VDI 2736  
+Average Power Loss Pvzp:                  56.64        W         
+Maximum Local Power Loss:                  4.78        W/mm      
+Minimum Local Power Loss:                  0.01        W/mm      
 -----------------------------------------------------------------
                      LOAD CARRYING CAPACITY                      
 .................................................................
 Influence factors:
-Ambient temperature                        50.0        °C        
-Root temperature                       57.0 / 54.7     °C        
-Flank temperature                      79.5 / 69.7     °C        
+Ambient temperature                        20.0        °C        
+Root temperature                       84.2 / 62.8     °C        
+Flank temperature                     288.9 / 199.2    °C        
 Influence factors:
   Application factor KA=KF=KH:             1.25                  
 Contact factors (Valid for lubricated PA66 gears):
@@ -133,15 +106,15 @@ Contact factors (Valid for lubricated PA66 gears):
   Contact ratio factor Zε:                 0.920                 
   Helix angle factor Zβ:                   1.000                 
 Contact stress:                            34.88       MPa       
-Permissible contact stress:           32.86 /  34.66   MPa       
-Contact stress safety factor SH:       1.32 /  1.39              
+Permissible contact stress:           22.92 /  22.92   MPa       
+Contact stress safety factor SH:       0.92 /  0.92              
 Bending factors:
   Form factor YFa:                    2.665 /  2.448             
   Stress correction factor YSa:       1.606 /  1.670             
   Contact ratio factor Yε:                 0.763                 
   Helix angle factor Yβ:                   1.000                 
 Tooth root stress:                    14.16 /  13.52   MPa       
-Limit tooth root stress:              55.82 /  57.14   MPa       
-Permissible tooth root stress:        27.91 /  28.57   MPa       
-Tooth root stress safety factor SF:     3.94 /  4.23              
+Limit tooth root stress:              36.67 /  52.39   MPa       
+Permissible tooth root stress:        18.34 /  26.19   MPa       
+Tooth root stress safety factor SF:     2.59 /  3.87              
 -----------------------------------------------------------------

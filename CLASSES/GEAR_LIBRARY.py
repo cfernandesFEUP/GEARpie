@@ -75,6 +75,24 @@ class GEAR:
         self.Rq = [0.7, 0.7]
         self.Rz = [4.8, 4.8]
 
+    def S30(self):
+        self.GEAR_NAME = 'S30'
+        self.alpha = 20.0
+        self.beta = 0.0
+        self.m = 2.0
+        self.z = [30, 30]
+        self.x = [0.0, 0.0]
+        self.addendum_reduction = 'N'
+        self.b = [15., 15.]
+        self.dshaft = [16., 16.]
+        self.al = 60.
+        self.haP = 1.
+        self.hfP = 1.25
+        self.rfP = 0.25
+        self.Ra = [0.6, 0.6]
+        self.Rq = [0.7, 0.7]
+        self.Rz = [4.8, 4.8]
+
     def H501(self):
         self.GEAR_NAME = 'H501'
         self.alpha = 20.

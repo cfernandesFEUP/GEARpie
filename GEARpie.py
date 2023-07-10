@@ -40,7 +40,7 @@ print('{:^65s}'.format('MIT License, Carlos M.C.G. Fernandes, 2022'))
 print('='*65)
 print('\n')
 print('Gear geometries available:')
-print('C14, H501, H701, H951')
+print('C14, S30, H501, H701, H951')
 print('To use a new geometry, type NEW')
 GEAR_TYPE = str(input('Input gear geometry: ')).upper()
 # GEAR SELECTION ==============================================================
