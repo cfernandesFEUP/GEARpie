@@ -27,7 +27,7 @@ sys.dont_write_bytecode = True
 
 # IMPORT LIBRARIES ============================================================
 from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, LUBRICANT_LIBRARY,
-                     LOAD_STAGES, CALC_GEOMETRY, RIGID_LOAD_SHARING, 
+                     LOAD_STAGES, CALC_GEOMETRY, LOAD_SHARING, 
                      FORCES_SPEEDS, CONTACT, INVOLUTE_GEOMETRY, DIN3990, 
                      VDI2736, MESH_GENERATOR, OUTPUT_PRINT, PLOTTING)
 
@@ -78,7 +78,9 @@ else:
 # discretization of path of contact
 size = 1000
 # discretization of involute geometry
-DISCRETIZATION = 100
+DISCRETIZATION = 1000
+# LOAD-SHARING MODEL?
+ANSWER_LS = str(input('Consider Load-Sharing (Y/N): ')).upper()
 # stress field position
 POST = str(input('Stress field position along AE (A, B, C, D or E): ')).upper()
 POSAE = 'A' + POST
@@ -111,10 +113,13 @@ else:
 GMAT = MATERIAL_LIBRARY.MATERIAL(MAT_PINION, MAT_WHEEL)
 # GEAR GEOMETRY ACCORDING TO MAAG BOOK ========================================
 GEO = CALC_GEOMETRY.MAAG(GTYPE)
+# INVOLUTE PROFILE GEOMETRY ===================================================
+Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
+Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
 # LINES OF CONTACT ASSUMING A RIGID LOAD SHARING (SPUR AND HELICAL) ===========
-GPATH = RIGID_LOAD_SHARING.LINES(size, GEO)
+GPATH = LOAD_SHARING.LINES(size, GEO, GMAT, Pprofile, Wprofile)
 # FORCES AND SPEEDS ===========================================================
-GFS = FORCES_SPEEDS.OPERATION(element, torque, speed, GEO, GPATH)
+GFS = FORCES_SPEEDS.OPERATION(element, torque, speed, GEO, GPATH, ANSWER_LS)
 # GEAR CONTACT QUANTITIES (PRESSURE, FILM THICKNESS, POWER LOSS) ==============
 GCONTACT = CONTACT.HERTZ(GMAT, GLUB, GEO, GPATH, GFS, POSAE)
 # LOAD CARRYING CAPACITY ======================================================
@@ -128,9 +133,6 @@ else:
         GLCC = VDI2736.LCC(GMAT, GEO, GFS, GPATH, GCONTACT, T0, KA)
     except:
         GLCC = VDI2736.LCC(GMAT, GEO, GFS, GPATH, GCONTACT, Tlub, KA)
-# INVOLUTE PROFILE GEOMETRY ===================================================
-Pprofile = INVOLUTE_GEOMETRY.LITVIN('P', GEO, DISCRETIZATION)
-Wprofile = INVOLUTE_GEOMETRY.LITVIN('W', GEO, DISCRETIZATION)
 # INVOLUTE PROFILE GEOMETRY ===================================================
 if MESH:
     MESH_GENERATOR.MESHING('P', GTYPE, GEO, Pprofile, PTOOTH, ORDER, NODEP, DIM)

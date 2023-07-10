@@ -93,5 +93,7 @@ class LITVIN:
         self.yGEO = np.concatenate((self.yd, self.yF, self.yI, self.ya,
                                     self.yI[::-1], self.yF[::-1],
                                     self.yd[::-1]), axis=0)
+        self.xLS = np.concatenate((self.xd, self.xF, self.xI), axis=0)
+        self.yLS = np.concatenate((self.yd, self.yF, self.yI), axis=0)
         self.xRF = np.concatenate((self.xd, self.xF), axis=0)
         self.yRF = np.concatenate((self.yd, self.yF), axis=0)

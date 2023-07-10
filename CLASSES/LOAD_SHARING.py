@@ -24,7 +24,7 @@ SOFTWARE. '''
 class LINES:
     """Calculation of lines of contact length assuming a ridig load sharing model"""
 
-    def __init__(self, size, GEO):
+    def __init__(self, size, GEO, GMAT, Pprofile, Wprofile):
 
         import numpy as np
         # contact size
@@ -99,3 +99,50 @@ class LINES:
         self.R1 = GEO.T1A + self.xd
         self.R2 = GEO.T2A - self.xd
         self.Req = 1/((1/self.R1) + (1/self.R2))/np.cos(GEO.betab)
+        # LOAD SHARING ========================================================
+        # PEM LOAD SHARING
+        def inv(alpha):
+            return np.tan(alpha) - alpha
+        
+        def STIFFNESS(E, v, b, yC, alphaC, profile):
+            Cs = 1.5
+            G = E/(2*(1+v))
+            x = -profile.xLS[profile.yLS<=yC]
+            y = profile.yLS[profile.yLS<=yC]
+            gammaY = np.arctan(x/y)
+            rY = y/np.cos(gammaY)
+            eY = 2*rY*np.sin(gammaY)
+            kPbI = 12/(E*b)*(((yC-y)*np.cos(alphaC))**2/eY**3)
+            kPsI = Cs/(G*b)*(np.cos(alphaC))**2/eY
+            kPcI = 1/(E*b)*(np.sin(alphaC))**2/eY
+            kPtI = kPbI + kPsI + kPcI
+            return np.trapz(kPtI,y)
+
+        ## INITIAL
+        self.s1 = np.pi*GEO.m/2 + 2*GEO.x1*GEO.m*np.tan(GEO.alpha)
+        self.s2 = np.pi*GEO.m/2 + 2*GEO.x2*GEO.m*np.tan(GEO.alpha)
+        self.rC1 = np.sqrt((GEO.T1A+self.xd)**2 + GEO.rb1**2)
+        self.rC2 = np.sqrt((GEO.T2A-self.xd)**2 + GEO.rb2**2)
+        
+        self.alphaT1 = np.arccos(GEO.rb1/self.rC1)
+        self.alphaT2 = np.arccos(GEO.rb2/self.rC2)
+        self.gammaC1 = 2*(self.s1/GEO.d1 + inv(GEO.alphat) - inv(self.alphaT1))
+        self.gammaC2 = 2*(self.s2/GEO.d1 + inv(GEO.alphat) - inv(self.alphaT1))
+        
+        self.alphaC1 = self.alphaT1 - 0.5*self.gammaC1
+        self.alphaC2 = self.alphaT2 - 0.5*self.gammaC2
+        self.yC1 = GEO.rb1/np.cos(self.alphaC1)
+        self.yC2 = GEO.rb2/np.cos(self.alphaC2)
+
+        self.kP1 = np.zeros(len(self.rC1))
+        self.kP2 = np.zeros(len(self.rC2))
+        for j in range(len(self.rC1)):
+            self.kP1[j] = STIFFNESS(GMAT.E1,GMAT.v1,GEO.b1,self.yC1[j],self.alphaC1[j],Pprofile)
+            self.kP2[j] = STIFFNESS(GMAT.E2,GMAT.v2,GEO.b2,self.yC2[j],self.alphaC2[j],Wprofile)
+        self.K0 = (self.kP1 + self.kP2)**-1
+        self.KA = np.zeros(len(self.K0))
+        self.KA[:len(self.K0[self.xd>=GEO.AD])] = self.K0[self.xd>=GEO.AD]
+        self.KB = np.zeros(len(self.K0))
+        self.KB[(len(self.K0)-len(self.K0[self.xd<=GEO.AB])):] = self.K0[self.xd<=GEO.AB]
+        self.LS = self.K0/(self.K0+self.KB+self.KA)
+        self.LS3D = np.tile(self.LS, (len(self.bpos), 1)).T

@@ -119,11 +119,11 @@ class HERTZ:
         self.beta1 = self.thermal1/(self.thermal1 + self.thermal2)
         self.beta2 = self.thermal2/(self.thermal1 + self.thermal2)
         # instantaneous heat generation: 1 - pinion, 2- wheel
-        self.qvzp1 = 1e3*self.beta1*GFS.p0*self.vg3D*self.CoF
-        self.qvzp2 = 1e3*self.beta2*GFS.p0*self.vg3D*self.CoF
+        self.qvzp1 = 1e3*self.beta1*self.p0*self.vg3D*self.CoF
+        self.qvzp2 = 1e3*self.beta2*self.p0*self.vg3D*self.CoF
         # average heat generation: 1 - pinion, 2- wheel
-        self.qvzp1m = self.Qvzp1*self.aH/(4*self.R13D)
-        self.qvzp2m = self.Qvzp2*self.aH/(4*self.R23D)
+        self.qvzp1m = self.qvzp1*self.aH/(4*self.R13D)
+        self.qvzp2m = self.qvzp2*self.aH/(4*self.R23D)
         # CONTACT STRESSES ====================================================
         # stress field position along path of contact index
         if POSAE == 'AA':

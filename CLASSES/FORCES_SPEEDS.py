@@ -24,7 +24,7 @@ SOFTWARE. '''
 class OPERATION:
     """Calculation of forces and speeds along the path of contact"""
 
-    def __init__(self, element, torque, speed, GEO, GPATH):
+    def __init__(self, element, torque, speed, GEO, GPATH, ANSWER_LS):
         import numpy as np
         self.element = element
         if element == 'P':
@@ -65,8 +65,11 @@ class OPERATION:
         self.fn = self.ft/np.cos(GEO.betab)
         # axial force
         self.fa = self.fbt*np.tan(GEO.betab)
-        # normal force along path of contactr
-        self.fnx = self.fbn/GPATH.lsum
+        # normal force along path of contact
+        if ANSWER_LS == 'Y':
+            self.fnx = GPATH.LS3D*self.fbn/min(GEO.b1,GEO.b2)
+        else:
+            self.fnx = self.fbn/GPATH.lsum
         # sum velocity on the pitch circle
         self.vsumc = 2*self.omega1*GEO.rl1/1000*np.sin(GEO.alphatw)
         # tangent speed (base circle)
