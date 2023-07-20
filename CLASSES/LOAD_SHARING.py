@@ -104,47 +104,72 @@ class LINES:
         def inv(alpha):
             return np.tan(alpha) - alpha
         
-        def STIFFNESS(E, v, b, rC, gammaC, yC, alphaC, profile):
-            Cs = 1.5
+        def STIFFNESS(E, v, b, yC, rC, gammaC, alphaC, profile, rsh, rb, rf, rt, z, alpha, ha):
+            Cs = 1.2
             G = E/(2*(1+v))
             x = -profile.xLS[profile.yLS<=yC]
             y = profile.yLS[profile.yLS<=yC]
-            gammaY = np.arctan(x/y)
-            rY = y/np.cos(gammaY)
-            eY = 2*rY*np.sin(gammaY)
-            kPbI = 12/(E*b)*(((yC-y)*np.cos(alphaC)-rC*np.sin(gammaC/2)*np.sin(alphaC))**2/eY**3)
+            eY = 2*x
+            kPbI = 12/(E*b)*(((yC-y)*np.cos(alphaC)\
+                              -rC*np.sin(gammaC)*np.sin(alphaC))**2/eY**3)
             kPsI = Cs/(G*b)*(np.cos(alphaC))**2/eY
             kPcI = 1/(E*b)*(np.sin(alphaC))**2/eY
-            kPtI = kPbI + kPsI + kPcI
-            return np.trapz(kPtI,y)
+            ## FOUNDATION
+            thetaf = (np.pi/2 + 2*np.tan(alpha)*(ha-rt)+2*rt/np.cos(alpha))/z
+            uf = yC - rf
+            sf = 2*rb*thetaf
+            h = rf/rsh
+            L = -5.574e-5/thetaf**2 -1.9986e-3*h**2 -2.3015e-4*h/thetaf\
+                + 4.7702e-3/thetaf + 0.0271*h + 6.8045
+            M = 60.111e-5/thetaf**2 + 28.100e-3*h**2 -83.431e-4*h/thetaf\
+                  -9.9256e-3/thetaf + 0.1624*h + 0.9086
+            P = -50.952e-5/thetaf**2 + 185.5e-3*h**2 + 0.0538e-4*h/thetaf\
+                  + 53.300e-3/thetaf + 0.2895*h + 0.9236
+            Q = -6.2042e-5/thetaf**2 + 9.0889e-3*h**2 -4.0964e-4*h/thetaf\
+                + 7.8297e-3/thetaf -0.1472*h + 0.6904
+            kPfI = np.cos(alphaC)**2/(E*b)*\
+                (L*(uf/sf)**2+M*(uf/sf)+P*(1+Q*(np.tan(alphaC))**2))
+            kPtI = kPbI + kPsI + kPcI 
+            return np.trapz(kPtI,y) + kPfI
 
         ## INITIAL
         self.s1 = np.pi*GEO.m/2 + 2*GEO.x1*GEO.m*np.tan(GEO.alpha)
         self.s2 = np.pi*GEO.m/2 + 2*GEO.x2*GEO.m*np.tan(GEO.alpha)
+
         self.rC1 = np.sqrt((GEO.T1A+self.xd)**2 + GEO.rb1**2)
         self.rC2 = np.sqrt((GEO.T2A-self.xd)**2 + GEO.rb2**2)
         
-        self.alphaT1 = np.arccos(GEO.rb1/self.rC1)
-        self.alphaT2 = np.arccos(GEO.rb2/self.rC2)
-        self.gammaC1 = 2*(self.s1/GEO.d1 + inv(GEO.alphat) - inv(self.alphaT1))
-        self.gammaC2 = 2*(self.s2/GEO.d2 + inv(GEO.alphat) - inv(self.alphaT2))
+        self.alphaM1 = np.arccos(GEO.rb1/self.rC1)
+        self.alphaM2 = np.arccos(GEO.rb2/self.rC2)
+        self.gammaC1 = (self.s1/(GEO.d1) + (inv(GEO.alphat) - inv(self.alphaM1)))
+        self.gammaC2 = (self.s2/(GEO.d2) + (inv(GEO.alphat) - inv(self.alphaM2)))
         
-        self.alphaC1 = self.alphaT1 - 0.5*self.gammaC1
-        self.alphaC2 = self.alphaT2 - 0.5*self.gammaC2
+        self.alphaC1 = self.alphaM1 - self.gammaC1
+        self.alphaC2 = self.alphaM2 - self.gammaC2
+
         self.yC1 = GEO.rb1/np.cos(self.alphaC1)
         self.yC2 = GEO.rb2/np.cos(self.alphaC2)
 
         self.kP1 = np.zeros(len(self.rC1))
         self.kP2 = np.zeros(len(self.rC2))
+
         for j in range(len(self.rC1)):
-            self.kP1[j] = STIFFNESS(GMAT.E1,GMAT.v1,GEO.b1,self.rC1[j],
-                                    self.gammaC1[j],self.yC1[j],self.alphaC1[j],Pprofile)
-            self.kP2[j] = STIFFNESS(GMAT.E2,GMAT.v2,GEO.b2,self.rC2[j],
-                                    self.gammaC2[j],self.yC2[j],self.alphaC2[j],Wprofile)
+            self.kP1[j] = STIFFNESS(GMAT.E1,GMAT.v1,GEO.b1,self.yC1[j],
+                                    self.rC1[j],self.gammaC1[j],
+                                    self.alphaC1[j],Pprofile, GEO.rsh1, GEO.rb1, 
+                                    GEO.rf1, GEO.rfP, GEO.z1, GEO.alpha, GEO.haP)
+            self.kP2[j] = STIFFNESS(GMAT.E2,GMAT.v2,GEO.b2,self.yC2[j],
+                                    self.rC2[j],self.gammaC2[j],
+                                    self.alphaC2[j],Wprofile, GEO.rsh2, GEO.rb2, 
+                                    GEO.rf2, GEO.rfP, GEO.z2, GEO.alpha, GEO.haP)
+        self.Eeq = ((1-GMAT.v1**2)/GMAT.E1 + (1-GMAT.v2**2)/GMAT.E2)**-1
+        self.kH = 4/(np.pi*self.Eeq*min(GEO.b1,GEO.b2))
         self.K0 = (self.kP1 + self.kP2)**-1
         self.KA = np.zeros(len(self.K0))
         self.KA[:len(self.K0[self.xd>=GEO.AD])] = self.K0[self.xd>=GEO.AD]
         self.KB = np.zeros(len(self.K0))
-        self.KB[(len(self.K0)-len(self.K0[self.xd<=GEO.AB])):] = self.K0[self.xd<=GEO.AB]
+        self.KB[(len(self.K0)-len(self.K0[self.xd<=GEO.AB])):] =\
+              self.K0[self.xd<=GEO.AB]
+        self.KT = self.K0 + self.KA + self.KB
         self.LS = self.K0/(self.K0+self.KB+self.KA)
         self.LS3D = np.tile(self.LS, (len(self.bpos), 1)).T

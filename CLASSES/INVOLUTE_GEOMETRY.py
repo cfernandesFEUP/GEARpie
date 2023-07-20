@@ -42,58 +42,85 @@ class LITVIN:
             r = GEO.r2
             x = GEO.x2
 
-        # involute function
-        def inv(angles):
-            return np.tan(angles) - angles
+        ## RACK POINTS
+        self.A = (GEO.hfP*GEO.m - x*GEO.m)*np.tan(GEO.alpha) +\
+            GEO.rhoF*(1-np.sin(GEO.alpha))/np.cos(GEO.alpha)
+        self.B = GEO.hfP*GEO.m - x*GEO.m - GEO.rhoF
 
-        # tooth rotation
+        ## ANGLE FOR THE START OF INVOLUTE (from page 281 Litvin book)
+        ## FOR UNDERCUT, MAY NOT WORK
+        ## tan(alphaG) = tan(alpha) - 4*(m - x*m)/(z*m*sin(2*alpha))
+        self.alphaG = np.arctan(np.tan(GEO.alpha) - 2*(GEO.m-x*GEO.m)/
+                               (r*np.sin(2*GEO.alpha)))
+                        
+        def angleI(phiI):
+            res = r*phiI*np.cos(GEO.alpha)*np.sin(phiI+GEO.alpha)+((-r*phiI - self.A)\
+            /np.cos(np.arctan(self.B/(-r*phiI-self.A)))+GEO.rhoF)\
+                *np.sin(phiI+np.arctan(self.B/(-r*phiI-self.A)))
+            return res
+        
+        from scipy import optimize
+        
+
+        ## INVOLUTE PROFILE
+        self.alphaA = np.arccos(rb/ra)
+        self.phiB = optimize.brentq(angleI,-GEO.alpha,GEO.alpha)
+        self.phiE = np.tan(self.alphaA) - np.tan(GEO.alpha)
+        self.phi = np.linspace(self.phiB, self.phiE, DISCRETIZATION)
+        self.Xinv = r*(np.sin(self.phi) - self.phi*np.cos(GEO.alpha)*
+                     np.cos(self.phi+GEO.alpha))
+        self.Yinv = r*(np.cos(self.phi) + self.phi*np.cos(GEO.alpha)*
+                     np.sin(self.phi+GEO.alpha))
+
+        ## ROOT TROCHOID PROFILE
+        self.phiT = np.linspace(-self.A/r, self.phiB, DISCRETIZATION//3)[1::]
+        self.lam = np.arctan(self.B/(-r*self.phiT-self.A))
+        self.Xtroch = r*np.sin(self.phiT) + ((-r*self.phiT-self.A)/np.cos(self.lam) 
+                                         + GEO.rhoF)*np.cos(self.phiT + self.lam)
+        self.Ytroch = r*np.cos(self.phiT) - ((-r*self.phiT-self.A)/np.cos(self.lam) + 
+                                         GEO.rhoF)*np.sin(self.phiT + self.lam)
+        
+        ## TRANSFORM MATRIX
+        ## TOOTH THICKNESS ON REFERENCE CIRCLE
+        self.s = np.pi*GEO.m/2 + 2*x*GEO.m*np.tan(GEO.alpha)
+        self.rot = self.s/(2*r) ## HALF ANGLE DUE TO THICKNESS ON REFERENCE CIRCLE
+        ## [cos(rot) -sin(rot) 0 ;
+        ##  sin(rot)  cos(rot) 0 ;
+        ##  0         0        1 ]
+            
+        self.XinvT = self.Xinv*np.cos(self.rot) - self.Yinv*np.sin(self.rot)
+        self.YinvT = self.Xinv*np.sin(self.rot) + self.Yinv*np.cos(self.rot)
+
+        self.XtrochT = self.Xtroch*np.cos(self.rot) - self.Ytroch*np.sin(self.rot)
+        self.YtrochT = self.Xtroch*np.sin(self.rot) + self.Ytroch*np.cos(self.rot)
+
+        ## CONCATENATE INVOLUTE AND TROCHOID
+        ## YOU NEED TO FIND THE INTERSECTION BETWEEN TROCHOID 
+        ## AND DEDDENDUM TO EXCLUDE ALL POINTS ON THE LEFT 
+        ## (NOW IS EXCLUDING THE FIRST POINT ONLY, WHICH MAY NOT WORK FOR ALL CASES)
+        self.XprofT =  np.concatenate((self.XtrochT, self.XinvT), axis=0)
+        self.YprofT =  np.concatenate((self.YtrochT, self.YinvT), axis=0)
+
+        ## ONE TURN DIVIDED BY TOOH
+        ## TOOTH ROTATION
         self.aROOT = np.pi/z
-        # point A
-        #self.aA = np.pi*GEO.mt/4 - GEO.m * \
-        #    np.tan(GEO.alphat)-GEO.rhoF*np.cos(GEO.alphat)
-        self.aA = GEO.mt*(np.pi/4 - 1.25*np.tan(GEO.alphat))\
-             - GEO.rhoF*(1-np.sin(GEO.alphat))/np.cos(GEO.alphat)
-        self.bA = 1.25*GEO.m - GEO.rhoF
-        self.alphaG = np.arctan(np.tan(GEO.alphat) - 4*(1-x)
-                                / (z*np.sin(2*GEO.alphat)))
-        self.rG = r*np.cos(GEO.alphat)/(np.cos(self.alphaG))
-        # root fillet
-        self.thetaR = np.linspace(0, np.pi/2-GEO.alphat, DISCRETIZATION)
-        self.phi = (self.aA - self.bA*np.tan(self.thetaR))/r
-        self.xfP = GEO.rhoF*np.sin(self.thetaR - self.phi) +\
-            self.aA*np.cos(self.phi) - self.bA*np.sin(self.phi)\
-            + r*(np.sin(self.phi) - self.phi*np.cos(self.phi))
-        self.yfP = -GEO.rhoF*np.cos(self.thetaR - self.phi) -\
-            self.aA*np.sin(self.phi) - self.bA*np.cos(self.phi)\
-            + r*(np.cos(self.phi) + self.phi*np.sin(self.phi))
-        self.xF = self.xfP*np.cos(self.aROOT) - self.yfP*np.sin(self.aROOT)
-        self.yF = self.xfP*np.sin(self.aROOT) + self.yfP*np.cos(self.aROOT)
-        self.rG = (self.xF[-1]**2+self.yF[-1]**2)**(1/2)
-        # involute profile
-        self.thI = np.arccos(rb/self.rG)
-        self.thF = np.arccos(rb/ra)
-        self.theta = np.linspace(self.thI + inv(self.thI),
-                                 self.thF + inv(self.thF), DISCRETIZATION)
-        self.xe = rb*(np.sin(self.theta) - self.theta*np.cos(self.theta))
-        self.ye = rb*(np.cos(self.theta) + self.theta*np.sin(self.theta))
-        self.aBASE = -np.arctan(self.xF[-1]/self.yF[-1]) + inv(self.thI)
-        self.xI = self.xe*np.cos(self.aBASE) - self.ye*np.sin(self.aBASE)
-        self.yI = self.xe*np.sin(self.aBASE) + self.ye*np.cos(self.aBASE)
-        # deddendum circle
-        self.xd = np.linspace(-rf*np.sin(self.aROOT),
-                              self.xF[0], DISCRETIZATION)
-        self.yd = (rf**2 - self.xd**2)**(1/2)
-        # addendum circle
-        self.xa = np.linspace(self.xI[-1], -self.xI[-1], DISCRETIZATION//5)
-        self.ya = (ra**2 - self.xa**2)**(1/2)
-        # concatenate
-        self.xGEO = np.concatenate((self.xd, self.xF, self.xI, self.xa,
-                                    -self.xI[::-1], -self.xF[::-1],
-                                    -self.xd[::-1]), axis=0)
-        self.yGEO = np.concatenate((self.yd, self.yF, self.yI, self.ya,
-                                    self.yI[::-1], self.yF[::-1],
-                                    self.yd[::-1]), axis=0)
-        self.xLS = np.concatenate((self.xd, self.xF, self.xI), axis=0)
-        self.yLS = np.concatenate((self.yd, self.yF, self.yI), axis=0)
-        self.xRF = np.concatenate((self.xd, self.xF), axis=0)
-        self.yRF = np.concatenate((self.yd, self.yF), axis=0)
+
+        ## DEDDENDUM CIRCLE
+        self.Xd = np.linspace(-rf*np.sin(self.aROOT), 
+                              self.XprofT[0], DISCRETIZATION//4)
+        self.Yd = (rf**2 - self.Xd**2)**(1/2)
+
+        ## ADDENDUM CIRCLE
+        self.Xa = np.linspace(self.XprofT[-1], -self.XprofT[-1], 
+                              DISCRETIZATION//4)
+        self.Ya = (ra**2 - self.Xa**2)**(1/2)
+
+        ## CONCATENATE GEOMETRY
+        self.xGEO = np.concatenate((self.Xd, self.XprofT, self.Xa, 
+                                    -self.XprofT[::-1], -self.Xd[::-1]), axis=0)
+        self.yGEO = np.concatenate((self.Yd, self.YprofT, self.Ya,
+                                    self.YprofT[::-1], self.Yd[::-1]), axis=0)
+        self.xRF = np.concatenate((self.Xd, self.XtrochT[1::]), axis=0)
+        self.yRF = np.concatenate((self.Yd, self.YtrochT[1::]), axis=0)
+        self.xLS = np.concatenate((self.Xd, self.XprofT), axis=0)
+        self.yLS = np.concatenate((self.Yd, self.YprofT), axis=0)

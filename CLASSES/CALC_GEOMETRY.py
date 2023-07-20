@@ -49,6 +49,10 @@ class MAAG:
         self.hfP = GTYPE.hfP
         # root radius coefficient
         self.rhoF = GTYPE.rfP*self.m
+        self.rfP = GTYPE.rfP
+        # shaft radius
+        self.rsh1 = GTYPE.dshaft[0]/2
+        self.rsh2 = GTYPE.dshaft[1]/2
         #axis distance
         self.al = GTYPE.al
         # transmission ratio

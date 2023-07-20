@@ -77,10 +77,10 @@ class MESHING:
         PC = model.geo.addPoint(0, 0, zv)
         # involiute
         PIl, PIr = [], []
-        for i in range(len(PROFILE.xI)):
-            PIl.append(geog.addPoint(PROFILE.xI[i], PROFILE.yI[i], zv))
-        for j in range(len(PROFILE.xI)):
-            PIr.append(geog.addPoint(-PROFILE.xI[j], PROFILE.yI[j], zv))
+        for i in range(len(PROFILE.XinvT)):
+            PIl.append(geog.addPoint(PROFILE.XinvT[i], PROFILE.YinvT[i], zv))
+        for j in range(len(PROFILE.XinvT)):
+            PIr.append(geog.addPoint(-PROFILE.XinvT[j], PROFILE.YinvT[j], zv))
 
         CIl = geog.addSpline(PIl)
         CIr = geog.addSpline(PIr)
