@@ -71,8 +71,8 @@ class GEAR:
         self.haP = 1.
         self.hfP = 1.25
         self.rfP = 0.38
-        self.Ra = [0.6, 0.6]
-        self.Rq = [0.7, 0.7]
+        self.Ra = [0.4, 0.31]
+        self.Rq = [0.51, 0.4]
         self.Rz = [4.8, 4.8]
 
     def S30(self):
