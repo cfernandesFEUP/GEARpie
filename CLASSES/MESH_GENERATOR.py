@@ -312,7 +312,7 @@ class MESHING:
         print('MESH CREATED')
 
         # save mesh
-        gmsh.fltk.run()
+        #gmsh.fltk.run()
         file = GEAR_ELEMENT + str(GTYPE.GEAR_NAME)
         gmsh.write('MESH/' + file + ".inp")
         print('SAVING MESH')
