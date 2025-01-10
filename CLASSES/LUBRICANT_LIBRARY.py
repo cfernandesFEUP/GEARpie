@@ -118,6 +118,9 @@ class LUBRICANT:
         self.n = 3.2236
     
     # PAO
+    def PRP(self):
+        self.m = 8.5984
+        self.n = 3.3725
     def P32(self):#
         self.m = 7.8018
         self.n = 3.0540

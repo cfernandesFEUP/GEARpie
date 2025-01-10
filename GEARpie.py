@@ -24,7 +24,6 @@ SOFTWARE. '''
 import sys
 sys.dont_write_bytecode = True
 
-
 # IMPORT LIBRARIES ============================================================
 from CLASSES import (GEAR_LIBRARY, MATERIAL_LIBRARY, LUBRICANT_LIBRARY,
                      LOAD_STAGES, CALC_GEOMETRY, LOAD_SHARING, 
